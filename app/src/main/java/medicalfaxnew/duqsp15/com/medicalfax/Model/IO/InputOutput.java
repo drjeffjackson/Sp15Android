@@ -3,6 +3,8 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model.IO;
         import android.content.Context;
         import android.database.Cursor;
         import android.database.sqlite.SQLiteDatabase;
+        import java.util.List;
+        import java.util.Arrays;
 
         import medicalfaxnew.duqsp15.com.medicalfax.Model.Controller.ModelController;
 
@@ -25,7 +27,36 @@ public class InputOutput
      */
     public void loadPatient()
     {
-        //
+        //Selects the row with the patient ID of 1, since that's the row where we store all the data
+        Cursor c= database.rawQuery("SELECT * FROM " + mysqlHelper.TABLE_PATIENT + " WHERE ID =?", new String []{"1"});
+        c.moveToFirst();
+
+        //Sets the patient object fields with database values
+        ModelController.patient.setFirstName(c.getString(c.getColumnIndex(mysqlHelper.PATIENT_COLUMN_FIRST)));
+        ModelController.patient.setMiddleName(c.getString(c.getColumnIndex(mysqlHelper.PATIENT_COLUMN_MIDDLE)));
+        ModelController.patient.setLastName(c.getString(c.getColumnIndex(mysqlHelper.PATIENT_COLUMN_LAST)));
+        ModelController.patient.setPCPFirst(c.getString(c.getColumnIndex(mysqlHelper.PATIENT_COLUMN_PCPFirst)));
+        ModelController.patient.setPCPLast(c.getString(c.getColumnIndex(mysqlHelper.PATIENT_COLUMN_PCPLast)));
+
+        //Now when we load the array lists, they're stored separated by commas, so we have to explode them
+        String tmpDiagnosis = c.getString(c.getColumnIndex(mysqlHelper.PATIENT_COLUMN_DIAGNOSIS));
+        String tmpAntibiotics = c.getString(c.getColumnIndex(mysqlHelper.PATIENT_COLUMN_ANTIBIOTIC));
+
+        List<String> diagnosisList = Arrays.asList(tmpDiagnosis.split(","));
+        List<String> antibioticsList = Arrays.asList(tmpAntibiotics.split(","));
+
+        //For loops to add them via methods
+        for (String diagnosis : diagnosisList)
+        {
+            ModelController.patient.addDiagnosis(diagnosis);
+        }
+
+        for (String antibiotic : antibioticsList)
+        {
+            ModelController.patient.addAntibiotic(Integer.parseInt(antibiotic)); //Parses into integer since stored via string in db
+        }
+
+
     }
 
     /*
@@ -50,36 +81,35 @@ public class InputOutput
     }
 
     /*
-    When called, takes
+    Updates all patient information in database by using patient object fields as data source
      */
-    protected void updatePatient()
+    public void updatePatient()
     {
-        //hi
+        //Coming soon
     }
 
     /*
-    When called, takes
-    @param field name
-     */
-    protected void updatePhysician(String field)
+     Updates all physician information in database by using patient object fields as data source
+      */
+    public void updatePhysician()
     {
-        //
+        //Coming soon
     }
 
     /*
     Updates all patient data to blank
      */
-    public void deletePatient()
+    private void deletePatient()
     {
-        //
+        //Coming soon
     }
 
     /*
     Updates all physician data to blank
      */
-    public void deletePhysician()
+    private void deletePhysician()
     {
-        //
+        //Coming soon
     }
 
 

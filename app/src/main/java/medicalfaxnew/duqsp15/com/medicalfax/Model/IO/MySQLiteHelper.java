@@ -10,6 +10,8 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model.IO;
         import android.util.Log;
         import android.content.ContentValues;
 
+        import java.net.IDN;
+
 public class MySQLiteHelper extends SQLiteOpenHelper
 {
 
@@ -39,6 +41,32 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             + ");";
 
 
+    //Patient
+    public final String TABLE_PATIENT = "Patient";
+    public final String PATIENT_COLUMN_ID = "ID";
+    public final String PATIENT_COLUMN_FIRST = "First";
+    public final String PATIENT_COLUMN_MIDDLE = "Middle";
+    public final String PATIENT_COLUMN_LAST = "Last";
+    public final String PATIENT_COLUMN_PCPFirst = "PCPFirst";
+    public final String PATIENT_COLUMN_PCPLast = "PCPLast";
+    public final String PATIENT_COLUMN_DIAGNOSIS = "Diagnosis";
+    public final String PATIENT_COLUMN_ANTIBIOTIC = "Antibiotics";
+
+    private final String PATIENT_TABLE_CREATE = "create table "
+            + TABLE_PATIENT + "(" + PATIENT_COLUMN_ID
+            + " integer primary key autoincrement, "
+            + PATIENT_COLUMN_FIRST + " text not null,"
+            + PATIENT_COLUMN_MIDDLE + " text not null,"
+            + PATIENT_COLUMN_LAST + " text not null,"
+            + PATIENT_COLUMN_PCPFirst + " text not null,"
+            + PATIENT_COLUMN_PCPLast + " text not null,"
+            + PATIENT_COLUMN_DIAGNOSIS + " text not null,"
+            + PATIENT_COLUMN_ANTIBIOTIC + " text not null"
+            + ");";
+
+
+
+
     //GENERAL DATABASE
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "JacksonJ";
@@ -58,7 +86,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     {
         database.execSQL(PHYSICIAN_TABLE_CREATE); //Creates Physician Table
         createPatient(database); //Creates initial patient row
-        // database.execSQL(PATIENT_TABLE_CREATE); //Creates Patient Table
+        database.execSQL(PATIENT_TABLE_CREATE); //Creates Patient Table
         createPhysician(database); //creates initial physician row
     }
 
@@ -67,7 +95,17 @@ public class MySQLiteHelper extends SQLiteOpenHelper
      */
     private void createPatient(SQLiteDatabase database)
     {
-        //
+        ContentValues cv = new ContentValues();
+
+        cv.put(PATIENT_COLUMN_ID, 1);
+        cv.put(PATIENT_COLUMN_FIRST, "");
+        cv.put(PATIENT_COLUMN_MIDDLE, "");
+        cv.put(PATIENT_COLUMN_LAST, "");
+        cv.put(PATIENT_COLUMN_PCPFirst, "");
+        cv.put(PATIENT_COLUMN_PCPLast, "");
+        cv.put(PATIENT_COLUMN_DIAGNOSIS, "");
+        cv.put(PATIENT_COLUMN_ANTIBIOTIC, "");
+        database.insert(TABLE_PATIENT, PATIENT_COLUMN_ID, cv); //Insert statement
     }
 
     /*

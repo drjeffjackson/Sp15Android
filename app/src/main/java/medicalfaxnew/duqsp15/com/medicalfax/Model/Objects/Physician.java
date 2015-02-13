@@ -1,5 +1,7 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Model.Objects;
 
+import medicalfaxnew.duqsp15.com.medicalfax.Model.Controller.ModelController;
+
 /**
  * Created by austinpilz on 2/11/15.
  */
@@ -19,7 +21,7 @@ public class Physician
      */
     public Physician()
     {
-        //Load data from Controller database function
+        //Data for physician is automatically loaded by IO on app startup
     }
 
     /*
@@ -88,84 +90,100 @@ public class Physician
 
 
 
-    //Set Methods
+    ////////////////////////////////////Set Methods///////////////////////////
     /*
-    Sets the physicians first name and commits change to database
+    Sets the physicians first name
+    @param String first
      */
     public void setFirstName(String f)
     {
         this.firstName = f;
-        //Controller.IO.updatePatient();
+        
 
     }
 
     /*
-    Sets the physicians last name and commits change to database
+    Sets the physicians last name
+    @param String last
      */
     public void setLastName(String l)
     {
         this.lastName = l;
-        //Controller.IO.updatePatient();
+        
 
     }
 
     /*
-    Sets the physician NPI and commits change to database
+    Sets the physician NPI
+    @String NPI#
      */
     public void setNPI(String n)
     {
         this.NPI = n;
-        //Controller.IO.updatePatient();
+        
 
     }
 
     /*
-    Sets the physicians home hospital and commits change to database
+    Sets the physicians home hospital
+    @String hospital
      */
     public void setHomeHospital(String h)
     {
         this.homeHospital = h;
-        //Controller.IO.updatePatient();
+        
 
     }
 
     /*
-    Sets the physicians department and commits change to database
+    Sets the physicians department
+    @param String department
      */
     public void setDepartment(String d)
     {
         this.Department = d;
-        //Controller.IO.updatePatient();
+        
 
     }
 
     /*
-    Sets the physicians title and commits change to database
+    Sets the physicians title
+    @param String title
      */
     public void setTitle(String t)
     {
         this.Title = t;
-        //Controller.IO.updatePatient();
+        
 
     }
 
     /*
-    Sets the physicians email and commits change to database
+    Sets the physicians email
+    @param String email
      */
     public void setEmail(String e)
     {
         this.emailAddress = e;
-        //Controller.IO.updatePatient();
+        
 
     }
 
     /*
-    Sets the physicians phone and commits change to database
+    Sets the physicians phone
+    @param String phone
      */
     public void setPhone(String p)
     {
         this.phoneNumber = p;
-        //Controller.IO.updatePatient();
+        
 
+    }
+
+    /*
+    Commits all changes to physician into the database. Takes data from Physician object fields and stores them in the database
+     */
+    public void commit()
+    {
+        ModelController.IO.updatePhysician(); //Updates all database row info with data in object fields
     }
 }
