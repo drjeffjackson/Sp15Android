@@ -71,11 +71,58 @@ android:orientation="vertical">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:hint="@string/code_status" />
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/button_send" />
+
+    <!-- Down_Button: moves cursor down one text field from the current position -->
+    <!-- Up_Button: moves cursor up one text field from the current position -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="@string/UP"
+            android:id="@+id/Up_Button"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignBottom="@+id/Dictate_Button"
+            android:layout_toLeftOf="@+id/Down_Button"
+            android:layout_toStartOf="@+id/Down_Button"
+            android:onClick="up" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="@string/DN"
+            android:id="@+id/Down_Button"
+            android:layout_gravity="right"
+            android:layout_alignBottom="@+id/Dictate_Button"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="down" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Submit"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/Submit_Button"
+            android:layout_alignTop="@+id/Dictate_Button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Dictate"
+            android:id="@+id/Dictate_Button"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
 
 </LinearLayout>
+
+
+
 
