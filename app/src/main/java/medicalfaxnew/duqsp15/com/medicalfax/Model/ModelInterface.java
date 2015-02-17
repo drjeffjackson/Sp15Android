@@ -1,8 +1,9 @@
-package medicalfaxnew.duqsp15.com.medicalfax.Model.Controller;
+package medicalfaxnew.duqsp15.com.medicalfax.Model;
 
-
-        import medicalfaxnew.duqsp15.com.medicalfax.Model.Objects.*;
         import medicalfaxnew.duqsp15.com.medicalfax.Model.IO.*;
+        import medicalfaxnew.duqsp15.com.medicalfax.Model.Dictation.*;
+        import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.*;
+        import medicalfaxnew.duqsp15.com.medicalfax.Model.Physician.*;
         import android.content.Context;
 
 /**
@@ -12,20 +13,25 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model.Controller;
  * Saving data to database is called in the Patient and Physician apps (commit())
  *
  */
-public class ModelController
+public class ModelInterface
 {
     public static Patient patient; //Patient Object
     public static Physician physician; //Physician Object
-    public static InputOutput IO; //IO for Model Team ONLY
-    public static ModelController MController; //Instance
+    public static Dictation dictation;
+    protected static Email email;
+    protected static InputOutput IO; //IO for Model Team ONLY
+    public static ModelInterface MController; //Instance
 
-    public ModelController(Context context)
+    public ModelInterface(Context context)
     {
         this.patient = new Patient(); //Creates the default patient object
         this.physician = new Physician(); //Creates the default physician object
         this.IO = new InputOutput(context); //Creates IO object
             IO.loadPhysician(); //Loads database physician data
             IO.loadPatient(); //Loads database patient data
+        this.dictation = new Dictation();
+        this.email = new Email();
+
         this.MController = this; //Creates class instance pointer
     }
 }
