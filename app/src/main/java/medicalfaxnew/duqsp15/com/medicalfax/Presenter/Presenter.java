@@ -7,7 +7,7 @@ import android.content.Context;
 public class Presenter implements PresenterInterface
 {
     private ModelInterface modelInterface;
-    //Context is required for
+    //Context is required for database in model
 
     public Presenter(Context context)
     {

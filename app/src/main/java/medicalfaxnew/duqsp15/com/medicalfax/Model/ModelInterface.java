@@ -33,7 +33,7 @@ public class ModelInterface
             IO.loadPatient(); //Loads database patient data
         this.dictation = new Dictation();
         this.email = new Email();
-        this.presenter = pres;
+        presenter = pres;
 
         this.MController = this; //Creates class instance pointer
     }
