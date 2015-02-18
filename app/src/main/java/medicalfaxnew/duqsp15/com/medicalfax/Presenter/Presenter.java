@@ -1,8 +1,18 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Presenter;
 
+import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.PresenterInterface;
+import android.content.Context;
 
-public class Presenter implements PresenterInterface {
+public class Presenter implements PresenterInterface
+{
+    private ModelInterface modelInterface;
+    //Context is required for
+
+    public Presenter(Context context)
+    {
+        modelInterface = new ModelInterface(context, this);
+    }
 
 	// ModelObject
 	// ViewObject

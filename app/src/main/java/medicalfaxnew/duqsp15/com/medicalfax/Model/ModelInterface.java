@@ -1,5 +1,6 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Model;
 
+        import medicalfaxnew.duqsp15.com.medicalfax.Presenter.*;
         import medicalfaxnew.duqsp15.com.medicalfax.Model.IO.*;
         import medicalfaxnew.duqsp15.com.medicalfax.Model.Dictation.*;
         import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.*;
@@ -21,8 +22,9 @@ public class ModelInterface
     protected static Email email;
     protected static InputOutput IO; //IO for Model Team ONLY
     public static ModelInterface MController; //Instance
+    private Presenter presenter;
 
-    public ModelInterface(Context context)
+    public ModelInterface(Context context, Presenter pres)
     {
         this.patient = new Patient(); //Creates the default patient object
         this.physician = new Physician(); //Creates the default physician object
@@ -31,6 +33,7 @@ public class ModelInterface
             IO.loadPatient(); //Loads database patient data
         this.dictation = new Dictation();
         this.email = new Email();
+        this.presenter = pres;
 
         this.MController = this; //Creates class instance pointer
     }
