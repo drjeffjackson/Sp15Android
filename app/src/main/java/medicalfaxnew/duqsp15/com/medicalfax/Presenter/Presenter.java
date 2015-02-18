@@ -7,6 +7,7 @@ import android.content.Context;
 public class Presenter implements PresenterInterface
 {
     private ModelInterface modelInterface;
+    private int requestedBox;
     //Context is required for database in model
 
     public Presenter(Context context)
@@ -18,14 +19,13 @@ public class Presenter implements PresenterInterface
 	// ViewObject
 	@Override
 	public void startTranscription(int boxNum) {
-		// TODO Auto-generated method stub
-
+		ModelInterface.dictation.startTranscription();
+		
 	}
 
 	@Override
-	public void doneListening(String transcribedText) {
-		// TODO Auto-generated method stub
-
+	public void doneListening(ArrayList<String> transcribedText) {
+		//view.fillBox(requestedBox, concatenatedText)
 	}
 
     public void stopRequest() {

@@ -13,7 +13,7 @@ public interface ModelPresenterInterFace {
 	 * message should be passed as a text string to doneListening() method in
 	 * Presenter Object.
 	 */
-	void startListening();
+	void startTranscription();
 
 	/**
 	 * Called by stopRequest() method in the Presenter Interface. Method calls
@@ -22,5 +22,5 @@ public interface ModelPresenterInterFace {
 	 * a text string to doneListening() method in Presenter Object.
 	 */
 
-	void stopListening();
+	void stopTranscription();
 }

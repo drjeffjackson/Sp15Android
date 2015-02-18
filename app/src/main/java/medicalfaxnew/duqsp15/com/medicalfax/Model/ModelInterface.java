@@ -12,7 +12,6 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model;
  * Patient and Physician objects are for getting and setting data
  * Loading data from database is automatic on app startup
  * Saving data to database is called in the Patient and Physician apps (commit())
- *
  */
 public class ModelInterface
 {
@@ -34,7 +33,7 @@ public class ModelInterface
         this.dictation = new Dictation();
         this.email = new Email();
         presenter = pres;
-
         this.MController = this; //Creates class instance pointer
     }
+    
 }

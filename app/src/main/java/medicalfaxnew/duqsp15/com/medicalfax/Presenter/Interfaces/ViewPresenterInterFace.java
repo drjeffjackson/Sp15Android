@@ -7,18 +7,6 @@ package medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces;
  */
 public interface ViewPresenterInterFace {
 	/**
-	 * Method called by the startTranscription() method of Presenter Interface.
-	 * Displays a dialog box that alerts user recording is in progress.
-	 */
-	void displayRecordingScreen();
-
-	/**
-	 * Method called by the doneListening() method of Presenter Interface.
-	 * Closes the dialog box to alert user that recording has stopped.
-	 */
-	void removeRecordingScreen();
-
-	/**
 	 * Method called by the doneListening() method of the Presenter Interface.
 	 * Writes transcribed text to corresponding text box, as identified by
 	 * boxNum.
@@ -30,4 +18,8 @@ public interface ViewPresenterInterFace {
 	 */
 
 	void fillBox(int boxNum, String transcribedText);
+	
+	//	change method names
+	//	write 
+	//
 }
