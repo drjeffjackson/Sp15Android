@@ -1,3 +1,4 @@
+package medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces;
 /**
  * 
  * This interface needs to be implemented by the Model object.

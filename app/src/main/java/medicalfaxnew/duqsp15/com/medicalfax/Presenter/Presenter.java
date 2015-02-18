@@ -1,3 +1,7 @@
+package medicalfaxnew.duqsp15.com.medicalfax.Presenter;
+
+import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.PresenterInterface;
+
 public class Presenter implements PresenterInterface {
 
 	// ModelObject
@@ -13,5 +17,10 @@ public class Presenter implements PresenterInterface {
 		// TODO Auto-generated method stub
 
 	}
+
+    public void stopRequest() {
+        // TODO Auto-generated method stub
+
+    }
 
 }
