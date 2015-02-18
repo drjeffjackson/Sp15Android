@@ -8,14 +8,40 @@
     <string name="UP">UP</string>
     <string name="Dictate">Dictate</string>
     <string name="Submit">Submit</string>
-    <string name="Full_name">Full Name</string>
 
+
+    <string name="First_name">First Name</string>
+    <string name="Last_name">Last Name</string>
+    <string name="Title">Title</string>
+    <string name="Department">Department</string>
+    <string name="Home_Hospital">Home Hospital</string>
+    <string name="Phone_Number">Phone Number</string>
+    <string name="Email_Address">Email Address</string>
+    <string name="NPI_Number">NPI Number</string>
     <string name="dob">DOB</string>
     <string name="mrn">MRN</string>
     <string name="admission_date">Admission Date</string>
     <string name="pcp">PCP</string>
     <string name="attending_physician">Attending Physician</string>
     <string name="code_status">Code Status</string>
+
+    <string name="Chief_Complaint">Chief Complaint</string>
+    <string name="HPI">HPI</string>
+    <string name="Hospital_Course">Hospital_Course</string>
+    <string name="Consultants">Consultants</string>
+
+    <string name="Primary">Primary</string>
+    <string name="Secondary">Secondary</string>
+    <string name="Complications">Complications</string>
+
+    <string name="Finalized">Finalized</string>
+    <string name="Pending">Pending</string>
+
+    <string name="Completed_Course">Completed Course</string>
+    <string name="Current_Course">Current Course</string>
+
+    <string name="Past_Medical_History">Past Medical History</string>
+    <string name="Home_Medications">Home Medications</string>
 
     <string name="title_activity_main">MainActivity</string>
 
