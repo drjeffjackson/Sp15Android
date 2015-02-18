@@ -362,7 +362,7 @@
             android:layout_toLeftOf="@+id/Down_Button"
             android:layout_toStartOf="@+id/Down_Button"
             android:onClick="up"
-            android:src="@drawable/upbutton" />
+            android:src="@drawable/up_button" />
 
         <ImageButton
             android:layout_width="50dp"
@@ -374,7 +374,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:onClick="down"
-            android:src="@drawable/downbutton" />
+            android:src="@drawable/down_button" />
 
         <Button
             android:layout_width="wrap_content"

@@ -8,8 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.ViewPresenterInterFace;
 
-public class MainActivity extends ActionBarActivity {
+
+public class MainActivity extends ActionBarActivity implements ViewPresenterInterFace{
 
     private int SELECTED = -1;
 
@@ -66,7 +68,9 @@ public class MainActivity extends ActionBarActivity {
 
     /**
      * This method is called when the dictate button is pressed
-     * @param view is the dictate button
+     * It extracts and saves the index of a EditText object, when an user performs a second touch on it.
+     * NOTICE: Need to be fixed in a more sophisticated way, so that the user doesn't need to double click a EditText
+     * @param view is a EditText
      */
 
     public void setSelection(View view)
@@ -77,17 +81,33 @@ public class MainActivity extends ActionBarActivity {
 
     /**
      * Set the selected EditText with the transcribed text
-     * WARNING: For the Edittext to be selected, it needs to be double clicked
-     * @param view
+     * WARNING: For the EditText to be selected, it needs to be double clicked
+     * @param view is the dictate button
      */
+
     public void dictates(View view)
     {
-        String test = "HeLLLooo"; //for test
-        if(SELECTED >= 0) {
-            EditText textBox = (EditText) findViewById(SELECTED);
-            textBox.setText(test);
+        String test = "View Group YAY"; //for test
+        if(SELECTED >= 0)
+        {
+            fillBox(SELECTED, test);
         }
         SELECTED = -1;
     }
 
+    @Override
+    public void displayRecordingScreen() {
+
+    }
+
+    @Override
+    public void removeRecordingScreen() {
+
+    }
+
+    @Override
+    public void fillBox(int boxNum, String transcribedText) {
+        EditText textBox = (EditText) findViewById(boxNum);
+        textBox.setText(transcribedText);
+    }
 }
