@@ -31,6 +31,7 @@
 
 
             <EditText android:id="@+id/First_Name"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -346,17 +347,12 @@
     <!-- Down_Button: moves cursor down one text field from the current position -->
     <!-- Up_Button: moves cursor up one text field from the current position -->
 
-    <LinearLayout
-
-
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:gravity="bottom">
 
-
-        <Button
+        <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="@string/UP"
@@ -365,9 +361,10 @@
             android:layout_alignBottom="@+id/Dictate_Button"
             android:layout_toLeftOf="@+id/Down_Button"
             android:layout_toStartOf="@+id/Down_Button"
-            android:onClick="up" />
+            android:onClick="up"
+            android:src="@drawable/upbutton" />
 
-        <Button
+        <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="@string/DN"
@@ -376,7 +373,8 @@
             android:layout_alignBottom="@+id/Dictate_Button"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:onClick="down" />
+            android:onClick="down"
+            android:src="@drawable/downbutton" />
 
         <Button
             android:layout_width="wrap_content"
@@ -384,18 +382,21 @@
             android:text="@string/Submit"
             android:layout_gravity="center_horizontal"
             android:id="@+id/Submit_Button"
-            android:layout_alignTop="@+id/Dictate_Button"
+            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:text="@string/Dictate"
             android:id="@+id/Dictate_Button"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
-    </LinearLayout>
+            android:layout_centerHorizontal="true"
+            android:onClick="dictates"
+            android:src="@drawable/microphone_button" />
+    </RelativeLayout>
+
 
 
 </RelativeLayout>
