@@ -28,9 +28,9 @@ public class ModelInterface
     {
         this.patient = new Patient(); //Creates the default patient object
         this.physician = new Physician(); //Creates the default physician object
-        this.IO = new InputOutput(context); //Creates IO object
-            IO.loadPhysician(); //Loads database physician data
-            IO.loadPatient(); //Loads database patient data
+        //this.IO = new InputOutput(context); //Creates IO object
+            //IO.loadPhysician(); //Loads database physician data
+            //IO.loadPatient(); //Loads database patient data
         this.dictation = new Dictation(ac); //Passes activity for dictation
         this.email = new Email();
         presenter = pres;
