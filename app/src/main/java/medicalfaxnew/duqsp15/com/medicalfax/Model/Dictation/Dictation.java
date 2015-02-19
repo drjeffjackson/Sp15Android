@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.speech.RecognizerIntent;
 import android.widget.Toast;
 
-import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
 import medicalfaxnew.duqsp15.com.medicalfax.R;
 
 /**
@@ -32,7 +31,7 @@ public class Dictation
      * Creates the Intent for speech recognition and starts the activity
      * the results of the activity are caught in onActivityForResult() in the main method
      * @author Brady Sheehan
-     * @param
+     * @param none
      * @exception ActivityNotFoundException
      * @return void
      */
@@ -56,11 +55,12 @@ public class Dictation
      * it will then extract the EXTRA_RESULTS which is the dictation from the
      * intent object and pass the results of dictation to the presenter object.
      * @author Brady Sheehan
+     * @param Intent
+     * @exception none
      * @return void
      */
-    public void returnSpeech(Intent data)
-    {
-        //Send data back to preenter
-        ModelInterface.presenter.doneListening(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS));
+    public void returnSpeech(Intent data){
+        ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+        //call function in presenter that passes the ArrayList<String>
     }
 }
