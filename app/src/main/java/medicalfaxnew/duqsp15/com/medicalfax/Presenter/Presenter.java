@@ -10,12 +10,14 @@ public class Presenter implements PresenterInterface
 {
     public ModelInterface modelInterface;
     private int requestedBox;
+    public MainActivity ac;
     //Context is required for database in model
 
-    public Presenter(Context context, MainActivity ac)
+    public Presenter(Context context, MainActivity act)
     {
         //Activity for dictation
-        modelInterface = new ModelInterface(context, this, ac);
+    	ac=act;
+        modelInterface = new ModelInterface(context, this, act);
     }
 
 	// ModelObject
