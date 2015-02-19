@@ -22,10 +22,10 @@ public class Dictation
     public Activity activity;
     private boolean processing;
     private final int REQ_CODE_SPEECH_INPUT = 100; //constant
-
-    public Dictation(Activity ac) //need access to the activity in this class for speech
+    ModelInterface modelI;
+    public Dictation(Activity ac, ModelInterface model) //need access to the activity in this class for speech
     {
-        activity = ac;
+        activity = ac; modelI = model;
     }
 
     /**
@@ -42,7 +42,7 @@ public class Dictation
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        ArrayList<String> result = null;
+        ArrayList<String> result = new ArrayList<String>();
         try{
             activity.startActivityForResult(intent, REQ_CODE_SPEECH_INPUT); //this is called on the implicit activity that was created
         }catch(ActivityNotFoundException a){
@@ -59,8 +59,7 @@ public class Dictation
      */
     public void returnSpeech(Intent data)
     {
-        ModelInterface.presenter.doneListening(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS));
         //ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-        //call function in presenter that passes the ArrayList<String>
+        modelI.presenter.doneListening(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS));
     }
 }
