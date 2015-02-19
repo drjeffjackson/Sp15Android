@@ -25,7 +25,7 @@ public class Dictation
     public Dictation(Activity ac) //need access to the activity in this class for speech
     {
         activity = ac;
-    }
+    } //
     public Dictation() {} //here just to compile
     /**
      * Creates the Intent for speech recognition and starts the activity

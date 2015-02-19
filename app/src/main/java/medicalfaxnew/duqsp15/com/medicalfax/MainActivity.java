@@ -114,16 +114,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         }
         SELECTED = -1;
     }
-
-    @Override
-    public void displayRecordingScreen() {
-
-    }
-
-    @Override
-    public void removeRecordingScreen() {
-
-    }
+ //
 
     @Override
     public void fillBox(int boxNum, String transcribedText) {

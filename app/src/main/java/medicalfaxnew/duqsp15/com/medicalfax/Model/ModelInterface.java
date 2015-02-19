@@ -9,7 +9,7 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model;
         import android.app.Activity;
 
 /**
- * Created by austinpilz on 2/11/15.
+ * Created by austinpilz on 2/11/15.//
  * Patient and Physician objects are for getting and setting data
  * Loading data from database is automatic on app startup
  * Saving data to database is called in the Patient and Physician apps (commit())

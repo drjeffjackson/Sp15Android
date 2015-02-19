@@ -35,7 +35,7 @@ public class Presenter implements PresenterInterface
 
     public void doneListening(ArrayList<String> transcribedText)
     {
-        //Called by model with dictation results :)
+        //Called by model with dictation results :)//
     }
 
 }
