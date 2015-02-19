@@ -12,7 +12,7 @@ public class Presenter implements PresenterInterface
     private int requestedBox;
     //Context is required for database in model
 
-    public Presenter(Context context, Activity ac)
+    public Presenter(Context context, MainActivity ac)
     {
         //Activity for dictation
         modelInterface = new ModelInterface(context, this, ac);
@@ -35,6 +35,7 @@ public class Presenter implements PresenterInterface
 
     public void doneListening(ArrayList<String> transcribedText)
     {
+    	ac.fillBox(requestedBox, transcribedText.get(0));
         //Called by model with dictation results :)//
     }
 
