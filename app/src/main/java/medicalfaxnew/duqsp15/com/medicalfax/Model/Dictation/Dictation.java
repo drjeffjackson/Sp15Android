@@ -31,7 +31,7 @@ public class Dictation
      * Creates the Intent for speech recognition and starts the activity
      * the results of the activity are caught in onActivityForResult() in the main method
      * @author Brady Sheehan
-     * @param none
+     * @param
      * @exception ActivityNotFoundException
      * @return void
      */
@@ -55,8 +55,7 @@ public class Dictation
      * it will then extract the EXTRA_RESULTS which is the dictation from the
      * intent object and pass the results of dictation to the presenter object.
      * @author Brady Sheehan
-     * @param Intent
-     * @exception none
+     * @param Intent data
      * @return void
      */
     public void returnSpeech(Intent data){

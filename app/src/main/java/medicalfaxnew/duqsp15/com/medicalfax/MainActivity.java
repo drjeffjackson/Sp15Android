@@ -15,7 +15,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
 
     private int SELECTED = -1;
     //public Dictation dictation;
-    private final int REQ_CODE_SPEECH_INPUT = 100;
+    private final int REQ_CODE_SPEECH_INPUT = 100; //constant needed for verifying that dictation
+                                                   //was successful in onActivityResult()
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +27,15 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         //dictate.getSpeech();
     }
 
-    /*this method was written by Brady Sheehan on 2/18/2015
-    * this method catches the startActivtyForResult call in Dictation class
-    * and proceeds to extract the data from the Intent with its call to returnSpeech()
+    /**
+    * This method catches the startActivtyForResult call in Dictation class
+    * and proceeds to extract the data from the Intent with its call to returnSpeech().
     * returnSpeech(data) will actually make a call to the presenter class with
-    * the result of dictation
+    * the result of dictation, an ArrayList<String>.
+    * @author Brady Sheehan
+    * @param int requestCode, int resultCode, Intent data
+    * @return void
+    *
     * */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -38,7 +43,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == REQ_CODE_SPEECH_INPUT && resultCode == RESULT_OK && null != data) {
-            //dictation.returnSpeech(data); //returnSpeech(data) will return an ArrayList<STRING>
+            //dictation.returnSpeech(data);
         }
     }
 
