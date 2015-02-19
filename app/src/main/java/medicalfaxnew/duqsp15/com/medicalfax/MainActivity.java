@@ -14,13 +14,33 @@ import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.ViewPresenterIn
 public class MainActivity extends ActionBarActivity implements ViewPresenterInterFace{
 
     private int SELECTED = -1;
+    public Dictation dictation;
+    private final int REQ_CODE_SPEECH_INPUT = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dictation = new Dictation(this);//we must pass the activity to use it outside the class
+        //dictate.getSpeech();
     }
 
+    /*this method was written by Brady Sheehan on 2/18/2015
+    * this method catches the startActivtyForResult call in Dictation class
+    * and proceeds to extract the data from the Intent with its call to returnSpeech()
+    * returnSpeech(data) will actually make a call to the presenter class with
+    * the result of dictation
+    * */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        //speech recognition (like this) must require an internet connection!
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == REQ_CODE_SPEECH_INPUT && resultCode == RESULT_OK && null != data) {
+            dictation.returnSpeech(data); //returnSpeech(data) will return an ArrayList<STRING>
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
