@@ -41,6 +41,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Last_Name"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -50,6 +51,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Title"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -59,6 +61,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Department"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -68,6 +71,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Home_Hospital"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -77,6 +81,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Phone_Number"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -86,6 +91,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Email_Address"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -95,6 +101,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/NPI_Number"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -104,6 +111,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/DOB"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -113,6 +121,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/MRN"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -122,6 +131,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Admission_Date"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -131,6 +141,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/PCP"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -140,6 +151,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Attending_Physician"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -149,6 +161,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Code_Status"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -168,6 +181,7 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Chief_Complaint"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"/>
@@ -182,6 +196,7 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/HPI"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"/>
@@ -196,6 +211,7 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Hospital_Course"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"/>
@@ -210,6 +226,7 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Consultants"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"/>
@@ -225,6 +242,7 @@
                 android:layout_marginBottom="15dp"/>
 
             <EditText android:id="@+id/Primary"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -234,6 +252,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Secondary"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -243,6 +262,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Complications"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -263,6 +283,7 @@
                 android:layout_marginBottom="15dp"/>
 
             <EditText android:id="@+id/Finalized"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -272,6 +293,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Pending"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -292,6 +314,7 @@
                 android:layout_marginBottom="15dp"/>
 
             <EditText android:id="@+id/Completed_Course"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -301,6 +324,7 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Current_Course"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -320,6 +344,7 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Past_Medical_History"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"/>
@@ -334,6 +359,7 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Home_Medications"
+                android:onClick="setSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"/>
