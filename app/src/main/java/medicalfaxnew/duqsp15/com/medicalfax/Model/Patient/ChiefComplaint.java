@@ -15,7 +15,7 @@ public class ChiefComplaint {
     }
 
     /**
-     * Setter for chief compplaint
+     * Setter for chief complaint
      *
      * @param newChiefComplaint - String to set as chief complaint
      */
