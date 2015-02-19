@@ -19,6 +19,7 @@ public class Presenter implements PresenterInterface
         //Activity for dictation
     	ac=(MainActivity)act;
         modelInterface = new ModelInterface(context, this, act);
+        requestedBox = -1;
     }
 
 	// ModelObject
@@ -38,9 +39,12 @@ public class Presenter implements PresenterInterface
 
     public void doneListening(ArrayList<String> transcribedText)
     {
-        System.err.println("string = " + transcribedText.get(0));
-    	ac.fillBox(requestedBox, transcribedText.get(0));
-        //Called by model with dictation results :)//
+        if(requestedBox !=-1){ //error checking for the View group, if it's -1, no box was selected
+            System.err.println("string = " + transcribedText.get(0));
+            ac.fillBox(requestedBox, transcribedText.get(0));
+            //Called by model with dictation results :)//
+        }
+        requestedBox = -1; //need to reset value for error checking
     }
 
 }
