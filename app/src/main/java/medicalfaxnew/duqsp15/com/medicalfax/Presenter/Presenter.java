@@ -1,6 +1,7 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Presenter;
 
 import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
+import medicalfaxnew.duqsp15.com.medicalfax.MainActivity;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.PresenterInterface;
 import android.content.Context;
 import android.app.Activity;
@@ -13,10 +14,10 @@ public class Presenter implements PresenterInterface
     public MainActivity ac;
     //Context is required for database in model
 
-    public Presenter(Context context, MainActivity act)
+    public Presenter(Context context, Activity act)
     {
         //Activity for dictation
-    	ac=act;
+    	ac=(MainActivity)act;
         modelInterface = new ModelInterface(context, this, act);
     }
 
