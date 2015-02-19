@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
+    android:background="@color/Blue"
     android:orientation="vertical">
 
     <ScrollView
@@ -26,7 +27,7 @@
                 android:textStyle="bold"
                 android:text="PATIENT ID:"
                 android:textSize="17dp"
-                android:textColor="@color/Blue"
+                android:textColor="@color/White"
                 android:layout_marginBottom="15dp"/>
 
 
@@ -38,6 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="FIRST NAME"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Last_Name"
@@ -48,6 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LAST NAME"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Title"
@@ -58,6 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TITLE"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Department"
@@ -68,6 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DEPARTMENT"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Home_Hospital"
@@ -78,6 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HOME HOSPITAL"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Phone_Number"
@@ -88,6 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PHONE NUMBER"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Email_Address"
@@ -98,6 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EMAIL ADDRESS"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/NPI_Number"
@@ -108,6 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NPI NUMBER"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/DOB"
@@ -118,6 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DOB"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/MRN"
@@ -128,6 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MRN"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Admission_Date"
@@ -138,6 +149,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ADMISSION DATE"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/PCP"
@@ -148,6 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PCP"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Attending_Physician"
@@ -158,6 +171,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ATTENDING PHYSICIAN"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Code_Status"
@@ -168,6 +182,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CODE STATUS"
+                android:textColor="@color/White"
                 android:textStyle="bold"
                 android:layout_marginBottom="40dp"/>/>
 
@@ -177,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="CHIEF COMPLAINT:"
-                android:textColor="@color/Blue"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Chief_Complaint"
@@ -192,7 +207,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="HPI (Including positive physical findings and pertinent labwork):"
-                android:textColor="@color/Blue"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/HPI"
@@ -207,7 +222,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="HOSPITAL COURSE:"
-                android:textColor="@color/Blue"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Hospital_Course"
@@ -222,7 +237,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="CONSULTANTS:"
-                android:textColor="@color/Blue"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Consultants"
@@ -237,7 +252,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="DIAGNOSIS:"
-                android:textColor="@color/Blue"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
 
@@ -249,6 +264,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PRIMARY"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Secondary"
@@ -259,6 +275,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SECONDARY"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Complications"
@@ -269,6 +286,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="COMPLICATIONS"
+                android:textColor="@color/White"
                 android:textStyle="bold"
                 android:layout_marginBottom="40dp"/>
 
@@ -278,7 +296,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="TEST/PROCEDURE RESULTS:"
-                android:textColor="@color/Blue"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
 
@@ -290,6 +308,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="FINALIZED"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Pending"
@@ -300,6 +319,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PENDING"
+                android:textColor="@color/White"
                 android:textStyle="bold"
                 android:layout_marginBottom="40dp"/>
 
@@ -309,7 +329,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="ANTIBIOTICS:"
-                android:textColor="@color/Blue"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
 
@@ -321,6 +341,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="COMPLETED COURSE"
+                android:textColor="@color/White"
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Current_Course"
@@ -331,6 +352,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CURRENT COURSE(# OF DAYS)"
+                android:textColor="@color/White"
                 android:textStyle="bold"
                 android:layout_marginBottom="40dp"/>
 
@@ -340,7 +362,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="PAST MEDICAL HISTORY:"
-                android:textColor="@color/Blue"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Past_Medical_History"
@@ -355,7 +377,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="HOME MEDICATIONS/ALLERGIES:"
-                android:textColor="@color/Blue"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Home_Medications"
@@ -387,6 +409,7 @@
             android:layout_alignBottom="@+id/Dictate_Button"
             android:layout_toLeftOf="@+id/Down_Button"
             android:layout_toStartOf="@+id/Down_Button"
+            android:textColor="@color/White"
             android:onClick="up"
             android:src="@drawable/up_button" />
 
