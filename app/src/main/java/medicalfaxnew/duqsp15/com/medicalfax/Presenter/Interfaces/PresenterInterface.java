@@ -1,4 +1,5 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces;
+import java.util.ArrayList;
 /**
  * 
  * This interface needs to be implemented by the Presenter object.

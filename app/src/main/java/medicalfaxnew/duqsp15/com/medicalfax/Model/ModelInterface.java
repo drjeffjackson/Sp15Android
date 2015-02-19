@@ -6,6 +6,7 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model;
         import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.*;
         import medicalfaxnew.duqsp15.com.medicalfax.Model.Physician.*;
         import android.content.Context;
+        import android.app.Activity;
 
 /**
  * Created by austinpilz on 2/11/15.
@@ -21,16 +22,16 @@ public class ModelInterface
     protected static Email email;
     protected static InputOutput IO; //IO for Model Team ONLY
     public static ModelInterface MController; //Instance
-    private Presenter presenter;
+    public static Presenter presenter;
 
-    public ModelInterface(Context context, Presenter pres)
+    public ModelInterface(Context context, Presenter pres, Activity ac)
     {
         this.patient = new Patient(); //Creates the default patient object
         this.physician = new Physician(); //Creates the default physician object
         this.IO = new InputOutput(context); //Creates IO object
             IO.loadPhysician(); //Loads database physician data
             IO.loadPatient(); //Loads database patient data
-        this.dictation = new Dictation();
+        this.dictation = new Dictation(ac); //Passes activity for dictation
         this.email = new Email();
         presenter = pres;
         this.MController = this; //Creates class instance pointer
