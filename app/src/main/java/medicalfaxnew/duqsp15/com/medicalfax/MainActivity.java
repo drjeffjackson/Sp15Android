@@ -87,7 +87,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     }
 
     /**
-     * This method is called when the dictate button is pressed
+     * This method is called when the TextBox is touched for the second time
      * It extracts and saves the index of a EditText object, when an user performs a second touch on it.
      * NOTICE: Need to be fixed in a more sophisticated way, so that the user doesn't need to double click a EditText
      * @param view is a EditText
@@ -100,21 +100,18 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     }
 
     /**
-     * Set the selected EditText with the transcribed text
+     * This method is called when the dictate_button is clicked
      * WARNING: For the EditText to be selected, it needs to be double clicked
      * @param view is the dictate button
      */
-
     public void dictates(View view)
     {
-        String test = "View Group YAY"; //for test
         if(SELECTED >= 0)
         {
-            fillBox(SELECTED, test);
+            presenter.startTranscription(SELECTED);
         }
         SELECTED = -1;
     }
- //
 
     @Override
     public void fillBox(int boxNum, String transcribedText) {
