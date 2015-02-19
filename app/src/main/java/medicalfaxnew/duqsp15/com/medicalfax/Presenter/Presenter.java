@@ -39,6 +39,7 @@ public class Presenter implements PresenterInterface
 
     public void doneListening(ArrayList<String> transcribedText)
     {
+        System.err.println("requestedBox = " + requestedBox);
         if(requestedBox !=-1){ //error checking for the View group, if it's -1, no box was selected
             System.err.println("string = " + transcribedText.get(0));
             ac.fillBox(requestedBox, transcribedText.get(0));
