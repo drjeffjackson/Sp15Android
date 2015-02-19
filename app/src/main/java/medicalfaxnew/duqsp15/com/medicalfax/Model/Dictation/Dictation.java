@@ -21,13 +21,13 @@ public class Dictation
 {
     public Activity activity;
     private boolean processing;
-    private final int REQ_CODE_SPEECH_INPUT = 100;
+    private final int REQ_CODE_SPEECH_INPUT = 100; //constant
 
     public Dictation(Activity ac) //need access to the activity in this class for speech
     {
         activity = ac;
-    } //
-    public Dictation() {} //here just to compile
+    }
+
     /**
      * Creates the Intent for speech recognition and starts the activity
      * the results of the activity are caught in onActivityForResult() in the main method
