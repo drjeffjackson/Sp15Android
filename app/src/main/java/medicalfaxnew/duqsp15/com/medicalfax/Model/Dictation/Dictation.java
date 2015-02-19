@@ -59,7 +59,8 @@ public class Dictation
      */
     public void returnSpeech(Intent data)
     {
-        //ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-        modelI.presenter.doneListening(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS));
+        ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+        System.err.println(result.get(0));
+        modelI.presenter.doneListening(result);
     }
 }

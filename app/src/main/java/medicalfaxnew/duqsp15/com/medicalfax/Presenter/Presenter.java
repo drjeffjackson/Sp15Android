@@ -26,7 +26,7 @@ public class Presenter implements PresenterInterface
 	@Override
 	public void startTranscription(int boxNum)
     {
-        //Starts dictation in Model
+        requestedBox = boxNum;
 		ModelInterface.dictation.getSpeechInput();
 	}
 
@@ -38,6 +38,7 @@ public class Presenter implements PresenterInterface
 
     public void doneListening(ArrayList<String> transcribedText)
     {
+        System.err.println("string = " + transcribedText.get(0));
     	ac.fillBox(requestedBox, transcribedText.get(0));
         //Called by model with dictation results :)//
     }

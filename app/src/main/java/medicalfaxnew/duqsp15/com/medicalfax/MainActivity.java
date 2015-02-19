@@ -36,7 +36,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         //speech recognition (like this) must require an internet connection!
         super.onActivityResult(requestCode, resultCode, data);
-
+        //verifies that
         if(requestCode == REQ_CODE_SPEECH_INPUT && resultCode == RESULT_OK && null != data) {
             presenter.modelInterface.dictation.returnSpeech(data);
         }
