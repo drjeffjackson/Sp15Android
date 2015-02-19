@@ -106,10 +106,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     public void dictates(View view)
     {
-        if(SELECTED >= 0)
-        {
-            presenter.startTranscription(SELECTED);
-        }
+
+        presenter.startTranscription(SELECTED);
         SELECTED = -1;
     }
 
