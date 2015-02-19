@@ -14,7 +14,7 @@ import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.ViewPresenterIn
 public class MainActivity extends ActionBarActivity implements ViewPresenterInterFace{
 
     private int SELECTED = -1;
-    public Dictation dictation;
+    //public Dictation dictation;
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
     @Override
@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dictation = new Dictation(this);//we must pass the activity to use it outside the class
+        //dictation = new Dictation(this);//we must pass the activity to use it outside the class
         //dictate.getSpeech();
     }
 
@@ -38,7 +38,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == REQ_CODE_SPEECH_INPUT && resultCode == RESULT_OK && null != data) {
-            dictation.returnSpeech(data); //returnSpeech(data) will return an ArrayList<STRING>
+            //dictation.returnSpeech(data); //returnSpeech(data) will return an ArrayList<STRING>
         }
     }
 
