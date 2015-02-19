@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.ViewPresenterInterFace;
+import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Presenter;
 
 
 public class MainActivity extends ActionBarActivity implements ViewPresenterInterFace{
@@ -16,11 +17,14 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private int SELECTED = -1;
     //public Dictation dictation;
     private final int REQ_CODE_SPEECH_INPUT = 100;
+    private Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        presenter = new Presenter(this.getApplicationContext(), this);
 
         //dictation = new Dictation(this);//we must pass the activity to use it outside the class
         //dictate.getSpeech();
@@ -38,6 +42,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == REQ_CODE_SPEECH_INPUT && resultCode == RESULT_OK && null != data) {
+            presenter.modelInterface.dictation.returnSpeech(data);
             //dictation.returnSpeech(data); //returnSpeech(data) will return an ArrayList<STRING>
         }
     }
