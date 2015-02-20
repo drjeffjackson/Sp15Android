@@ -1,85 +1,406 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:paddingLeft="16dp"
-android:paddingRight="16dp"
-android:orientation="vertical">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:background="@color/Blue"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <!--Scrollable content here-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--Category:PATIENT ID -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="PATIENT ID:"
+                android:textSize="17dp"
+                android:textColor="@color/White"
+                android:layout_marginBottom="15dp"/>
 
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Patient ID" />
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="FULL NAME" />
-<EditText
+            <EditText android:id="@+id/First_Name"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FIRST NAME"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/Full_name" />
+            <EditText android:id="@+id/Last_Name"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LAST NAME"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="DOB" />
+            <EditText android:id="@+id/Title"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TITLE"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
 
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/dob" />
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="MRN" />
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/mrn" />
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="ADMISSION DATE" />
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/admission_date" />
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="PCP" />
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/pcp" />
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="ATTENDING PHYSICIAN" />
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/attending_physician" />
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="CODE STATUS" />
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/code_status" />
+            <EditText android:id="@+id/Department"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DEPARTMENT"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/Home_Hospital"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HOME HOSPITAL"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/Phone_Number"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PHONE NUMBER"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/Email_Address"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EMAIL ADDRESS"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/NPI_Number"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NPI NUMBER"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/DOB"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DOB"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/MRN"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MRN"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/Admission_Date"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADMISSION DATE"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/PCP"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PCP"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/Attending_Physician"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ATTENDING PHYSICIAN"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/Code_Status"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CODE STATUS"
+                android:textColor="@color/White"
+                android:textStyle="bold"
+                android:layout_marginBottom="40dp"/>/>
+
+            <!--Category:CHIEF COMPLAINT -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="CHIEF COMPLAINT:"
+                android:textColor="@color/White"
+                android:textSize="17dp"
+                android:layout_marginBottom="15dp"/>
+            <EditText android:id="@+id/Chief_Complaint"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"/>
+
+            <!--Category:HPI -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="HPI (Including positive physical findings and pertinent labwork):"
+                android:textColor="@color/White"
+                android:textSize="17dp"
+                android:layout_marginBottom="15dp"/>
+            <EditText android:id="@+id/HPI"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"/>
+
+            <!--Category:HOSPITAL COURSE -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="HOSPITAL COURSE:"
+                android:textColor="@color/White"
+                android:textSize="17dp"
+                android:layout_marginBottom="15dp"/>
+            <EditText android:id="@+id/Hospital_Course"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"/>
+
+            <!--Category:CONSULTANTS -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="CONSULTANTS:"
+                android:textColor="@color/White"
+                android:textSize="17dp"
+                android:layout_marginBottom="15dp"/>
+            <EditText android:id="@+id/Consultants"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"/>
+
+            <!--Category:DIAGNOSIS -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="DIAGNOSIS:"
+                android:textColor="@color/White"
+                android:textSize="17dp"
+                android:layout_marginBottom="15dp"/>
+
+            <EditText android:id="@+id/Primary"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PRIMARY"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/Secondary"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SECONDARY"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/Complications"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COMPLICATIONS"
+                android:textColor="@color/White"
+                android:textStyle="bold"
+                android:layout_marginBottom="40dp"/>
+
+            <!--Category:TEST/PROCEDURE RESULTS -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="TEST/PROCEDURE RESULTS:"
+                android:textColor="@color/White"
+                android:textSize="17dp"
+                android:layout_marginBottom="15dp"/>
+
+            <EditText android:id="@+id/Finalized"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FINALIZED"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/Pending"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PENDING"
+                android:textColor="@color/White"
+                android:textStyle="bold"
+                android:layout_marginBottom="40dp"/>
+
+            <!--Category:ANTIBIOTICS -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="ANTIBIOTICS:"
+                android:textColor="@color/White"
+                android:textSize="17dp"
+                android:layout_marginBottom="15dp"/>
+
+            <EditText android:id="@+id/Completed_Course"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COMPLETED COURSE"
+                android:textColor="@color/White"
+                android:textStyle="bold"/>
+
+            <EditText android:id="@+id/Current_Course"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CURRENT COURSE(# OF DAYS)"
+                android:textColor="@color/White"
+                android:textStyle="bold"
+                android:layout_marginBottom="40dp"/>
+
+            <!--Category:PAST MEDICAL HISTORY -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="PAST MEDICAL HISTORY:"
+                android:textColor="@color/White"
+                android:textSize="17dp"
+                android:layout_marginBottom="15dp"/>
+            <EditText android:id="@+id/Past_Medical_History"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"/>
+
+            <!--Category:HOME MEDICATIONS/ALLERGIES -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="HOME MEDICATIONS/ALLERGIES:"
+                android:textColor="@color/White"
+                android:textSize="17dp"
+                android:layout_marginBottom="15dp"/>
+            <EditText android:id="@+id/Home_Medications"
+                android:onClick="setSelection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
 
     <!-- Down_Button: moves cursor down one text field from the current position -->
     <!-- Up_Button: moves cursor up one text field from the current position -->
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="bottom">
 
-        <Button
+        <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="@string/UP"
@@ -88,9 +409,11 @@ android:orientation="vertical">
             android:layout_alignBottom="@+id/Dictate_Button"
             android:layout_toLeftOf="@+id/Down_Button"
             android:layout_toStartOf="@+id/Down_Button"
-            android:onClick="up" />
+            android:textColor="@color/White"
+            android:onClick="up"
+            android:src="@drawable/up_button" />
 
-        <Button
+        <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="@string/DN"
@@ -99,7 +422,8 @@ android:orientation="vertical">
             android:layout_alignBottom="@+id/Dictate_Button"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:onClick="down" />
+            android:onClick="down"
+            android:src="@drawable/down_button" />
 
         <Button
             android:layout_width="wrap_content"
@@ -107,21 +431,24 @@ android:orientation="vertical">
             android:text="@string/Submit"
             android:layout_gravity="center_horizontal"
             android:id="@+id/Submit_Button"
-            android:layout_alignTop="@+id/Dictate_Button"
+            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:text="@string/Dictate"
             android:id="@+id/Dictate_Button"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:onClick="dictates"
+            android:src="@drawable/microphone_button" />
     </RelativeLayout>
 
 
-</LinearLayout>
+
+</RelativeLayout>
 
 
 

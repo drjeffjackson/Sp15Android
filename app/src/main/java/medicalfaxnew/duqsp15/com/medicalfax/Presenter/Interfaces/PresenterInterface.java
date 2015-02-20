@@ -1,3 +1,5 @@
+package medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces;
+import java.util.ArrayList;
 /**
  * 
  * This interface needs to be implemented by the Presenter object.
@@ -28,5 +30,5 @@ public interface PresenterInterface {
 	 * @param transcribedText
 	 *            The text form of user dictation represented as a string.
 	 */
-	void doneListening(String transcribedText);
+	void doneListening(ArrayList<String> transcribedText);
 }
