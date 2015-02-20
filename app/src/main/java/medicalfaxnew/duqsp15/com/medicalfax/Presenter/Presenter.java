@@ -7,13 +7,31 @@ import android.content.Context;
 import android.app.Activity;
 import java.util.ArrayList;
 
+/**
+ * This class contains the functions pertaining to the Presenter.
+ */
+
 public class Presenter implements PresenterInterface
 {
+    /**
+     * The object representing the modelInterface.
+     */
     public ModelInterface modelInterface;
+    /**
+     * Identifies which box was selected for dictation.
+     */
     private int requestedBox;
+    /**
+     * The object representing the MainActivity class.
+     */
     public MainActivity ac;
     //Context is required for database in model
 
+    /**
+     * This constructor will initialize a new Presenter object with a provided Context and Activity.
+     * @param context The object representing the Context.
+     * @param act The object representing the Activity.
+     */
     public Presenter(Context context, Activity act)
     {
         //Activity for dictation
@@ -24,6 +42,11 @@ public class Presenter implements PresenterInterface
 
 	// ModelObject
 	// ViewObject
+
+    /**
+     * Notifies the Model via the ModelInterface to begin dictation.
+     * @param boxNum The number id from the textbox where transcribed text is to appear.
+     */
 	@Override
 	public void startTranscription(int boxNum)
     {
@@ -37,6 +60,11 @@ public class Presenter implements PresenterInterface
 
     }
 
+    /**
+     * Retrieves transcribed text from dictation and sends it the appropriate textbox.
+     * Also checks for errors in the textbox selection.
+     * @param transcribedText ArrayList containing the transcribed text from dictation.
+     */
     public void doneListening(ArrayList<String> transcribedText)
     {
         System.err.println("requestedBox = " + requestedBox);
