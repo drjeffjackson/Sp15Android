@@ -88,6 +88,28 @@ public class Name {
 		this.setLastName(last);
 	}
 
+    /**
+     * Verify the first name is included
+     * @return boolean indicating inclusion of required field
+     */
+    public boolean verifyNameF(){
+        if(firstName == null){
+            return false;
+        }
+        return true;
+    }
+    /**
+     * Verify the last name is included
+     * @return boolean indicating inclusion of required field
+     */
+    public boolean verifyNameL(){
+        if(lastName == null){
+            return false;
+        }
+        return true;
+    }
+
+
 	/**
 	 * Getter for firstName
 	 * @return first name of doctor or patient

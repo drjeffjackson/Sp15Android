@@ -22,17 +22,38 @@ public class Physician implements ModelObj
       //
     }
 
-
     /*
     Verifies that all required fields are present in the physician object. Returns an array list of all fields missing
     @return ArrayList<String>
+    @author Brady Sheehan
      */
     public ArrayList<String> verify()
     {
-        //FOR DEMONSTRATION PURPOSES - CODE BELOW
         ArrayList<String> missingFields = new ArrayList<String>();
-        missingFields.add("PhysicianNPI");
-
+        if(name.verifyNameF()){
+            missingFields.add("setFirstName");
+        }
+        if(name.verifyNameL()){
+            missingFields.add("setLastName");
+        }
+        if(!hospital.verifyDepartment()){
+            missingFields.add("setDepartment");
+        }
+        if(!hospital.verifyHomeHospital()){
+            missingFields.add("setHomeHospital");
+        }
+//        if(!hospital.verifyTitle()){ //probably not required
+//            missingFields.add("setTitle");
+//        }
+        if(!npi.verifyNPI()){
+            missingFields.add("setNPI");
+        }
+        if(contact.verifyEmail()){
+            missingFields.add("setEmail");
+        }
+//        if(contact.verifyPhone()){ //probably not required
+//            missingFields.add("setPhone");
+//        }
         return missingFields;
     }
 
