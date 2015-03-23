@@ -1,12 +1,15 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Model;
 
-        import medicalfaxnew.duqsp15.com.medicalfax.Presenter.*;
-        import medicalfaxnew.duqsp15.com.medicalfax.Model.IO.*;
-        import medicalfaxnew.duqsp15.com.medicalfax.Model.Dictation.*;
-        import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.*;
-        import medicalfaxnew.duqsp15.com.medicalfax.Model.Physician.*;
-        import android.content.Context;
-        import android.app.Activity;
+import medicalfaxnew.duqsp15.com.medicalfax.Presenter.*;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.IO.*;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.Dictation.*;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.*;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.Physician.*;
+import android.content.Context;
+import android.app.Activity;
+import android.util.Log;
+import android.widget.Toast;
+
 
 /**
  * Created by austinpilz on 2/11/15.//
@@ -29,16 +32,13 @@ public class ModelInterface
         this.patient = new Patient(); //Creates the default patient object
         this.physician = new Physician(); //Creates the default physician object
         this.IO = new InputOutput(context); //Creates IO object
-            IO.loadPhysician(); //Loads database physician data
-            IO.loadPatient(); //Loads database patient data
-        this.dictation = new Dictation(ac, this); //Passes activity for dictation
-        //this.IO = new InputOutput(context); //Creates IO object
-            //IO.loadPhysician(); //Loads database physician data
-            //IO.loadPatient(); //Loads database patient data
+        IO.loadPhysician(); //Loads database physician data
+        IO.loadPatient(); //Loads database patient data
         this.dictation = new Dictation(ac, this); //Passes activity for dictation
         this.email = new Email();
         presenter = pres;
         this.MController = this; //Creates class instance pointer
+        Toast.makeText(context, "msg msg", Toast.LENGTH_SHORT).show();
     }
-    
+
 }
