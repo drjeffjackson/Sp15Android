@@ -93,7 +93,7 @@ public class Name {
      * @return boolean indicating inclusion of required field
      */
     public boolean verifyNameF(){
-        if(firstName == null){
+        if(firstName.isEmpty()){
             return false;
         }
         return true;
@@ -103,7 +103,7 @@ public class Name {
      * @return boolean indicating inclusion of required field
      */
     public boolean verifyNameL(){
-        if(lastName == null){
+        if(lastName.isEmpty()){
             return false;
         }
         return true;
