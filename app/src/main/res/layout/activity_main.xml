@@ -32,7 +32,9 @@
 
 
             <EditText android:id="@+id/First_Name"
-                android:onClick="setSelection"
+
+                android:nextFocusUp="@+id/First_Name"
+                android:nextFocusDown="@+id/Last_Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -43,7 +45,9 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Last_Name"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Title"
+                android:nextFocusUp="@+id/First_Name"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -54,7 +58,9 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Title"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Department"
+                android:nextFocusUp="@+id/Last_Name"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -65,7 +71,9 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Department"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Home_Hospital"
+                android:nextFocusUp="@+id/Title"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -76,7 +84,9 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Home_Hospital"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Phone_Number"
+                android:nextFocusUp="@+id/Department"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -87,7 +97,8 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Phone_Number"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Email_Address"
+                android:nextFocusUp="@+id/Home_Hospital"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -98,7 +109,8 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Email_Address"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/NPI_Number"
+                android:nextFocusUp="@+id/Phone_Number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -109,7 +121,8 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/NPI_Number"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/DOB"
+                android:nextFocusUp="@+id/Email_Address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -120,7 +133,8 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/DOB"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/MRN"
+                android:nextFocusUp="@+id/NPI_Number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -131,7 +145,8 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/MRN"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Admission_Date"
+                android:nextFocusUp="@+id/DOB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -142,7 +157,8 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Admission_Date"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/PCP"
+                android:nextFocusUp="@+id/MRN"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -153,7 +169,8 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/PCP"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Attending_Physician"
+                android:nextFocusUp="@+id/Admission_Date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -164,7 +181,8 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Attending_Physician"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Code_Status"
+                android:nextFocusUp="@+id/PCP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -175,7 +193,8 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Code_Status"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Chief_Complaint"
+                android:nextFocusUp="@+id/Attending_Physician"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -196,7 +215,8 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Chief_Complaint"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/HPI"
+                android:nextFocusUp="@+id/Code_Status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"/>
@@ -211,7 +231,8 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/HPI"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Hospital_Course"
+                android:nextFocusUp="@+id/Chief_Complaint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"/>
@@ -226,7 +247,8 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Hospital_Course"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Consultants"
+                android:nextFocusUp="@+id/HPI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"/>
@@ -241,7 +263,8 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Consultants"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Primary"
+                android:nextFocusUp="@+id/Hospital_Course"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"/>
@@ -257,7 +280,8 @@
                 android:layout_marginBottom="15dp"/>
 
             <EditText android:id="@+id/Primary"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Secondary"
+                android:nextFocusUp="@+id/Consultants"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -268,7 +292,8 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Secondary"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Complications"
+                android:nextFocusUp="@+id/Primary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -279,7 +304,8 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Complications"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Finalized"
+                android:nextFocusUp="@+id/Secondary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -301,7 +327,8 @@
                 android:layout_marginBottom="15dp"/>
 
             <EditText android:id="@+id/Finalized"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Pending"
+                android:nextFocusUp="@+id/Complications"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -312,7 +339,8 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Pending"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Completed_Course"
+                android:nextFocusUp="@+id/Finalized"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -334,7 +362,8 @@
                 android:layout_marginBottom="15dp"/>
 
             <EditText android:id="@+id/Completed_Course"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Current_Course"
+                android:nextFocusUp="@+id/Pending"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -345,7 +374,9 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Current_Course"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Past_Medical_History"
+                android:nextFocusUp="@+id/Completed_Course"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -366,7 +397,8 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Past_Medical_History"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Home_Medications"
+                android:nextFocusUp="@+id/Current_Course"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"/>
@@ -381,10 +413,12 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Home_Medications"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Home_Medications"
+                android:nextFocusUp="@+id/Past_Medical_History"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"/>
+
 
         </LinearLayout>
     </ScrollView>
@@ -405,6 +439,7 @@
             android:layout_height="50dp"
             android:text="@string/UP"
             android:id="@+id/Up_Button"
+            android:background="@android:color/transparent"
             android:layout_gravity="center_horizontal"
             android:layout_alignBottom="@+id/Dictate_Button"
             android:layout_toLeftOf="@+id/Down_Button"
@@ -418,6 +453,7 @@
             android:layout_height="50dp"
             android:text="@string/DN"
             android:id="@+id/Down_Button"
+            android:background="@android:color/transparent"
             android:layout_gravity="right"
             android:layout_alignBottom="@+id/Dictate_Button"
             android:layout_alignParentRight="true"
@@ -433,17 +469,20 @@
             android:id="@+id/Submit_Button"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:onClick="submits"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="@string/Dictate"
             android:id="@+id/Dictate_Button"
+            android:background="@android:color/transparent"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:onClick="dictates"
             android:src="@drawable/microphone_button" />
+
     </RelativeLayout>
 
 
