@@ -24,6 +24,12 @@
     <string name="pcp">PCP</string>
     <string name="attending_physician">Attending Physician</string>
     <string name="code_status">Code Status</string>
+    <string name="code_status_prompt">Select Code Status</string>
+    <string-array name="code_status_array">
+        <item>Full</item>
+        <item>Limited</item>
+        <item>DNR/DNI</item>
+    </string-array>
 
     <string name="Chief_Complaint">Chief Complaint</string>
     <string name="HPI">HPI</string>
