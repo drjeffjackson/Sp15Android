@@ -29,30 +29,23 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         presenter = new Presenter(this.getApplicationContext(), this);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
         builder.setTitle("User Agreement");
         builder.setMessage("This app is not HIPPA compliant. It is for demo purposes only. Do not use real data. By clicking 'I agree' I as the user assume all liability.");
-
         builder.setPositiveButton("I agree", new DialogInterface.OnClickListener() {
-
             public void onClick(DialogInterface dialog, int which) {
-                // Do nothing but close the dialog
-
-                dialog.dismiss();
+                dialog.dismiss(); // Let the app continue
             }
-
         });
 
         builder.setNegativeButton("I disagree", new DialogInterface.OnClickListener() {
-
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Do nothing
-                System.exit(0);
+                System.exit(0); // Close the app
             }
         });
 
         AlertDialog alert = builder.create();
+        alert.setCancelable(false);
         alert.show();
     }
 
