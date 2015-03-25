@@ -414,6 +414,7 @@
             android:layout_toStartOf="@+id/Down_Button"
             android:textColor="@color/White"
             android:onClick="up"
+            android:background="@null"
             android:src="@drawable/up_button" />
 
         <ImageButton
@@ -426,6 +427,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:onClick="down"
+            android:background="@null"
             android:src="@drawable/down_button" />
 
         <Button
@@ -438,8 +440,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <ImageButton
-            android:layout_width="50dp"
+        <Button
+            android:layout_width="100dp"
             android:layout_height="50dp"
             android:text="@string/Dictate"
             android:id="@+id/Dictate_Button"
