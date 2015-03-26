@@ -1,28 +1,34 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Model.Patient;
+
 import java.util.ArrayList;
+
 /**
- * Created by Justin Chilleo on 2/18/15.
- *
- * this class for is the HPI (History of Present illness)
+ * Created by Coder Barbie on 3/26/15.
+ */
+
+/**
+ * This class for is the HPI (History of Present illness)
  */
 public class HPI {
 
     ArrayList<String> historyOfPresentIllness;  //array list of strings containing history of present illness.
 
-    public HPI(){} // empty constructor.
+    public HPI() {
+    } // empty constructor.
 
-    public HPI(String newHistory){
+    public HPI(String newHistory) {
 
-        historyOfPresentIllness.ensureCapacity(historyOfPresentIllness.size()+1);
+        historyOfPresentIllness.ensureCapacity(historyOfPresentIllness.size() + 1);
         historyOfPresentIllness.add(newHistory);
     }
 
-    public void setHPI(String newHistory){
-        historyOfPresentIllness.ensureCapacity(historyOfPresentIllness.size()+1);
+    public void setHPI(String newHistory) {
+        historyOfPresentIllness.ensureCapacity(historyOfPresentIllness.size() + 1);
         historyOfPresentIllness.add(newHistory);
     }
 
-    public ArrayList<String> getHPI(){
+    public ArrayList<String> getHPI() {
+
         return historyOfPresentIllness;
     }
 
@@ -31,4 +37,14 @@ public class HPI {
      * basis. You can call setHPI using just a normal string. However an ArrayList<String> will be returned
      * when you call the getHPI method.*/
 
+    /*
+   Verifies that the history of present illness is present, do we need this?
+   @return Boolean
+    */
+    public Boolean verifyHistoryOfPresentIllness() {
+        if (historyOfPresentIllness.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
 }

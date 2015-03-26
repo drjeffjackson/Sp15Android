@@ -1,7 +1,7 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Model.Patient;
 
 /**
- * Created by claire on 2/16/15.
+ * Created by Coder Barbie
  */
 public class Tests {
 
@@ -13,7 +13,7 @@ public class Tests {
     /**
      * Test status can be finalized or pending
      */
-    private String setStatus;
+    private String testStatus;
 
 
     /**
@@ -36,14 +36,14 @@ public class Tests {
      * Setter for Status - FINALIZED
      */
     public void setFinalized() {
-        setStatus = "FINALIZED";
+        testStatus = "FINALIZED";
     }
 
     /**
      * Setter for Status - Pending
      */
     public void setPending() {
-        setStatus = "PENDING";
+        testStatus = "PENDING";
     }
 
     /**
@@ -61,7 +61,29 @@ public class Tests {
      * @return - testStatus
      */
     public String getStatus() {
-        return setStatus;
+        return testStatus;
+    }
+
+    /*
+  Verifies that the test name is present
+  @return Boolean
+   */
+    public Boolean verifyTestName() {
+        if (testName.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    /*
+  Verifies that the test status field is present
+  @return Boolean
+   */
+    public Boolean verifyTestStatus() {
+        if (testStatus.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
 }

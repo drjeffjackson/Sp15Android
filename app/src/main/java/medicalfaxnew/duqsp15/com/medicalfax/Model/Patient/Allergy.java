@@ -1,7 +1,13 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Model.Patient;
 
 /**
- * Created by claire on 2/17/15.
+ * Created by Coder Barbie
+ */
+
+
+/**
+ * The class allergy provides the setters and getters for the allergy field.
+ * In the future, one can add a variable for notes or severity of allergy.
  */
 public class Allergy {
 
@@ -20,6 +26,7 @@ public class Allergy {
      * @param newAllergy - sets the String field for allergy
      */
     public void setAllergy(String newAllergy) {
+
         allergy = newAllergy;
     }
 
@@ -30,8 +37,19 @@ public class Allergy {
      * @return - allergy
      */
     public String getAllergy() {
+
         return allergy;
     }
 
+    /*
+        Verifies that the allergy
+        @return Boolean
+         */
+    public Boolean verifyAllergy() {
+        if (allergy.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
 
 }

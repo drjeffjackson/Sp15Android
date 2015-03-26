@@ -1,7 +1,10 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Model.Patient;
 
 /**
- * Created by claire on 2/16/15.
+ * Created by Coder Barbie
+ */
+
+/**
  * This is a temporary class until we talk to the view/presenter team
  */
 public class CodeStatus {
@@ -22,6 +25,7 @@ public class CodeStatus {
      * Setter for code status - Case: Full
      */
     public void setAsFull() {
+
         codeStatus = "Full";
     }
 
@@ -29,6 +33,7 @@ public class CodeStatus {
      * Setter for code status - Case: Limited
      */
     public void setAsLimited() {
+
         codeStatus = "Limited";
     }
 
@@ -36,6 +41,7 @@ public class CodeStatus {
      * Setter for code status - Case: DNR/DNI
      */
     public void setAsDNRDNI() {
+
         codeStatus = "DNR/DNI";
     }
 
@@ -45,7 +51,19 @@ public class CodeStatus {
      * @return codeStatus
      */
     public String getCodeStatus() {
+
         return codeStatus;
+    }
+
+    /*
+    Verifies that the code status is present
+    @return Boolean
+     */
+    public Boolean verifyCodeStatus() {
+        if (codeStatus.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
 }

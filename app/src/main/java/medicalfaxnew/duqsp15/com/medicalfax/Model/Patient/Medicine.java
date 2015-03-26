@@ -1,5 +1,8 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Model.Patient;
 
+/**
+ * Created by Coder Barbie
+ */
 public class Medicine {
 
     private String medicine; // this is the medicine the patient is taking
@@ -82,6 +85,40 @@ public class Medicine {
     public String getMedicineCompletedCourse() {
 
         return medicineCompletedCourse;
+    }
+
+
+    /*
+   Verifies that the medicine field is present
+   @return Boolean
+    */
+    public Boolean verifyMedicine() {
+        if (medicine.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    /*
+  Verifies that the medicine course field is present
+  @return Boolean
+   */
+    public Boolean verifyMedicineCourse() {
+        if (medicineCourse.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    /*
+  Verifies that the medicine field is present
+  @return Boolean
+   */
+    public Boolean verifyMedicineCompletedCourse() {
+        if (medicineCompletedCourse.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
 }
