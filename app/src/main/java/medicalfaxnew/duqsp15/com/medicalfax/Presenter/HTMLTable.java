@@ -5,12 +5,12 @@ import java.util.ArrayList;
 /**
  * Created by Dan on 3/25/2015.
  */
-public class HTMLTable extends ArrayList<HTMLTableElement> {
+public class HTMLTable extends ArrayList<HTMLTableRow> {
     @Override
     public String toString() {
         String theTable = new String();
         theTable+="<table>";
-        for(HTMLTableElement row:this)
+        for(HTMLTableRow row:this)
         {
             theTable+="<tr>";
             theTable+=row.toString();
