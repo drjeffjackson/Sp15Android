@@ -6,10 +6,8 @@
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:background="@android:color/darker_gray"
-    android:orientation="vertical"
-    android:clickable="false"
-    android:alpha=".8">
+    android:background="@color/Blue"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,9 +27,8 @@
                 android:textStyle="bold"
                 android:text="PATIENT ID:"
                 android:textSize="17dp"
-                android:textColor="@android:color/black"
-                android:layout_marginBottom="15dp"
-                android:autoText="true" />
+                android:textColor="@color/White"
+                android:layout_marginBottom="15dp"/>
 
 
             <EditText android:id="@+id/Patient_Name"
@@ -112,7 +109,7 @@
                 android:textStyle="bold"
                 android:text="ATTENDING PHYSICIAN:"
                 android:textSize="17dp"
-                android:textColor="@android:color/black"
+                android:textColor="@color/White"
                 android:layout_marginBottom="15dp"/>
 
             <EditText android:id="@+id/Attending_Physician_Name"
@@ -198,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="CHIEF COMPLAINT:"
-                android:textColor="@android:color/black"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Chief_Complaint"
@@ -213,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="HPI (Including positive physical findings and pertinent labwork):"
-                android:textColor="@android:color/black"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/HPI"
@@ -228,7 +225,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="HOSPITAL COURSE:"
-                android:textColor="@android:color/black"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Hospital_Course"
@@ -243,7 +240,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="CONSULTANTS:"
-                android:textColor="@android:color/black"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Consultants"
@@ -258,7 +255,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="DIAGNOSIS:"
-                android:textColor="@android:color/black"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
 
@@ -302,7 +299,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="TEST/PROCEDURE RESULTS:"
-                android:textColor="@android:color/black"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
 
@@ -335,7 +332,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="ANTIBIOTICS:"
-                android:textColor="@android:color/black"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
 
@@ -368,7 +365,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="PAST MEDICAL HISTORY:"
-                android:textColor="@android:color/black"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Past_Medical_History"
@@ -383,7 +380,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="HOME MEDICATIONS/ALLERGIES:"
-                android:textColor="@android:color/black"
+                android:textColor="@color/White"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Home_Medications"
@@ -441,9 +438,7 @@
             android:id="@+id/Submit_Button"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@android:color/holo_red_dark"
-            android:alpha=".4" />
+            android:layout_alignParentStart="true" />
 
         <Button
             android:layout_width="100dp"
@@ -453,27 +448,9 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:onClick="dictates"
-            android:src="@drawable/microphone_button"
-            android:background="@android:color/holo_red_dark"
-            android:alpha=".4" />
-
-
+            android:src="@drawable/microphone_button" />
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="300dp"
-        android:id="@+id/imageView"
-        android:src="@drawable/logo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:visibility="visible"
-        android:tintMode="screen"
-        />
 
 
 </RelativeLayout>
