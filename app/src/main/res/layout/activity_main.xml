@@ -11,9 +11,93 @@
     android:clickable="false"
     android:alpha=".8">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="@string/UP"
+            android:id="@+id/Up_Button"
+            android:focusableInTouchMode="false"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignBottom="@+id/Dictate_Button"
+            android:layout_toLeftOf="@+id/Down_Button"
+            android:layout_toStartOf="@+id/Down_Button"
+            android:textColor="@color/White"
+            android:onClick="up"
+            android:background="@null"
+            android:src="@drawable/up_button" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="@string/DN"
+            android:id="@+id/Down_Button"
+            android:focusableInTouchMode="false"
+            android:layout_gravity="right"
+            android:layout_alignBottom="@+id/Dictate_Button"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="down"
+            android:background="@null"
+            android:src="@drawable/down_button"
+            android:clickable="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Submit"
+            android:focusableInTouchMode="false"
+            android:onClick="submits"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/Submit_Button"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@android:color/holo_red_dark"
+            android:alpha=".4" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="@string/Dictate"
+            android:focusableInTouchMode="false"
+            android:id="@+id/Dictate_Button"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="dictates"
+            android:src="@drawable/microphone_button"
+            android:background="@android:color/holo_red_dark"
+            android:alpha=".4" />
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/logo"
+        android:visibility="visible"
+        android:tintMode="screen"
+        android:clickable="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
 
     <!--Scrollable content here-->
 
@@ -33,11 +117,6 @@
                 android:layout_marginBottom="15dp"
                 android:autoText="true" />
 
-
-            <EditText android:id="@+id/Patient_Name"
-                android:onClick="setSelection"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,10 +124,16 @@
                 android:textColor="@color/White"
                 android:textStyle="bold"/>
 
-            <EditText android:id="@+id/DOB"
-                android:onClick="setSelection"
+            <EditText android:id="@+id/Patient_Name"
+                android:nextFocusDown="@+id/DOB"
+                android:nextFocusUp="@+id/Patient_Name"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true"
+                android:singleLine="false" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,10 +141,15 @@
                 android:textColor="@color/White"
                 android:textStyle="bold"/>
 
-            <EditText android:id="@+id/MRN"
-                android:onClick="setSelection"
+            <EditText android:id="@+id/DOB"
+                android:nextFocusDown="@+id/MRN"
+                android:nextFocusUp="@+id/Patient_Name"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,10 +157,15 @@
                 android:textColor="@color/White"
                 android:textStyle="bold"/>
 
-            <EditText android:id="@+id/Admission_Date"
-                android:onClick="setSelection"
+            <EditText android:id="@+id/MRN"
+                android:nextFocusDown="@+id/Admission_Date"
+                android:nextFocusUp="@+id/DOB"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,10 +173,14 @@
                 android:textColor="@color/White"
                 android:textStyle="bold"/>
 
-            <EditText android:id="@+id/PCP"
-                android:onClick="setSelection"
+            <EditText android:id="@+id/Admission_Date"
+                android:nextFocusDown="@+id/PCP"
+                android:nextFocusUp="@+id/MRN"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -90,12 +189,15 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="5dp"/>/>
 
-            <Spinner
-                android:id="@+id/code_status_spinner"
-                android:layout_width="fill_parent"
+            <EditText android:id="@+id/PCP"
+                android:nextFocusDown="@+id/code_status_spinner"
+                android:nextFocusUp="@+id/Admission_Date"
+                android:focusableInTouchMode="true"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:prompt="@string/code_status_prompt"
-                android:entries="@array/code_status_array"/>
+                android:focusable="true"
+                android:longClickable="true" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,9 +205,22 @@
                 android:textColor="@color/White"
                 android:textStyle="bold"
                 android:layout_marginBottom="40dp"/>/>
-
+            <Spinner
+                android:id="@+id/code_status_spinner"
+                android:nextFocusDown="@+id/Attending_Physician_Name"
+                android:nextFocusUp="@+id/PCP"
+                android:focusableInTouchMode="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/code_status_prompt"
+                android:entries="@array/code_status_array"
+                android:focusable="true"
+                android:longClickable="true"
+                android:layout_marginTop="-30dp"
+                android:layout_marginBottom="10dp" />
 
             <!--Category:ATTENDING PHYSICIAN -->
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -115,20 +230,21 @@
                 android:textColor="@android:color/black"
                 android:layout_marginBottom="15dp"/>
 
-            <EditText android:id="@+id/Attending_Physician_Name"
-                android:onClick="setSelection"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NAME"
                 android:textColor="@color/White"
                 android:textStyle="bold"/>
-            <EditText android:id="@+id/Title"
-                android:onClick="setSelection"
+
+            <EditText android:id="@+id/Attending_Physician_Name"
+                android:nextFocusDown="@+id/Title"
+                android:nextFocusUp="@+id/code_status_spinner"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,54 +252,72 @@
                 android:textColor="@color/White"
                 android:textStyle="bold"/>
 
-            <EditText android:id="@+id/Department"
-                android:onClick="setSelection"
+            <EditText android:id="@+id/Title"
+                android:nextFocusDown="@+id/Department"
+                android:nextFocusUp="@+id/Attending_Physician_Name"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DEPARTMENT"
                 android:textColor="@color/White"
                 android:textStyle="bold"/>
-
-            <EditText android:id="@+id/Home_Hospital"
-                android:onClick="setSelection"
+            <EditText android:id="@+id/Department"
+                android:nextFocusDown="@+id/Home_Hospital"
+                android:nextFocusUp="@+id/Title"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HOME HOSPITAL"
                 android:textColor="@color/White"
                 android:textStyle="bold"/>
-
-            <EditText android:id="@+id/Phone_Number"
-                android:onClick="setSelection"
+            <EditText android:id="@+id/Home_Hospital"
+                android:nextFocusDown="@+id/Phone_Number"
+                android:nextFocusUp="@+id/Department"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PHONE NUMBER"
                 android:textColor="@color/White"
                 android:textStyle="bold"/>
-
-            <EditText android:id="@+id/Email_Address"
-                android:onClick="setSelection"
+            <EditText android:id="@+id/Phone_Number"
+                android:nextFocusDown="@+id/Email_Address"
+                android:nextFocusUp="@+id/Home_Hospital"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true"
+                android:phoneNumber="true"
+                android:selectAllOnFocus="false" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EMAIL ADDRESS"
                 android:textColor="@color/White"
                 android:textStyle="bold"/>
-
-            <EditText android:id="@+id/NPI_Number"
-                android:onClick="setSelection"
+            <EditText android:id="@+id/Email_Address"
+                android:nextFocusDown="@+id/NPI_Number"
+                android:nextFocusUp="@+id/Phone_Number"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -191,6 +325,14 @@
                 android:textColor="@color/White"
                 android:textStyle="bold"
                 android:layout_marginBottom="40dp"/>/>
+            <EditText android:id="@+id/NPI_Number"
+                android:nextFocusDown="@+id/Chief_Complaint"
+                android:nextFocusUp="@+id/Email_Address"
+                android:focusableInTouchMode="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
 
             <!--Category:CHIEF COMPLAINT -->
             <TextView
@@ -202,10 +344,14 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Chief_Complaint"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/HPI"
+                android:nextFocusUp="@+id/NPI_Number"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"/>
+                android:layout_marginBottom="40dp"
+                android:focusable="true"
+                android:longClickable="true" />
 
             <!--Category:HPI -->
             <TextView
@@ -217,10 +363,14 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/HPI"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Hospital_Course"
+                android:nextFocusUp="@+id/Chief_Complaint"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"/>
+                android:layout_marginBottom="40dp"
+                android:focusable="true"
+                android:longClickable="true" />
 
             <!--Category:HOSPITAL COURSE -->
             <TextView
@@ -232,10 +382,14 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Hospital_Course"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Consultants"
+                android:nextFocusUp="@+id/HPI"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"/>
+                android:layout_marginBottom="40dp"
+                android:focusable="true"
+                android:longClickable="true" />
 
             <!--Category:CONSULTANTS -->
             <TextView
@@ -247,10 +401,14 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Consultants"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Primary"
+                android:nextFocusUp="@+id/Hospital_Course"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"/>
+                android:layout_marginBottom="40dp"
+                android:focusable="true"
+                android:longClickable="true" />
 
             <!--Category:DIAGNOSIS -->
             <TextView
@@ -263,9 +421,13 @@
                 android:layout_marginBottom="15dp"/>
 
             <EditText android:id="@+id/Primary"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Secondary"
+                android:nextFocusUp="@+id/Consultants"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -274,9 +436,13 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Secondary"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Complications"
+                android:nextFocusUp="@+id/Primary"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -285,9 +451,13 @@
                 android:textStyle="bold"/>
 
             <EditText android:id="@+id/Complications"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Finalized"
+                android:nextFocusUp="@+id/Secondary"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -305,11 +475,6 @@
                 android:textColor="@android:color/black"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
-
-            <EditText android:id="@+id/Finalized"
-                android:onClick="setSelection"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -317,10 +482,15 @@
                 android:textColor="@color/White"
                 android:textStyle="bold"/>
 
-            <EditText android:id="@+id/Pending"
-                android:onClick="setSelection"
+            <EditText android:id="@+id/Finalized"
+                android:nextFocusDown="@+id/Pending"
+                android:nextFocusUp="@+id/Complications"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -328,6 +498,14 @@
                 android:textColor="@color/White"
                 android:textStyle="bold"
                 android:layout_marginBottom="40dp"/>
+            <EditText android:id="@+id/Pending"
+                android:nextFocusDown="@+id/Completed_Course"
+                android:nextFocusUp="@+id/Finalized"
+                android:focusableInTouchMode="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
 
             <!--Category:ANTIBIOTICS -->
             <TextView
@@ -338,11 +516,6 @@
                 android:textColor="@android:color/black"
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
-
-            <EditText android:id="@+id/Completed_Course"
-                android:onClick="setSelection"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -350,10 +523,14 @@
                 android:textColor="@color/White"
                 android:textStyle="bold"/>
 
-            <EditText android:id="@+id/Current_Course"
-                android:onClick="setSelection"
+            <EditText android:id="@+id/Completed_Course"
+                android:nextFocusDown="@+id/Current_Course"
+                android:nextFocusUp="@+id/Pending"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -361,6 +538,15 @@
                 android:textColor="@color/White"
                 android:textStyle="bold"
                 android:layout_marginBottom="40dp"/>
+            <EditText android:id="@+id/Current_Course"
+                android:nextFocusDown="@+id/Past_Medical_History"
+                android:nextFocusUp="@+id/Completed_Course"
+                android:focusableInTouchMode="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:longClickable="true" />
+
 
             <!--Category:PAST MEDICAL HISTORY -->
             <TextView
@@ -372,10 +558,14 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Past_Medical_History"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Home_Medications"
+                android:nextFocusUp="@+id/Current_Course"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"/>
+                android:layout_marginBottom="40dp"
+                android:focusable="true"
+                android:longClickable="true" />
 
             <!--Category:HOME MEDICATIONS/ALLERGIES -->
             <TextView
@@ -387,10 +577,14 @@
                 android:textSize="17dp"
                 android:layout_marginBottom="15dp"/>
             <EditText android:id="@+id/Home_Medications"
-                android:onClick="setSelection"
+                android:nextFocusDown="@+id/Home_Medications"
+                android:nextFocusUp="@+id/Past_Medical_History"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"/>
+                android:layout_marginBottom="40dp"
+                android:focusable="true"
+                android:longClickable="true" />
 
         </LinearLayout>
     </ScrollView>
@@ -400,80 +594,6 @@
 
     <!-- Down_Button: moves cursor down one text field from the current position -->
     <!-- Up_Button: moves cursor up one text field from the current position -->
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom">
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="@string/UP"
-            android:id="@+id/Up_Button"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignBottom="@+id/Dictate_Button"
-            android:layout_toLeftOf="@+id/Down_Button"
-            android:layout_toStartOf="@+id/Down_Button"
-            android:textColor="@color/White"
-            android:onClick="up"
-            android:background="@null"
-            android:src="@drawable/up_button" />
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="@string/DN"
-            android:id="@+id/Down_Button"
-            android:layout_gravity="right"
-            android:layout_alignBottom="@+id/Dictate_Button"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:onClick="down"
-            android:background="@null"
-            android:src="@drawable/down_button" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Submit"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/Submit_Button"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@android:color/holo_red_dark"
-            android:alpha=".4" />
-
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="@string/Dictate"
-            android:id="@+id/Dictate_Button"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:onClick="dictates"
-            android:src="@drawable/microphone_button"
-            android:background="@android:color/holo_red_dark"
-            android:alpha=".4" />
-
-
-    </RelativeLayout>
-
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="300dp"
-        android:id="@+id/imageView"
-        android:src="@drawable/logo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:visibility="visible"
-        android:tintMode="screen"
-        />
 
 
 </RelativeLayout>

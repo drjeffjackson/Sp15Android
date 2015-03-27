@@ -1,55 +1,44 @@
 package medicalfaxnew.duqsp15.com.medicalfax;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
+import android.view.View.OnLongClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Spinner;
 import android.widget.EditText;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
+
+
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.ViewPresenterInterFace;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Presenter;
 
 
-public class MainActivity extends ActionBarActivity implements ViewPresenterInterFace{
+public class MainActivity extends ActionBarActivity implements ViewPresenterInterFace, OnTouchListener, OnLongClickListener{
 
-    private int SELECTED = -1;
     private final int REQ_CODE_SPEECH_INPUT = 100; //constant necessary for validating Dictation
     private Presenter presenter;
-
+    private EditText selectedView;
+//    private InputMethodManager inputMethodManager; // to hide and show keyboard
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         presenter = new Presenter(this.getApplicationContext(), this);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("User Agreement");
-        builder.setMessage("This app is not HIPPA compliant. It is for demo purposes only. Do not use real data. By clicking 'I agree' I as the user assume all liability.");
-        builder.setPositiveButton("I agree", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss(); // Let the app continue
-            }
-        });
-
-        builder.setNegativeButton("I disagree", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                System.exit(0); // Close the app
-            }
-        });
-
-        AlertDialog alert = builder.create();
-        alert.setCancelable(false);
-        alert.show();
+//        inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        popUpHIPPA();
+        setListeners();
     }
 
-    /*this method was written by Brady Sheehan on 2/18/2015
+    /*This method was written by Brady Sheehan on 2/18/2015
     * this method catches the startActivtyForResult call in Dictation class
     * and proceeds to extract the data from the Intent with its call to returnSpeech()
     * returnSpeech(data) will actually make a call to the presenter class with
@@ -92,10 +81,11 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     public void up(View view)
     {
-
-        // setFocus by decrement view.getId()
-        // If it is not at the most top position, then move cursors up from current position
-        // EditText.setSelection(int);
+        if(selectedView != null && selectedView.getId() != R.id.Patient_Name)
+        {
+            selectedView = (EditText) findViewById(selectedView.getId() -1);
+            selectedView.requestFocus();
+        }
     }
     /** This method is called when Down Button is clicked
      *  It causes the cursor to move down once to the text field below the current position
@@ -103,40 +93,166 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     public void down(View view)
     {
-
-        // setFocus by increment view.getId()
-        // If it is not at the most bottom position, then move cursors down from current position
-        // EditText.setSelection(int);
-    }
-
-    /**
-     * This method is called when the TextBox is touched for the second time
-     * It extracts and saves the index of a EditText object, when an user performs a second touch on it.
-     * NOTICE: Need to be fixed in a more sophisticated way, so that the user doesn't need to double click a EditText
-     * @param view is a EditText
-     */
-
-    public void setSelection(View view)
-    {
-        SELECTED = view.getId();
-        System.out.println(SELECTED);
+        if(selectedView != null && selectedView.getId() != R.id.Home_Medications)
+        {
+            selectedView = (EditText) findViewById(selectedView.getId() +1);
+            selectedView.requestFocus();
+        }
     }
 
     /**
      * This method is called when the dictate_button is clicked
-     * WARNING: For the EditText to be selected, it needs to be double clicked
      * @param view is the dictate button
      */
     public void dictates(View view)
     {
-
-        presenter.startTranscription(SELECTED);
-        SELECTED = -1;
+        if(selectedView != null) {
+            presenter.startTranscription(selectedView.getId());
+        }
     }
-
+    /**
+     * This method is called when the Submit_Button is clicked
+     * @param view is the submit button
+     */
+    public void submits(View view)
+    {
+        if(selectedView != null)
+            selectedView.setText("TEST");
+    }
     @Override
     public void fillBox(int boxNum, String transcribedText) {
         EditText textBox = (EditText) findViewById(boxNum);
         textBox.setText(transcribedText);
+    }
+
+    /** This method changes focus based on the user's touch and hides the input keyboard
+     * @param v the touched view
+     * @param event MotionEvent's event
+     * @return true if focus change is made
+     * @return  false otherwise
+     */
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            v.requestFocus();
+            selectedView = (EditText) v;
+//            inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.RESULT_HIDDEN);
+            return true;
+        }
+        return false;
+    }
+    /** This method changes focus based on the user's touch shows the input keyboard
+     * @param v the touched viewt
+     * @return true if long click is made
+     * @return false otherwise
+     */
+    @Override
+    public boolean onLongClick(View v) {
+        selectedView = (EditText) v;
+        v.requestFocus();
+        //  inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.RESULT_SHOWN);
+        return false;
+    }
+
+
+    private void popUpHIPPA()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("User Agreement");
+        builder.setMessage("This app is not HIPPA compliant. It is for demo purposes only. Do not use real data. By clicking 'I agree' I as the user assume all liability.");
+        builder.setPositiveButton("I agree", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss(); // Let the app continue
+            }
+        });
+
+        builder.setNegativeButton("I disagree", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                System.exit(0); // Close the app
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.setCancelable(false);
+        alert.show();
+    }
+    private void setListeners()
+    {
+        EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
+        Patient_Name.setOnTouchListener(this);
+        Patient_Name.setOnLongClickListener(this);
+        EditText DOB = (EditText) findViewById(R.id.DOB);
+        DOB.setOnTouchListener(this);
+        DOB.setOnLongClickListener(this);
+        EditText MRN = (EditText) findViewById(R.id.MRN);
+        MRN.setOnTouchListener(this);
+        MRN.setOnLongClickListener(this);
+        EditText Admission_Date = (EditText) findViewById(R.id.Admission_Date);
+        Admission_Date.setOnTouchListener(this);
+        Admission_Date.setOnLongClickListener(this);
+        EditText PCP = (EditText) findViewById(R.id.PCP);
+        PCP.setOnTouchListener(this);
+        PCP.setOnLongClickListener(this);
+        EditText Attending_Physician_Name = (EditText) findViewById(R.id.Attending_Physician_Name);
+        Attending_Physician_Name.setOnTouchListener(this);
+        Attending_Physician_Name.setOnLongClickListener(this);
+        EditText Title = (EditText) findViewById(R.id.Title);
+        Title.setOnTouchListener(this);
+        Title.setOnLongClickListener(this);
+        EditText Department = (EditText) findViewById(R.id.Department);
+        Department.setOnTouchListener(this);
+        Department.setOnLongClickListener(this);
+        EditText Home_Hospital = (EditText) findViewById(R.id.Home_Hospital);
+        Home_Hospital.setOnTouchListener(this);
+        Home_Hospital.setOnLongClickListener(this);
+        EditText Phone_Number = (EditText) findViewById(R.id.Phone_Number);
+        Phone_Number.setOnTouchListener(this);
+        Phone_Number.setOnLongClickListener(this);
+        EditText Email_Address = (EditText) findViewById(R.id.Email_Address);
+        Email_Address.setOnTouchListener(this);
+        Email_Address.setOnLongClickListener(this);
+        EditText NPI_Number = (EditText) findViewById(R.id.NPI_Number);
+        NPI_Number.setOnTouchListener(this);
+        NPI_Number.setOnLongClickListener(this);
+        EditText Chief_Complaint = (EditText) findViewById(R.id.Chief_Complaint);
+        Chief_Complaint.setOnTouchListener(this);
+        Chief_Complaint.setOnLongClickListener(this);
+        EditText HPI = (EditText) findViewById(R.id.HPI);
+        HPI.setOnTouchListener(this);
+        HPI.setOnLongClickListener(this);
+        EditText Hospital_Course = (EditText) findViewById(R.id.Hospital_Course);
+        Hospital_Course.setOnTouchListener(this);
+        Hospital_Course.setOnLongClickListener(this);
+        EditText Consultants = (EditText) findViewById(R.id.Consultants);
+        Consultants.setOnTouchListener(this);
+        Consultants.setOnLongClickListener(this);
+        EditText Primary = (EditText) findViewById(R.id.Primary);
+        Primary.setOnTouchListener(this);
+        Primary.setOnLongClickListener(this);
+        EditText Secondary = (EditText) findViewById(R.id.Secondary);
+        Secondary.setOnTouchListener(this);
+        Secondary.setOnLongClickListener(this);
+        EditText Complications = (EditText) findViewById(R.id.Complications);
+        Complications.setOnTouchListener(this);
+        Complications.setOnLongClickListener(this);
+        EditText Finalized = (EditText) findViewById(R.id.Finalized);
+        Finalized.setOnTouchListener(this);
+        Finalized.setOnLongClickListener(this);
+        EditText Pending = (EditText) findViewById(R.id.Pending);
+        Pending.setOnTouchListener(this);
+        Pending.setOnLongClickListener(this);
+        EditText Completed_Course = (EditText) findViewById(R.id.Completed_Course);
+        Completed_Course.setOnTouchListener(this);
+        Completed_Course.setOnLongClickListener(this);
+        EditText Current_Course = (EditText) findViewById(R.id.Current_Course);
+        Current_Course.setOnTouchListener(this);
+        Current_Course.setOnLongClickListener(this);
+        EditText Past_Medical_History = (EditText) findViewById(R.id.Past_Medical_History);
+        Past_Medical_History.setOnTouchListener(this);
+        Past_Medical_History.setOnLongClickListener(this);
+        EditText Home_Medications = (EditText) findViewById(R.id.Home_Medications);
+        Home_Medications.setOnTouchListener(this);
+        Home_Medications.setOnLongClickListener(this);
     }
 }
