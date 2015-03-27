@@ -23,7 +23,7 @@ public class ModelInterface
     public static Physician physician; //Physician Object
     public static Dictation dictation;
     protected static Email email;
-    protected static InputOutput IO; //IO for Model Team ONLY
+    public static InputOutput IO; //IO for Model Team ONLY
     public static ModelInterface MController; //Instance
     public static Presenter presenter;
     private boolean databaseLoaded = false;
@@ -36,7 +36,7 @@ public class ModelInterface
             IO.loadPhysician(); //Loads database physician data
             IO.loadPatient(); //Loads database patient data
             this.databaseLoaded = false;
-        this.dictation = new Dictation(ac, this); //Passes activity for dictation
+        this.dictation = new Dictation(ac, this); //Passes activity for dictation/
         this.email = new Email();
         presenter = pres;
         this.MController = this; //Creates class instance pointer
