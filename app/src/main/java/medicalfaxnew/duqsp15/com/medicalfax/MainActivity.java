@@ -175,7 +175,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
 
         AlertDialog alert = builder.create();
         alert.setCancelable(false);
-        alert.show();
+        alert.show();  // This call causes an android.view.WindowLeaked: Activity medicalfaxnew.duqsp15.com.medicalfax.MainActivity has leaked window error
+        // Exception happens at "medicalfaxnew.duqsp15.com.medicalfax.MainActivity.popUpHIPPA(MainActivity.java:178)"
     }
     private void setListeners()
     {
