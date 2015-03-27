@@ -45,6 +45,14 @@ public class CodeStatus {
         codeStatus = "DNR/DNI";
     }
 
+    /*
+    Setter for code statys as passed string
+     */
+    public void setAsString(String passed)
+    {
+        codeStatus = passed;
+    }
+
     /**
      * Getter for code status
      *

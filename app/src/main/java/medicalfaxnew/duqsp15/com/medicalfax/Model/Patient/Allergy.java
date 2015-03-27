@@ -16,8 +16,17 @@ public class Allergy {
     /**
      * nullary constructor
      */
-    public Allergy() {
+    public Allergy()
+    {
 
+    }
+
+    /*
+    String constructor
+     */
+    public Allergy(String newAllergy)
+    {
+        setAllergy(newAllergy);
     }
 
     /**
