@@ -105,10 +105,6 @@ public class Patient implements ModelObj {
     /**
      * Begin Test/Procedure Results
      */
-    public static final Tests patientTests = new Tests();
-
-    // I'm not sure if there will be multiple tests, if there are
-
     private static final ArrayList<Tests> listOfTests = new ArrayList<>();
     /**
      * End Test/Procedure Results
@@ -165,21 +161,69 @@ public class Patient implements ModelObj {
     }
 
     /**
-     * Allows the presenter team to add an entry to any of the private arrays
-     * @param anyArrayList - this is any arraylist one wishes to add to
-     * @param entry - this is the object one wants to add to the next spot in the list
+     * Method for adding to the list of consultants
+     * @param entry - the string entry you want to add
      */
-    public void addToList(ArrayList<Object> anyArrayList, Object entry) {
-        anyArrayList.add(entry);
+    public void addConsultantList(String entry) {
+        consultantList.add(entry);
     }
 
     /**
-     * Allows the presenter team to remove an entry from any of the privare arrays
-     * @param anyArrayList - this is any arraylist one wishes to remove elements from
-     * @param position - this is the integer position one wishes to remove the element from
+     * Method for adding to the list of tests
+     * @param test - the test object to add
      */
-    public void removeFromList(ArrayList<Object> anyArrayList, int position) {
-        anyArrayList.remove(position);
+    public void addTestList(Tests test) {
+        listOfTests.add(test);
+    }
+
+    /**
+     * Method for adding to the list of Medicines
+     * @param meds- the medication you want to add
+     */
+    public void addPatientMedicationList(Medicine meds) {
+        patientMedicationsList.add(meds);
+    }
+
+    /**
+     * Method for adding to the list of Medicines at home
+     * @param meds - the medication you want to add
+     */
+    public void addPatientMedicationListsHome(Medicine meds) {
+        patientMedicationsListHome.add(meds);
+    }
+
+
+    /**
+     * Method for adding to the list of Allergies
+     * @param allergy - the allergy to add to the list
+     */
+    public void addAllergiesList(Allergy allergy) {
+        allergies.add(allergy);
+    }
+
+
+    /**
+     * The following methods are there to remove elements from the private arraylists
+     */
+
+    public void removeConsultantList(int position) {
+        consultantList.remove(position);
+    }
+
+    public void removeTestList(int position) {
+        listOfTests.remove(position);
+    }
+
+    public void removePatientMedicationList( int position) {
+        patientMedicationsList.remove(position);
+    }
+
+    public void removePatientMedicationListHome( int position) {
+        patientMedicationsListHome.remove(position);
+    }
+
+    public void removeAllergiesList(int position) {
+        allergies.remove(position);
     }
 
     /*
@@ -246,10 +290,10 @@ public class Patient implements ModelObj {
             missingFields.add("set name of patient");
         }
         for (int i = 0; i < listOfTests.size(); i++) {
-            if (!patientTests.verifyTestName()) {
+            if (!listOfTests.get(i).verifyTestName()) {
                 missingFields.add("set test name");
             }
-            if (!patientTests.verifyTestStatus()) {
+            if (!listOfTests.get(i).verifyTestStatus()) {
                 missingFields.add("set test status");
             }
         }

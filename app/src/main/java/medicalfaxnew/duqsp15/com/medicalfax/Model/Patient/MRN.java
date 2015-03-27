@@ -8,7 +8,7 @@ public class MRN {
     /**
      * Integer value for the medical record number.
      */
-    private int mrn = 0;
+    private String mrn;
 
     /**
      * Nullary constructor
@@ -21,7 +21,7 @@ public class MRN {
      *
      * @param newMrn - the int to set the mrn to
      */
-    public void setMrn(int newMrn) {
+    public void setMrn(String newMrn) {
 
         mrn = newMrn;
     }
@@ -31,7 +31,7 @@ public class MRN {
      *
      * @return
      */
-    public int getMrn() {
+    public String getMrn() {
 
         return mrn;
     }
@@ -41,7 +41,7 @@ public class MRN {
   @return Boolean
    */
     public Boolean verifyMRN() {
-        if (mrn != 0) {
+        if (mrn.isEmpty()) {
             return false;
         }
         return true;
