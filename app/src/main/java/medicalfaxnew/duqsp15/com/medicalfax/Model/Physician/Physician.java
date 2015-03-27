@@ -1,6 +1,7 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Model.Physician;
 
 import medicalfaxnew.duqsp15.com.medicalfax.Model.Interface.ModelObj;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
 import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.*;
 import java.util.ArrayList;
 
@@ -59,6 +60,6 @@ public class Physician implements ModelObj
     */
     public void update()
     {
-        //COMING SOON!
+        ModelInterface.IO.updatePhysician();
     }
 }

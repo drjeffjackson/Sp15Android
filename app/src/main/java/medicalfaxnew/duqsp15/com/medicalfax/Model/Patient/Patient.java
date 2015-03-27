@@ -3,6 +3,7 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model.Patient;
 import java.util.ArrayList;
 
 import medicalfaxnew.duqsp15.com.medicalfax.Model.Interface.ModelObj;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
 
 /**
  * Created by Coder Barbie
@@ -303,7 +304,8 @@ public class Patient implements ModelObj {
     /*
     Commits all object fields to database
      */
-    public void update() {
-        //
+    public void update()
+    {
+        ModelInterface.IO.updatePatient();
     }
 }
