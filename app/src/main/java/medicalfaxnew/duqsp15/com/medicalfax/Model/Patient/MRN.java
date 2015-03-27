@@ -1,14 +1,14 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Model.Patient;
 
 /**
- * Created by claire on 2/16/15.
+ * Created by Coder Barbie
  */
 public class MRN {
 
     /**
      * Integer value for the medical record number.
      */
-    private int mrn;
+    private String mrn;
 
     /**
      * Nullary constructor
@@ -21,7 +21,8 @@ public class MRN {
      *
      * @param newMrn - the int to set the mrn to
      */
-    public void setMrn(int newMrn) {
+    public void setMrn(String newMrn) {
+
         mrn = newMrn;
     }
 
@@ -30,8 +31,20 @@ public class MRN {
      *
      * @return
      */
-    public int getMrn() {
+    public String getMrn() {
+
         return mrn;
+    }
+
+    /*
+  Verifies that the medical record number field is present
+  @return Boolean
+   */
+    public Boolean verifyMRN() {
+        if (mrn.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
 }

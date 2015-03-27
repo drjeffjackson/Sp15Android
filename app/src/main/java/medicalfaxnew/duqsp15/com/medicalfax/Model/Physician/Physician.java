@@ -30,11 +30,8 @@ public class Physician implements ModelObj
     public ArrayList<String> verify()
     {
         ArrayList<String> missingFields = new ArrayList<String>();
-        if(name.verifyNameF()){
-            missingFields.add("setFirstName");
-        }
-        if(name.verifyNameL()){
-            missingFields.add("setLastName");
+        if(name.verifyName()){
+            missingFields.add("setPatientName");
         }
         if(!hospital.verifyDepartment()){
             missingFields.add("setDepartment");

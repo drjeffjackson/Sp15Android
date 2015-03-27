@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.EditText;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.ViewPresenterInterFace;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Presenter;
@@ -24,6 +27,26 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         setContentView(R.layout.activity_main);
 
         presenter = new Presenter(this.getApplicationContext(), this);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("User Agreement");
+        builder.setMessage("This app is not HIPPA compliant. It is for demo purposes only. Do not use real data. By clicking 'I agree' I as the user assume all liability.");
+        builder.setPositiveButton("I agree", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss(); // Let the app continue
+            }
+        });
+
+        builder.setNegativeButton("I disagree", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                System.exit(0); // Close the app
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.setCancelable(false);
+        alert.show();
     }
 
     /*this method was written by Brady Sheehan on 2/18/2015

@@ -5,12 +5,7 @@ import java.util.ArrayList;
 import medicalfaxnew.duqsp15.com.medicalfax.Model.Interface.ModelObj;
 
 /**
- * Created by austinpilz on 2/16/15.
- * clairesaunders
- */
-
-/**
- *
+ * Created by Coder Barbie
  */
 public class Patient implements ModelObj {
 
@@ -61,7 +56,7 @@ public class Patient implements ModelObj {
     /**
      * Begin Chief Complaint
      */
-    private String chiefComplaint;
+    public static final ChiefComplaint chiefComplaint = new ChiefComplaint();
     /**
      * End Chief Complaint
      */
@@ -69,7 +64,7 @@ public class Patient implements ModelObj {
     /**
      * Begin History of present illness
      */
-    private String hpi;
+    public static final HPI hpi = new HPI();
     /**
      * End History of present illness
      */
@@ -78,7 +73,7 @@ public class Patient implements ModelObj {
     /**
      * Begin Hospital Course
      */
-
+    public static final HospitalCourse hospitalCourse = new HospitalCourse();
     /**
      * End Hospital Course
      */
@@ -87,6 +82,7 @@ public class Patient implements ModelObj {
     /**
      *  Begin Consultants
      */
+    private ArrayList<String> consultantList = new ArrayList<>();
     /**
      *  End Consultants
      */
@@ -109,11 +105,7 @@ public class Patient implements ModelObj {
     /**
      * Begin Test/Procedure Results
      */
-    public static final Tests patientTests = new Tests();
-
-    // I'm not sure if there will be multiple tests, if there are
-
-    public static final ArrayList<Tests> listOfTests = new ArrayList<>();
+    private static final ArrayList<Tests> listOfTests = new ArrayList<>();
     /**
      * End Test/Procedure Results
      */
@@ -123,11 +115,10 @@ public class Patient implements ModelObj {
      * Begin Antibiotics
      */
 
-    public static final Medicine meds = new Medicine();
     /**
      * List of medications the patient is on
      */
-    private ArrayList<Medicine> patientMedicationsList;
+    private ArrayList<Medicine> patientMedicationsList = new ArrayList<>();
 
     /**
      * End Antibiotics
@@ -137,7 +128,7 @@ public class Patient implements ModelObj {
     /**
      * Begin Past Medical History
      */
-    private static final MedicalHistory medHistory = new MedicalHistory();
+    public static final MedicalHistory medHistory = new MedicalHistory();
     /**
      * End Past Medical History
      */
@@ -146,7 +137,6 @@ public class Patient implements ModelObj {
     /**
      * Begin Home Medications/Allergies
      */
-    public static final Medicine homeMeds = new Medicine();
 
     /**
      * List of patient home medications
@@ -154,14 +144,9 @@ public class Patient implements ModelObj {
     private ArrayList<Medicine> patientMedicationsListHome;
 
     /**
-     * Allergy object
-     */
-    public static final Allergy allergy = new Allergy();
-
-    /**
      * List of allergies
      */
-    private ArrayList<Allergy> allergies;
+    private ArrayList<Allergy> allergies = new ArrayList<>();
 
     /**
      * End Home Medications/Allergies
@@ -175,15 +160,143 @@ public class Patient implements ModelObj {
 
     }
 
+    /**
+     * Method for adding to the list of consultants
+     * @param entry - the string entry you want to add
+     */
+    public void addConsultantList(String entry) {
+        consultantList.add(entry);
+    }
+
+    /**
+     * Method for adding to the list of tests
+     * @param test - the test object to add
+     */
+    public void addTestList(Tests test) {
+        listOfTests.add(test);
+    }
+
+    /**
+     * Method for adding to the list of Medicines
+     * @param meds- the medication you want to add
+     */
+    public void addPatientMedicationList(Medicine meds) {
+        patientMedicationsList.add(meds);
+    }
+
+    /**
+     * Method for adding to the list of Medicines at home
+     * @param meds - the medication you want to add
+     */
+    public void addPatientMedicationListsHome(Medicine meds) {
+        patientMedicationsListHome.add(meds);
+    }
+
+
+    /**
+     * Method for adding to the list of Allergies
+     * @param allergy - the allergy to add to the list
+     */
+    public void addAllergiesList(Allergy allergy) {
+        allergies.add(allergy);
+    }
+
+
+    /**
+     * The following methods are there to remove elements from the private arraylists
+     */
+
+    public void removeConsultantList(int position) {
+        consultantList.remove(position);
+    }
+
+    public void removeTestList(int position) {
+        listOfTests.remove(position);
+    }
+
+    public void removePatientMedicationList( int position) {
+        patientMedicationsList.remove(position);
+    }
+
+    public void removePatientMedicationListHome( int position) {
+        patientMedicationsListHome.remove(position);
+    }
+
+    public void removeAllergiesList(int position) {
+        allergies.remove(position);
+    }
+
     /*
     Verifies required fields and returns if compliant
      */
-    public ArrayList<String> verify()
-    {
+    public ArrayList<String> verify() {
         //FOR DEMONSTRATION PURPOSES - CODE BELOW
         ArrayList<String> missingFields = new ArrayList<String>();
-        missingFields.add("PhysicianNPI");
+        missingFields.add("PatientNPI");
 
+        for (int i = 0; i < allergies.size(); i++) {
+            if (!allergies.get(i).verifyAllergy()) {
+                missingFields.add("set allergy in list");
+            }
+        }
+        if (!chiefComplaint.verifyComplaint()) {
+            missingFields.add("set chief complaint");
+        }
+        if (!codeStatus.verifyCodeStatus()) {
+            missingFields.add("set code status");
+        }
+        if (!chiefComplaint.verifyComplaint()) {
+            missingFields.add("set chief complaint");
+        }
+        if (!admDate.verifyDay()) {
+            missingFields.add("set day");
+        }
+        if (!admDate.verifyMonth()) {
+            missingFields.add("set month");
+        }
+        if (!admDate.verifyYear()) {
+            missingFields.add("set year");
+        }
+        if (!patientDiagnosis.verifyPrimaryDiagnosis()) {
+            missingFields.add("set patient primary diagnosis");
+        }
+        if (!hpi.verifyHistoryOfPresentIllness()) {
+            missingFields.add("set history of present illness");
+        }
+        if (!medHistory.verifyMedicalHistory()) {
+            missingFields.add("set patient medical history");
+        }
+        for (int i = 0; i < patientMedicationsList.size(); i++) {
+            if (!patientMedicationsList.get(i).verifyMedicine()) {
+                missingFields.add("set medicine item in list");
+            }
+            if (!patientMedicationsList.get(i).verifyMedicineCourse()) {
+                missingFields.add("set medicine course in list");
+            }
+            if (!patientMedicationsList.get(i).verifyMedicineCompletedCourse()) {
+                missingFields.add("set medicine completed course in list");
+            }
+        }
+        if (!medRecNum.verifyMRN()) {
+            missingFields.add("set medical record num");
+        }
+        if (!attendingName.verifyName()) {
+            missingFields.add("set name of attending");
+        }
+        if (!pcpName.verifyName()) {
+            missingFields.add("set name of pcp");
+        }
+        if (!patientName.verifyName()) {
+            missingFields.add("set name of patient");
+        }
+        for (int i = 0; i < listOfTests.size(); i++) {
+            if (!listOfTests.get(i).verifyTestName()) {
+                missingFields.add("set test name");
+            }
+            if (!listOfTests.get(i).verifyTestStatus()) {
+                missingFields.add("set test status");
+            }
+        }
         return missingFields;
     }
 

@@ -2,14 +2,11 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model.Patient;
 
 /**
  * Created by Justin Chilleo on 2/18/15.
- * Code based off, Claire Saunders MedicalHistory.
+ * Code based off, Coder Barbie MedicalHistory.
  */
 public class ChiefComplaint {
     String chiefComplaint;
 
-    /**
-     * Nullary constructor
-     */
     public ChiefComplaint() {
 
     }
@@ -20,6 +17,7 @@ public class ChiefComplaint {
      * @param newChiefComplaint - String to set as chief complaint
      */
     public void setMedicalHistory(String newChiefComplaint) {
+
         chiefComplaint = newChiefComplaint;
     }
 
@@ -29,7 +27,19 @@ public class ChiefComplaint {
      * @return - Chief Complaint
      */
     public String getChiefComplaint() {
+
         return chiefComplaint;
+    }
+
+    /*
+    Verifies that the chief complaint is present
+    @return Boolean
+     */
+    public Boolean verifyComplaint() {
+        if (chiefComplaint.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
 }
