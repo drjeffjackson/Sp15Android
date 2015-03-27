@@ -190,7 +190,7 @@
                 android:layout_marginBottom="5dp"/>/>
 
             <EditText android:id="@+id/PCP"
-                android:nextFocusDown="@+id/code_status_spinner"
+                android:nextFocusDown="@+id/Attending_Physician_Name"
                 android:nextFocusUp="@+id/Admission_Date"
                 android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
@@ -207,14 +207,12 @@
                 android:layout_marginBottom="40dp"/>/>
             <Spinner
                 android:id="@+id/code_status_spinner"
-                android:nextFocusDown="@+id/Attending_Physician_Name"
-                android:nextFocusUp="@+id/PCP"
-                android:focusableInTouchMode="true"
+                android:focusableInTouchMode="false"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:prompt="@string/code_status_prompt"
                 android:entries="@array/code_status_array"
-                android:focusable="true"
+                android:focusable="false"
                 android:longClickable="true"
                 android:layout_marginTop="-30dp"
                 android:layout_marginBottom="10dp" />
@@ -239,7 +237,7 @@
 
             <EditText android:id="@+id/Attending_Physician_Name"
                 android:nextFocusDown="@+id/Title"
-                android:nextFocusUp="@+id/code_status_spinner"
+                android:nextFocusUp="@+id/PCP"
                 android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

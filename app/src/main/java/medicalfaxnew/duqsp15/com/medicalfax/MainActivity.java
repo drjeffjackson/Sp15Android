@@ -83,7 +83,13 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     {
         if(selectedView != null && selectedView.getId() != R.id.Patient_Name)
         {
-            selectedView = (EditText) findViewById(selectedView.getId() -1);
+            if((selectedView.getId() -1) == R.id.code_status_spinner) {
+                selectedView = (EditText) findViewById(selectedView.getId() - 2);
+            }
+            else
+            {
+                selectedView = (EditText) findViewById(selectedView.getId() - 1);
+            }
             selectedView.requestFocus();
         }
     }
@@ -95,7 +101,14 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     {
         if(selectedView != null && selectedView.getId() != R.id.Home_Medications)
         {
-            selectedView = (EditText) findViewById(selectedView.getId() +1);
+            if((selectedView.getId() + 1) == R.id.code_status_spinner) {
+                selectedView = (EditText) findViewById(selectedView.getId() + 2);
+            }
+            else
+            {
+                selectedView = (EditText) findViewById(selectedView.getId() + 1);
+            }
+
             selectedView.requestFocus();
         }
     }
@@ -106,7 +119,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     public void dictates(View view)
     {
-        if(selectedView != null) {
+        if(selectedView != null && selectedView.getId() != R.id.code_status_spinner) {
             presenter.startTranscription(selectedView.getId());
         }
     }
@@ -133,7 +146,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_UP) {
+        if (event.getAction() == MotionEvent.ACTION_UP && v.getId() != R.id.code_status_spinner) {
             v.requestFocus();
             selectedView = (EditText) v;
 //            inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.RESULT_HIDDEN);
@@ -148,9 +161,12 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     @Override
     public boolean onLongClick(View v) {
-        selectedView = (EditText) v;
-        v.requestFocus();
-        //  inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.RESULT_SHOWN);
+        if(v.getId() != R.id.code_status_spinner) {
+            selectedView = (EditText) v;
+            v.requestFocus();
+            //  inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.RESULT_SHOWN);
+            return true;
+        }
         return false;
     }
 
