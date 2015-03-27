@@ -36,7 +36,7 @@ public class ModelInterface
             IO.loadPhysician(); //Loads database physician data
             IO.loadPatient(); //Loads database patient data
             this.databaseLoaded = false;
-        this.dictation = new Dictation(ac, this); //Passes activity for dictation
+        this.dictation = new Dictation(ac, this); //Passes activity for dictation/
         this.email = new Email();
         presenter = pres;
         this.MController = this; //Creates class instance pointer

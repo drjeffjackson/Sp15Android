@@ -306,6 +306,7 @@ public class Patient implements ModelObj {
      */
     public void update()
     {
+        //
         ModelInterface.IO.updatePatient();
     }
 }
