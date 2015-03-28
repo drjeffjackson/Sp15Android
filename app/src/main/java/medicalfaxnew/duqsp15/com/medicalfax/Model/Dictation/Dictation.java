@@ -14,7 +14,7 @@ import medicalfaxnew.duqsp15.com.medicalfax.R;
 
 /**
  * Created by austinpilz on 2/16/15.
- * Edited by Brady Sheehan and Justin Chilleo on 2/16/15
+ * Edited by Brady Sheehan and Coder Thanatos on 2/16/15
  * Added getSpeechInput() and returnSpeech() methods - Brady Sheehan 2/18/15
  */
 public class Dictation
