@@ -12,6 +12,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import java.util.Arrays;
 import java.util.List;
+import android.util.Log;
 
 
 import java.net.IDN;
@@ -38,13 +39,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     private final String PHYSICIAN_TABLE_CREATE = "create table IF NOT EXISTS "
             + TABLE_PHYSICIAN + "(" + PHYSICIAN_COLUMN_ID
             + " integer primary key autoincrement, "
-            + PHYSICIAN_COLUMN_NAME + " text not null,"
-            + PHYSICIAN_COLUMN_NPI + " text not null,"
-            + PHYSICIAN_COLUMN_HOSPITAL + " text not null,"
-            + PHYSICIAN_COLUMN_DEPARTMENT + " text not null,"
-            + PHYSICIAN_COLUMN_TITLE + " text not null,"
-            + PHYSICIAN_COLUMN_PHONE + " text not null,"
-            + PHYSICIAN_COLUMN_EMAIL + " text not null"
+            + PHYSICIAN_COLUMN_NAME + " text,"
+            + PHYSICIAN_COLUMN_NPI + " text,"
+            + PHYSICIAN_COLUMN_HOSPITAL + " text,"
+            + PHYSICIAN_COLUMN_DEPARTMENT + " text,"
+            + PHYSICIAN_COLUMN_TITLE + " text,"
+            + PHYSICIAN_COLUMN_PHONE + " text,"
+            + PHYSICIAN_COLUMN_EMAIL + " text"
             + ");";
 
 
@@ -89,14 +90,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             + PATIENT_COLUMN_HomeMedications + " text not null,"
             + PATIENT_COLUMN_MedicalHistory + " text not null,"
             + PATIENT_COLUMN_Allergies + " text not null,"
-            + PATIENT_COLUMN_DIAGNOSIS + " text not null,"
+            + PATIENT_COLUMN_DIAGNOSIS + " text not null"
             + ");";
 
 
 
 
     //GENERAL DATABASE
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "JacksonJ";
 
 
@@ -113,9 +114,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase database)
     {
         database.execSQL(PHYSICIAN_TABLE_CREATE); //Creates Physician Table
-        createPatient(database); //Creates initial patient row
-        database.execSQL(PATIENT_TABLE_CREATE); //Creates Patient Table
         createPhysician(database); //creates initial physician row
+
+        database.execSQL(PATIENT_TABLE_CREATE); //Creates Patient Table
+        createPatient(database); //Creates initial patient row
     }
 
     /*
@@ -167,7 +169,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         ModelInterface.patient.medHistory.setMedicalHistory(c.getString(c.getColumnIndex(PATIENT_COLUMN_MedicalHistory)));
         ModelInterface.patient.patientDiagnosis.setPrimaryDiagnosis(c.getString(c.getColumnIndex(PATIENT_COLUMN_DIAGNOSIS)));
 
-        c.close();
+
 
 
 
@@ -184,15 +186,24 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
         //Date Of Birth
         List<String> DOB = Arrays.asList(tmpDOB.split("/"));
-        ModelInterface.patient.dateOfBirth.setDay(Integer.parseInt(DOB.get(0)));
-        ModelInterface.patient.dateOfBirth.setMonth(DOB.get(1));
-        ModelInterface.patient.dateOfBirth.setYear(Integer.parseInt(DOB.get(2)));
+
+        //Have to check and make sure none of them are null otherwise Integer will freakkkk out
+        if ((DOB.get(0) == null) && (DOB.get(1) == null) && (DOB.get(2) == null))
+        {
+            ModelInterface.patient.dateOfBirth.setDay(Integer.parseInt(DOB.get(0)));
+            ModelInterface.patient.dateOfBirth.setMonth(DOB.get(1));
+            ModelInterface.patient.dateOfBirth.setYear(Integer.parseInt(DOB.get(2)));
+        }
 
         //Admission Date
         List<String> AdmissionDate = Arrays.asList(tmpAdmissionDate.split("/"));
-        ModelInterface.patient.admDate.setDay(Integer.parseInt(AdmissionDate.get(0)));
-        ModelInterface.patient.admDate.setMonth(AdmissionDate.get(1));
-        ModelInterface.patient.admDate.setYear(Integer.parseInt(AdmissionDate.get(2)));
+
+        if ((AdmissionDate.get(0) == null) && (AdmissionDate.get(1) == null) && (AdmissionDate.get(2) == null)) {
+
+            ModelInterface.patient.admDate.setDay(Integer.parseInt(AdmissionDate.get(0)));
+            ModelInterface.patient.admDate.setMonth(AdmissionDate.get(1));
+            ModelInterface.patient.admDate.setYear(Integer.parseInt(AdmissionDate.get(2)));
+        }
 
 
         //HPI
@@ -225,9 +236,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
         //Patient home meds
         List<String> PatientHomeMedications = Arrays.asList(tmpHomeMedications.split(","));
-        for (String hmed : PatientHomeMedications)
-        {
-            ModelInterface.patient.addPatientMedicationListsHome(new Medicine(hmed, "", ""));
+        if (!PatientHomeMedications.isEmpty()) {
+            for (String hmed : PatientHomeMedications)
+            {
+                if (hmed != null) {
+                    ModelInterface.patient.addPatientMedicationListsHome(new Medicine(hmed, "", ""));
+                }
+            }
         }
 
         //Allergies
@@ -237,6 +252,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             ModelInterface.patient.addAllergiesList(new Allergy(allergy));
         }
 
+        c.close();
     }
 
     /*
@@ -281,7 +297,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         cv.put(PHYSICIAN_COLUMN_TITLE, "");
         cv.put(PHYSICIAN_COLUMN_PHONE, "");
         cv.put(PHYSICIAN_COLUMN_EMAIL, "");
-        database.insert(TABLE_PHYSICIAN, PHYSICIAN_COLUMN_ID, cv); //Insert statement
+        database.insert(TABLE_PHYSICIAN, null, cv); //Insert statement
 
     }
 
@@ -290,21 +306,26 @@ public class MySQLiteHelper extends SQLiteOpenHelper
      */
     protected void loadPhysician(SQLiteDatabase database)
     {
-        //Selects the row with the patient ID of 1, since that's the row where we store all the data
-        Cursor c= database.rawQuery("SELECT * FROM " + TABLE_PHYSICIAN + " WHERE ID =?", new String []{"1"});
-        c.moveToFirst();
+        try {
+            //Selects the row with the patient ID of 1, since that's the row where we store all the data
+            Cursor c = database.rawQuery("SELECT * FROM " + TABLE_PHYSICIAN + " WHERE " + PHYSICIAN_COLUMN_ID +" = ?", new String[]{"1"});
+            if (c != null) {
 
-        //Sets the patient object fields with database values
-        ModelInterface.physician.name.setName(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_NAME)));
-        ModelInterface.physician.npi.setNPI(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_NPI)));
-        ModelInterface.physician.hospital.setHomeHospital(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_HOSPITAL)));
-        ModelInterface.physician.hospital.setDepartment(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_DEPARTMENT)));
-        ModelInterface.physician.hospital.setTitle(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_TITLE)));
-        ModelInterface.physician.contact.setPhone(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_PHONE)));
-        ModelInterface.physician.contact.setEmail(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_EMAIL)));
+                //Sets the patient object fields with database values
+                ModelInterface.physician.name.setName(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_NAME)));
+                ModelInterface.physician.npi.setNPI(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_NPI)));
+                ModelInterface.physician.hospital.setHomeHospital(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_HOSPITAL)));
+                ModelInterface.physician.hospital.setDepartment(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_DEPARTMENT)));
+                ModelInterface.physician.hospital.setTitle(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_TITLE)));
+                ModelInterface.physician.contact.setPhone(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_PHONE)));
+                ModelInterface.physician.contact.setEmail(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_EMAIL)));
+            }
+        }
+        catch (Exception e)
+        {
+            Log.d("MedicalFax","Loading physician failed");
+        }
 
-
-        c.close();
     }
 
 

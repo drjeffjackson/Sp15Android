@@ -32,15 +32,17 @@ public class ModelInterface
     {
         this.patient = new Patient(); //Creates the default patient object
         this.physician = new Physician(); //Creates the default physician object
+
+        ///IO////
         this.IO = new InputOutput(context); //Creates IO object
-          //  IO.loadPhysician(); //Loads database physician data
-          //  IO.loadPatient(); //Loads database patient data
-            this.databaseLoaded = false;
+        IO.loadPhysician(); //Loads database physician data
+            //IO.loadPatient(); //Loads database patient data - DISABLED UNTIL FURTHER TESTING
+        this.databaseLoaded = false;
+
         this.dictation = new Dictation(ac, this); //Passes activity for dictation/
         this.email = new Email();
         presenter = pres;
         this.MController = this; //Creates class instance pointer
-        Toast.makeText(context, "msg msg", Toast.LENGTH_SHORT).show();
     }
 
     /*
