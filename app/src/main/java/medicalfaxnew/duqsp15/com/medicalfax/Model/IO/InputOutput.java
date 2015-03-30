@@ -13,35 +13,41 @@ import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
  */
 public class InputOutput {
     private MySQLiteHelper mysqlHelper; //SQL Helper
-    private SQLiteDatabase database;
 
     public InputOutput(Context context) {
+        context.deleteDatabase("JacksonJ"); //TEMPORARY
         mysqlHelper = new MySQLiteHelper(context);
-        database = mysqlHelper.getWritableDatabase();
+
     }
 
     //Loads patient from database
     public void loadPatient()
     {
-        mysqlHelper.loadPatient(database);
+        mysqlHelper.loadPatient(mysqlHelper.getWritableDatabase());
     }
 
     //Loads physician from database
     public void loadPhysician()
     {
-        mysqlHelper.loadPhysician(database);
+        mysqlHelper.loadPhysician(mysqlHelper.getWritableDatabase());
     }
 
     //Updates patient in database
     public void updatePatient()
     {
-        mysqlHelper.updatePatient(database);
+        mysqlHelper.updatePatient(mysqlHelper.getWritableDatabase());
     }
 
     //Updates physician in database
     public void updatePhysician()
     {
-        mysqlHelper.updatePhysician(database);
+        mysqlHelper.updatePhysician(mysqlHelper.getWritableDatabase());
+    }
+
+    //Returns MySQLite helper
+    public MySQLiteHelper getHelper()
+    {
+        return mysqlHelper;
     }
 
 
