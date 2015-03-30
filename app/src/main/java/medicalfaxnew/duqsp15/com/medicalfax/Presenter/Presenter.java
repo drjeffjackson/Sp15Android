@@ -108,6 +108,7 @@ public class Presenter implements PresenterInterface
         }
 
 
+   // date section is not complete
 /*if (patientFields.contains("set day")) {
 requiredFields.add("Admission_Date"));
 }
@@ -135,6 +136,7 @@ requiredFields.add("Admission_Date");
             requiredFields.add("Past_Medical_History");
         }
 
+        //medicine list is not complete 
 /*if (patientFields.contains("set medicine item in list")) {
 requiredFields.add("Home_Medications");
 }
