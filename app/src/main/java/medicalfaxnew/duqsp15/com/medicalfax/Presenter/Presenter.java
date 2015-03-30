@@ -3,9 +3,12 @@ package medicalfaxnew.duqsp15.com.medicalfax.Presenter;
 import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
 import medicalfaxnew.duqsp15.com.medicalfax.MainActivity;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.PresenterInterface;
+
+
 import android.content.Context;
 import android.app.Activity;
 import java.util.ArrayList;
+
 
 /**
  * This class contains the functions pertaining to the Presenter.
@@ -74,6 +77,128 @@ public class Presenter implements PresenterInterface
             //Called by model with dictation results :)//
         }
         requestedBox = -1; //need to reset value for error checking
+    }
+
+    /**
+     * Use to get an ArrayList of text box id's (as strings) of the required fields that are not filled
+     * @return the ArrayList of missing required field id's
+     */
+    public ArrayList<String> getEmptyRequiredFields(){
+       ArrayList<String> physicianFields, patientFields;
+
+        // get the ArrayLists from Model of all required fields not filled
+       physicianFields = ModelInterface.physician.verify(); //verifies physician info
+       patientFields = ModelInterface.patient.verify(); // verifies patient info (still incomplete)
+       ArrayList<String> requiredFields = new ArrayList <String>();
+       // send these ArrayLists to the View
+
+        if (patientFields.contains("set allergy in list")) {
+            requiredFields.add("Home_Medications");
+        }
+
+
+
+        if (patientFields.contains("set chief complaint")) {
+            requiredFields.add("Chief_Complaint");
+        }
+
+
+        if (patientFields.contains("set code status")) {
+            requiredFields.add("code_status_spinner");
+        }
+
+
+/*if (patientFields.contains("set day")) {
+requiredFields.add("Admission_Date"));
+}
+
+
+if (patientFields.contains("set month")) {
+requiredFields.add("Admission_Date");
+}
+
+
+if (patientFields.contains("set year")) {
+requiredFields.add("Admission_Date");
+}
+*/
+
+        if (patientFields.contains("set patient primary diagnosis")) {
+            requiredFields.add("Primary");
+        }
+
+        if (patientFields.contains("set history of present illness")) {
+            requiredFields.add("Past_Medical_History");
+        }
+
+        if (patientFields.contains("set patient medical history")) {
+            requiredFields.add("Past_Medical_History");
+        }
+
+/*if (patientFields.contains("set medicine item in list")) {
+requiredFields.add("Home_Medications");
+}
+*/
+
+        if (patientFields.contains("set medicine course in list")) {
+            requiredFields.add("Current_Course");
+        }
+
+        if (patientFields.contains("set medicine completed course in list")) {
+            requiredFields.add("Completed_Course");
+        }
+
+        if (patientFields.contains("set medical record num")) {
+            requiredFields.add("MRN");
+        }
+
+        if (patientFields.contains("set name of attending")) {
+            requiredFields.add("Attending_Physician_Name");
+        }
+
+        if (patientFields.contains("set name of pcp")) {
+            requiredFields.add("PCP");
+        }
+
+        if (patientFields.contains("set name of patient")) {
+            requiredFields.add("Patient_Name");
+        }
+
+
+
+/*
+if (patientFields.contains("set test name ")) {
+requiredFields.add("");
+}
+
+if (patientFields.contains("set test status")) {
+requiredFields.add("");
+}
+
+*/
+
+
+        if (physicianFields.contains("setPatientName")) {
+            requiredFields.add("Patient_Name");
+        }
+
+        if (physicianFields.contains("setDepartment")) {
+            requiredFields.add("Department");
+        }
+        if (physicianFields.contains("setHomeHospital")) {
+            requiredFields.add("Home_Hospital");
+        }
+        if (physicianFields.contains("setNPI")) {
+            requiredFields.add("NPI_Number");
+        }
+        if (physicianFields.contains("setEmail")) {
+            requiredFields.add("Email_Address");
+        }
+
+        return requiredFields;
+
+
+
     }
 
 }
