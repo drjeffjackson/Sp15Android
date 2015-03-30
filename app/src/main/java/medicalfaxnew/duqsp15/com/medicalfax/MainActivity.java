@@ -272,4 +272,12 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         Home_Medications.setOnTouchListener(this);
         Home_Medications.setOnLongClickListener(this);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (presenter.modelInterface.IO.getHelper() != null) {
+            presenter.modelInterface.IO.getHelper().close();
+        }
+    }
 }
