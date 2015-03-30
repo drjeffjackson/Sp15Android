@@ -88,7 +88,7 @@ public class Presenter implements PresenterInterface
 
         // get the ArrayLists from Model of all required fields not filled
        physicianFields = ModelInterface.physician.verify(); //verifies physician info
-       patientFields = ModelInterface.patient.verify(); // verifies patient info (still incomplete)
+       patientFields = ModelInterface.patient.verify(); // verifies patient info 
        ArrayList<String> requiredFields = new ArrayList <String>();
        // send these ArrayLists to the View
 
@@ -136,7 +136,7 @@ requiredFields.add("Admission_Date");
             requiredFields.add("Past_Medical_History");
         }
 
-        //medicine list is not complete 
+        //medicine list is not complete
 /*if (patientFields.contains("set medicine item in list")) {
 requiredFields.add("Home_Medications");
 }
