@@ -11,6 +11,10 @@ public class ChiefComplaint {
 
     }
 
+    public ChiefComplaint(String chiefComplaint) {
+        this.chiefComplaint = chiefComplaint;
+    }
+
     /**
      * Setter for chief complaint
      *

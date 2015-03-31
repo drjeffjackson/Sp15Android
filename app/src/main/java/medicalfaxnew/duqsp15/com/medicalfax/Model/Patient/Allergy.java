@@ -24,9 +24,9 @@ public class Allergy {
     /*
     String constructor
      */
-    public Allergy(String newAllergy)
+    public Allergy(String allergy)
     {
-        setAllergy(newAllergy);
+        this.allergy = allergy;
     }
 
     /**

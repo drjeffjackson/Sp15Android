@@ -191,7 +191,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         if ((DOB.get(0) == null) && (DOB.get(1) == null) && (DOB.get(2) == null))
         {
             ModelInterface.patient.dateOfBirth.setDay(Integer.parseInt(DOB.get(0)));
-            ModelInterface.patient.dateOfBirth.setMonth(DOB.get(1));
+            ModelInterface.patient.dateOfBirth.setMonth(Integer.parseInt(DOB.get(1)));
             ModelInterface.patient.dateOfBirth.setYear(Integer.parseInt(DOB.get(2)));
         }
 
@@ -201,7 +201,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         if ((AdmissionDate.get(0) == null) && (AdmissionDate.get(1) == null) && (AdmissionDate.get(2) == null)) {
 
             ModelInterface.patient.admDate.setDay(Integer.parseInt(AdmissionDate.get(0)));
-            ModelInterface.patient.admDate.setMonth(AdmissionDate.get(1));
+            ModelInterface.patient.admDate.setMonth(Integer.parseInt(AdmissionDate.get(1)));
             ModelInterface.patient.admDate.setYear(Integer.parseInt(AdmissionDate.get(2)));
         }
 
@@ -234,16 +234,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             ModelInterface.patient.addPatientMedicationList(new Medicine(pmed, "", ""));
         }
 
-        //Patient home meds
-        List<String> PatientHomeMedications = Arrays.asList(tmpHomeMedications.split(","));
-        if (!PatientHomeMedications.isEmpty()) {
-            for (String hmed : PatientHomeMedications)
-            {
-                if (hmed != null) {
-                    ModelInterface.patient.addPatientMedicationListsHome(new Medicine(hmed, "", ""));
-                }
-            }
-        }
 
         //Allergies
         List<String> Allergies = Arrays.asList(tmpAllergies.split(","));

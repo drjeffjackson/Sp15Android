@@ -21,6 +21,10 @@ public class CodeStatus {
 
     }
 
+    public CodeStatus(String codeStatus) {
+        this.codeStatus = codeStatus;
+    }
+
     /**
      * Setter for code status - Case: Full
      */
@@ -46,7 +50,7 @@ public class CodeStatus {
     }
 
     /*
-    Setter for code statys as passed string
+    Setter for code status as passed string
      */
     public void setAsString(String passed)
     {

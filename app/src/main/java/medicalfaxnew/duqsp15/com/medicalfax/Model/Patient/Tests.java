@@ -23,6 +23,11 @@ public class Tests {
 
     }
 
+    public Tests(String testName, String testStatus) {
+        this.testName = testName;
+        this.testStatus = testStatus;
+    }
+
     /**
      * Setter for testName
      *

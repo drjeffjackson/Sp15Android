@@ -38,7 +38,7 @@ public class Diagnosis {
      */
     public Diagnosis(String primaryDiagnosis) {
 
-        primaryDiagnosis = this.primaryDiagnosis;
+        this.primaryDiagnosis = primaryDiagnosis;
     }
 
     /**
@@ -48,8 +48,14 @@ public class Diagnosis {
      * @param secondaryDiagnosis
      */
     public Diagnosis(String primaryDiagnosis, String secondaryDiagnosis) {
-        primaryDiagnosis = this.primaryDiagnosis;
-        secondaryDiagnosis = this.secondaryDiagnosis;
+        this.primaryDiagnosis = primaryDiagnosis;
+        this.secondaryDiagnosis = secondaryDiagnosis;
+    }
+
+    public Diagnosis(String primaryDiagnosis, String secondaryDiagnosis, String complications) {
+        this.primaryDiagnosis = primaryDiagnosis;
+        this.secondaryDiagnosis = secondaryDiagnosis;
+        this.complications = complications;
     }
 
     /**

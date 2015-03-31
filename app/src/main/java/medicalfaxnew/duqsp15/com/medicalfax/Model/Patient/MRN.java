@@ -16,6 +16,10 @@ public class MRN {
     public MRN() {
     }
 
+    public MRN(String mrn) {
+        this.mrn = mrn;
+    }
+
     /**
      * This is the setter for the medical record number
      *

@@ -13,7 +13,7 @@ public class Date {
     /**
      * month in String format (i.e. July, August,...)
      */
-    private String month;
+    private int month = 0;
     /**
      * the day in integer format (i.e. 1,...,30)
      */
@@ -38,7 +38,7 @@ public class Date {
      * @param day
      * @param year
      */
-    public Date(String month, int day, int year) {
+    public Date(int month, int day, int year) {
         this.month = month;
         this.day = day;
         this.year = year;
@@ -49,7 +49,7 @@ public class Date {
      * @param newDay
      * @param newYear
      */
-    public void setDate(String newMonth, int newDay, int newYear) {
+    public void setDate(int newMonth, int newDay, int newYear) {
         month = newMonth;
         day = newDay;
         year = newYear;
@@ -58,7 +58,7 @@ public class Date {
     /**
      * @param newMonth
      */
-    public void setMonth(String newMonth) {
+    public void setMonth(int newMonth) {
 
         month = newMonth;
     }
@@ -82,7 +82,7 @@ public class Date {
     /**
      * @return
      */
-    public String getMonth() {
+    public int getMonth() {
 
         return month;
     }
@@ -108,7 +108,7 @@ public class Date {
     @return Boolean
      */
     public Boolean verifyMonth() {
-        if (month.isEmpty()) {
+        if (month != 0) {
             return false;
         }
         return true;
