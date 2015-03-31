@@ -9,7 +9,8 @@ public class HTMLTable extends ArrayList<HTMLTableRow> {
     @Override
     public String toString() {
         String theTable = new String();
-        theTable+="<table>";
+        theTable+="<table border=\"1\" style=\"width:100%\">";
+
         for(HTMLTableRow row:this)
         {
             theTable+="<tr>";

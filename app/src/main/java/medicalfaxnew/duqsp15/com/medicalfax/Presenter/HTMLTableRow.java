@@ -12,7 +12,9 @@ public class HTMLTableRow extends ArrayList<Object> {
         for(Object cell: this)
         {
             theRow+="<td>";
-            theRow+=cell.toString();
+            if(cell!=null)
+                theRow+=cell.toString();
+
             theRow+="</td>";
         }
         return theRow;

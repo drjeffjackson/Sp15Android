@@ -9,6 +9,9 @@ public class HTMLParagraph {
 
     public String toString()
     {
-        return "<p>"+ contents.toString()+"</p>";
+        if(contents!=null)
+            return "<p>"+ contents.toString()+"</p>";
+        else
+            return "<p>"+"</p>";
     }
 }

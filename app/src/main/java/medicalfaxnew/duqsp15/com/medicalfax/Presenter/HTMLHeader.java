@@ -9,7 +9,7 @@ public class HTMLHeader {
 
     public String toString()
     {
-        return "<h1>"+ contents.toString()+"</h1>";
+        return "<h2>"+ contents.toString()+"</h2>";
     }
 
 }
