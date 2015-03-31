@@ -1,11 +1,18 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Presenter;
 
-import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
-import medicalfaxnew.duqsp15.com.medicalfax.MainActivity;
-import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.PresenterInterface;
-import android.content.Context;
 import android.app.Activity;
+import android.content.Context;
+import android.widget.Spinner;
+
 import java.util.ArrayList;
+
+import medicalfaxnew.duqsp15.com.medicalfax.MainActivity;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Allergy;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Medicine;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Tests;
+import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.PresenterInterface;
+import medicalfaxnew.duqsp15.com.medicalfax.R;
 
 /**
  * This class contains the functions pertaining to the Presenter.
@@ -147,6 +154,74 @@ public class Presenter implements PresenterInterface
         str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getComplications());
         str+="</html>";
         return str;
+    }
+
+    public void saveData() {
+
+        //Setting the date for Patient's Date of Birth
+        String dob = ac.findViewById(R.id.DOB).toString();
+        String[] mdy = dob.split(", ");
+        int year = Integer.parseInt(mdy[1]);
+        String[] md = mdy[0].split(" ");
+        String month = md[0];
+        int day = Integer.parseInt(md[1]);
+
+        //Setting the date for Patient's Admission Date
+        String adm = ac.findViewById(R.id.Admission_Date).toString();
+        String[] admDate = adm.split(", ");
+        int year2 = Integer.parseInt(admDate[1]);
+        String[] md2 = admDate[0].split(" ");
+        String month2 = md2[0];
+        int day2 = Integer.parseInt(md2[1]);
+
+        /*
+        Setting records for all data pertaining to Patient class
+         */
+
+        modelInterface.patient.patientName.setName(ac.findViewById(R.id.Patient_Name).toString());
+        modelInterface.patient.dateOfBirth.setDate(month, day, year);
+        modelInterface.patient.medRecNum.setMrn(ac.findViewById(R.id.MRN).toString());
+        modelInterface.patient.admDate.setDate(month2, day2, year2);
+        modelInterface.patient.pcpName.setName(ac.findViewById(R.id.PCP).toString());
+        modelInterface.patient.attendingName.setName(ac.findViewById(R.id.Attending_Physician_Name).toString());
+
+        //May need to be revised?
+        modelInterface.patient.codeStatus.setAsString(((Spinner)(ac.findViewById(R.id.code_status_spinner))).getSelectedItem().toString());
+
+        modelInterface.patient.chiefComplaint.setMedicalHistory(ac.findViewById(R.id.Chief_Complaint).toString());
+        modelInterface.patient.hpi.setHPI(ac.findViewById(R.id.HPI).toString());
+        modelInterface.patient.hospitalCourse.setHospitalCourse(ac.findViewById(R.id.Hospital_Course).toString());
+        modelInterface.patient.patientName.setName(ac.findViewById(R.id.Patient_Name).toString());
+        modelInterface.patient.addConsultantList(ac.findViewById(R.id.Consultants).toString());
+        modelInterface.patient.patientDiagnosis.setPrimaryDiagnosis(ac.findViewById(R.id.Primary).toString());
+        modelInterface.patient.patientDiagnosis.setSecondaryDiagnosis(ac.findViewById(R.id.Secondary).toString());
+        modelInterface.patient.patientDiagnosis.setComplications(ac.findViewById(R.id.Complications).toString());
+        modelInterface.patient.patientName.setName(ac.findViewById(R.id.Patient_Name).toString());
+
+        //something for listOfTests
+        Tests t = new Tests();
+        if(ac.findViewById(R.id.Finalized).toString()!="") { t.setFinalized(); }
+        if(ac.findViewById(R.id.Pending).toString()!="") { t.setPending(); }
+        modelInterface.patient.addTestList(t);
+
+        //Not really sure what the first argument should be, as there is no field for "medicine" to pull data from
+        modelInterface.patient.addPatientMedicationList(new Medicine(ac.findViewById(R.id.Home_Medications).toString(),
+                ac.findViewById(R.id.Current_Course).toString(), ac.findViewById(R.id.Completed_Course).toString()));
+
+        modelInterface.patient.medHistory.setMedicalHistory(ac.findViewById(R.id.Past_Medical_History).toString());
+        modelInterface.patient.addAllergiesList(new Allergy(ac.findViewById(R.id.Home_Medications).toString()));
+
+
+        /*
+        Setting records for all data pertaining to Physician class
+         */
+
+        modelInterface.physician.name.setName(ac.findViewById(R.id.Attending_Physician_Name).toString());
+        modelInterface.physician.hospital.setHomeHospital(ac.findViewById(R.id.Home_Hospital).toString());
+        modelInterface.physician.npi.setNPI(ac.findViewById(R.id.NPI_Number).toString());
+        modelInterface.physician.contact.setEmail(ac.findViewById(R.id.Email_Address).toString());
+        modelInterface.physician.contact.setPhone(ac.findViewById(R.id.Phone_Number).toString());
+
     }
 
 
