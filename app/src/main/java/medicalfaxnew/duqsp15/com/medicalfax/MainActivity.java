@@ -35,7 +35,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         presenter = new Presenter(this.getApplicationContext(), this);
 //        inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         popUpHIPPA();
-        setListeners();
+        setListenersAndInitializesFocus();
     }
 
     /*This method was written by Brady Sheehan on 2/18/2015
@@ -155,7 +155,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         return false;
     }
     /** This method changes focus based on the user's touch shows the input keyboard
-     * @param v the touched viewt
+     * @param v the touched view
      * @return true if long click is made
      * @return false otherwise
      */
@@ -194,11 +194,13 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         alert.show();  // This call causes an android.view.WindowLeaked: Activity medicalfaxnew.duqsp15.com.medicalfax.MainActivity has leaked window error
         // Exception happens at "medicalfaxnew.duqsp15.com.medicalfax.MainActivity.popUpHIPPA(MainActivity.java:178)"
     }
-    private void setListeners()
+    private void setListenersAndInitializesFocus()
     {
         EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
         Patient_Name.setOnTouchListener(this);
         Patient_Name.setOnLongClickListener(this);
+        Patient_Name.requestFocus();
+        selectedView = Patient_Name;
         EditText DOB = (EditText) findViewById(R.id.DOB);
         DOB.setOnTouchListener(this);
         DOB.setOnLongClickListener(this);
@@ -271,5 +273,13 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         EditText Home_Medications = (EditText) findViewById(R.id.Home_Medications);
         Home_Medications.setOnTouchListener(this);
         Home_Medications.setOnLongClickListener(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (presenter.modelInterface.IO.getHelper() != null) {
+            presenter.modelInterface.IO.getHelper().close();
+        }
     }
 }

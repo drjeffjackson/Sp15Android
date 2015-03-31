@@ -142,7 +142,7 @@ public class Patient implements ModelObj {
     /**
      * List of patient home medications
      */
-    private ArrayList<Medicine> patientMedicationsListHome;
+    private ArrayList<Medicine> patientMedicationsListHome = new ArrayList<Medicine>();
 
     /**
      * List of allergies
