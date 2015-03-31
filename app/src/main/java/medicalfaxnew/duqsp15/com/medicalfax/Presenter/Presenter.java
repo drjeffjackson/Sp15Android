@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class Presenter implements PresenterInterface
 {
+
     /**
      * The object representing the modelInterface.
      */
@@ -35,6 +36,7 @@ public class Presenter implements PresenterInterface
     public Presenter(Context context, Activity act)
     {
         //Activity for dictation
+
     	ac=(MainActivity)act;
         modelInterface = new ModelInterface(context, this, act);
         requestedBox = -1;
@@ -75,5 +77,75 @@ public class Presenter implements PresenterInterface
         }
         requestedBox = -1; //need to reset value for error checking
     }
+
+    public String assembleHTML()
+    {
+        HTMLTable patientTable = new HTMLTable();
+        for(int i=0; i<7; i++)
+        {
+            patientTable.add(new HTMLTableRow());
+        }
+        patientTable.get(0).add("Name");
+        patientTable.get(0).add(modelInterface.patient.patientName);
+
+        patientTable.get(1).add("MRN#");
+        patientTable.get(1).add(modelInterface.patient.medRecNum);
+
+        patientTable.get(2).add ("DOB");
+        patientTable.get(2).add(modelInterface.patient.dateOfBirth);
+
+        patientTable.get(3).add ("Date of Admittance");
+        patientTable.get(3).add(modelInterface.patient.admDate);
+
+        patientTable.get(4).add ("Code Status");
+        patientTable.get(4).add(modelInterface.patient.codeStatus);
+
+        patientTable.get(5).add ("Attending Name");
+        patientTable.get(5).add(modelInterface.patient.attendingName);
+
+        patientTable.get(6).add ("PCP Name");
+        patientTable.get(6).add(modelInterface.patient.pcpName);
+
+        HTMLTable physicianTable = new HTMLTable();
+        for(int i=0; i<4; i++){
+            physicianTable.add(new HTMLTableRow());
+        }
+
+        physicianTable.get(0).add("Name");
+        physicianTable.get(0).add(modelInterface.physician.name);
+
+        physicianTable.get(1).add(modelInterface.physician.hospital.getHomeHospital());
+        physicianTable.get(1).add(modelInterface.physician.hospital.getDepartment());
+        physicianTable.get(1).add(modelInterface.physician.hospital.getDepartment());
+
+        physicianTable.get(2).add("NPI#");
+        physicianTable.get(2).add(modelInterface.physician.npi);
+
+        physicianTable.get(3).add(modelInterface.physician.contact.getEmail());
+        physicianTable.get(3).add(modelInterface.physician.contact.getPhone());
+
+        String str = null;
+        str+="<!DOCTYPE html>";
+        str+="<html>";
+        str+=new HTMLHeader("Patient").toString();
+        str+=patientTable.toString();
+        str+=new HTMLHeader("Physician").toString();
+        str+=physicianTable.toString();
+        str+=new HTMLHeader("Chief Complaint").toString();
+        str+=new HTMLParagraph(modelInterface.patient.chiefComplaint.getChiefComplaint());
+        str+=new HTMLHeader("HPI").toString();
+        str+=new HTMLParagraph(modelInterface.patient.hpi.getHPI());
+        str+=new HTMLHeader("Hospital Course");
+        str+=new HTMLParagraph(modelInterface.patient.hospitalCourse.getHospitalCourse());
+        str+=new HTMLHeader("Relevant Medical History");
+        str+=new HTMLParagraph(modelInterface.patient.medHistory.getMedicalHistory());
+        str+=new HTMLHeader("Relevant Medical History");
+        str+=new HTMLParagraph(modelInterface.patient.medHistory.getMedicalHistory());
+        str+=new HTMLHeader("Patient Diagnosis");
+        str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getPrimaryDiagnosis());
+        str+="</html>";
+        return str;
+    }
+
 
 }
