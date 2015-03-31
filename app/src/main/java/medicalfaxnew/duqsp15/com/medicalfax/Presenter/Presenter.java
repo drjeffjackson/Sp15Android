@@ -3,8 +3,12 @@ package medicalfaxnew.duqsp15.com.medicalfax.Presenter;
 import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
 import medicalfaxnew.duqsp15.com.medicalfax.MainActivity;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.PresenterInterface;
+import medicalfaxnew.duqsp15.com.medicalfax.R;
+
 import android.content.Context;
 import android.app.Activity;
+import android.widget.EditText;
+
 import java.util.ArrayList;
 
 /**
@@ -76,21 +80,93 @@ public class Presenter implements PresenterInterface
         requestedBox = -1; //need to reset value for error checking
     }
 
+
+        public String assembleHTML()
+    {
+        HTMLTable patientTable = new HTMLTable();
+        for(int i=0; i<7; i++)
+        {
+            patientTable.add(new HTMLTableRow());
+        }
+        patientTable.get(0).add("Name");
+        patientTable.get(0).add(modelInterface.patient.patientName);
+
+        patientTable.get(1).add("MRN#");
+        patientTable.get(1).add(modelInterface.patient.medRecNum);
+
+        patientTable.get(2).add ("DOB");
+        patientTable.get(2).add(modelInterface.patient.dateOfBirth);
+
+        patientTable.get(3).add ("Date of Admittance");
+        patientTable.get(3).add(modelInterface.patient.admDate);
+
+        patientTable.get(4).add ("Code Status");
+        patientTable.get(4).add(modelInterface.patient.codeStatus);
+
+        patientTable.get(5).add ("Attending Name");
+        patientTable.get(5).add(modelInterface.patient.attendingName);
+
+        patientTable.get(6).add ("PCP Name");
+        patientTable.get(6).add(modelInterface.patient.pcpName);
+
+        HTMLTable physicianTable = new HTMLTable();
+        for(int i=0; i<4; i++){
+            physicianTable.add(new HTMLTableRow());
+        }
+
+        physicianTable.get(0).add("Name");
+        physicianTable.get(0).add(modelInterface.physician.name);
+
+        physicianTable.get(1).add(modelInterface.physician.hospital.getHomeHospital());
+        physicianTable.get(1).add(modelInterface.physician.hospital.getDepartment());
+        physicianTable.get(1).add(modelInterface.physician.hospital.getDepartment());
+
+        physicianTable.get(2).add("NPI#");
+        physicianTable.get(2).add(modelInterface.physician.npi);
+
+        physicianTable.get(3).add(modelInterface.physician.contact.getEmail());
+        physicianTable.get(3).add(modelInterface.physician.contact.getPhone());
+
+        String str = null;
+        str+="<!DOCTYPE html>";
+        str+="<html>";
+        str+=new HTMLHeader("Patient").toString();
+        str+=patientTable.toString();
+        str+=new HTMLHeader("Physician").toString();
+        str+=physicianTable.toString();
+        str+=new HTMLHeader("Chief Complaint").toString();
+        str+=new HTMLParagraph(modelInterface.patient.chiefComplaint.getChiefComplaint());
+        str+=new HTMLHeader("HPI").toString();
+        str+=new HTMLParagraph(modelInterface.patient.hpi.getHPI());
+        str+=new HTMLHeader("Hospital Course");
+        str+=new HTMLParagraph(modelInterface.patient.hospitalCourse.getHospitalCourse());
+        str+=new HTMLHeader("Relevant Medical History");
+        str+=new HTMLParagraph(modelInterface.patient.medHistory.getMedicalHistory());
+        str+=new HTMLHeader("Relevant Medical History");
+        str+=new HTMLParagraph(modelInterface.patient.medHistory.getMedicalHistory());
+        str+=new HTMLHeader("Patient Diagnosis");
+        str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getPrimaryDiagnosis());
+        str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getSecondaryDiagnosis());
+        str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getComplications());
+        str+="</html>";
+        return str;
+    }
+
     /**
      * Use to get an array of text boxes (as EditText objects) of the required fields that are not filled
      * @return An array of EditText text boxes that are empty required fields
      */
     public EditText[] getRequiredFields(){
-       ArrayList<String> physicianFields, patientFields;
+        ArrayList<String> physicianFields, patientFields;
 
-       // get the ArrayLists from Model of all required fields not filled
-       physicianFields = ModelInterface.physician.verify(); //verifies physician info
-       patientFields = ModelInterface.patient.verify(); // verifies patient info
-       ArrayList<EditText> requiredFields = new ArrayList<EditText>();
-       EditText[] requiredFieldsArray;
-       EditText textField;
+        // get the ArrayLists from Model of all required fields not filled
+        physicianFields = ModelInterface.physician.verify(); //verifies physician info
+        patientFields = ModelInterface.patient.verify(); // verifies patient info
+        ArrayList<EditText> requiredFields = new ArrayList<EditText>();
+        EditText[] requiredFieldsArray;
+        EditText textField;
 
-  // send this info to the View
+        // send this info to the View
         if (patientFields.contains("set allergy in list") || patientFields.contains("set medicine item in list")) {
             textField = (EditText) ac.findViewById(R.id.Home_Medications);
             requiredFields.add(textField);
@@ -101,7 +177,7 @@ public class Presenter implements PresenterInterface
             requiredFields.add(textField);
         }
 
-  // date section may not be complete
+        // date section may not be complete
         if (patientFields.contains("set day")|| patientFields.contains("set month") || patientFields.contains("set year")) {
             textField = (EditText) ac.findViewById(R.id.Admission_Date);
             requiredFields.add(textField);
@@ -179,80 +255,8 @@ public class Presenter implements PresenterInterface
             requiredFields.add(textField);
         }
 
-       requiredFieldsArray = requiredFields.toArray(new EditText[requiredFields.size()]);
+        requiredFieldsArray = requiredFields.toArray(new EditText[requiredFields.size()]);
         return requiredFieldsArray;
     }
-
-    public String assembleHTML()
-    {
-        HTMLTable patientTable = new HTMLTable();
-        for(int i=0; i<7; i++)
-        {
-            patientTable.add(new HTMLTableRow());
-        }
-        patientTable.get(0).add("Name");
-        patientTable.get(0).add(modelInterface.patient.patientName);
-
-        patientTable.get(1).add("MRN#");
-        patientTable.get(1).add(modelInterface.patient.medRecNum);
-
-        patientTable.get(2).add ("DOB");
-        patientTable.get(2).add(modelInterface.patient.dateOfBirth);
-
-        patientTable.get(3).add ("Date of Admittance");
-        patientTable.get(3).add(modelInterface.patient.admDate);
-
-        patientTable.get(4).add ("Code Status");
-        patientTable.get(4).add(modelInterface.patient.codeStatus);
-
-        patientTable.get(5).add ("Attending Name");
-        patientTable.get(5).add(modelInterface.patient.attendingName);
-
-        patientTable.get(6).add ("PCP Name");
-        patientTable.get(6).add(modelInterface.patient.pcpName);
-
-        HTMLTable physicianTable = new HTMLTable();
-        for(int i=0; i<4; i++){
-            physicianTable.add(new HTMLTableRow());
-        }
-
-        physicianTable.get(0).add("Name");
-        physicianTable.get(0).add(modelInterface.physician.name);
-
-        physicianTable.get(1).add(modelInterface.physician.hospital.getHomeHospital());
-        physicianTable.get(1).add(modelInterface.physician.hospital.getDepartment());
-        physicianTable.get(1).add(modelInterface.physician.hospital.getDepartment());
-
-        physicianTable.get(2).add("NPI#");
-        physicianTable.get(2).add(modelInterface.physician.npi);
-
-        physicianTable.get(3).add(modelInterface.physician.contact.getEmail());
-        physicianTable.get(3).add(modelInterface.physician.contact.getPhone());
-
-        String str = null;
-        str+="<!DOCTYPE html>";
-        str+="<html>";
-        str+=new HTMLHeader("Patient").toString();
-        str+=patientTable.toString();
-        str+=new HTMLHeader("Physician").toString();
-        str+=physicianTable.toString();
-        str+=new HTMLHeader("Chief Complaint").toString();
-        str+=new HTMLParagraph(modelInterface.patient.chiefComplaint.getChiefComplaint());
-        str+=new HTMLHeader("HPI").toString();
-        str+=new HTMLParagraph(modelInterface.patient.hpi.getHPI());
-        str+=new HTMLHeader("Hospital Course");
-        str+=new HTMLParagraph(modelInterface.patient.hospitalCourse.getHospitalCourse());
-        str+=new HTMLHeader("Relevant Medical History");
-        str+=new HTMLParagraph(modelInterface.patient.medHistory.getMedicalHistory());
-        str+=new HTMLHeader("Relevant Medical History");
-        str+=new HTMLParagraph(modelInterface.patient.medHistory.getMedicalHistory());
-        str+=new HTMLHeader("Patient Diagnosis");
-        str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getPrimaryDiagnosis());
-        str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getSecondaryDiagnosis());
-        str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getComplications());
-        str+="</html>";
-        return str;
-    }
-
 
 }
