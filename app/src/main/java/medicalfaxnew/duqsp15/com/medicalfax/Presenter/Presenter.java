@@ -278,8 +278,8 @@ public class Presenter implements PresenterInterface
         ArrayList<String> physicianFields, patientFields;
 
         // get the ArrayLists from Model of all required fields not filled
-        physicianFields = ModelInterface.physician.verify(); //verifies physician info
-        patientFields = ModelInterface.patient.verify(); // verifies patient info
+        physicianFields = modelInterface.physician.verify(); //verifies physician info
+        patientFields = modelInterface.patient.verify(); // verifies patient info
         ArrayList<EditText> requiredFields = new ArrayList<EditText>();
         EditText[] requiredFieldsArray;
         EditText textField;
