@@ -143,6 +143,8 @@ public class Presenter implements PresenterInterface
         str+=new HTMLParagraph(modelInterface.patient.medHistory.getMedicalHistory());
         str+=new HTMLHeader("Patient Diagnosis");
         str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getPrimaryDiagnosis());
+        str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getSecondaryDiagnosis());
+        str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getComplications());
         str+="</html>";
         return str;
     }
