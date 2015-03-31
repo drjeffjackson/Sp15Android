@@ -5,17 +5,6 @@ import medicalfaxnew.duqsp15.com.medicalfax.MainActivity;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.PresenterInterface;
 import android.content.Context;
 import android.app.Activity;
-import android.util.Log;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 /**
@@ -51,24 +40,6 @@ public class Presenter implements PresenterInterface
     	ac=(MainActivity)act;
         modelInterface = new ModelInterface(context, this, act);
         requestedBox = -1;
-        File f = GenerateHTML(context);
-
-        FileInputStream in = null;
-        try {
-            in = context.openFileInput("htmlCode.html");
-        }
-        catch(FileNotFoundException q) {}
-        InputStreamReader inputStreamReader = new InputStreamReader(in);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        String line=null;
-        try {
-            line = bufferedReader.readLine();
-            Log.i("======", line);
-            bufferedReader.close();
-            inputStreamReader.close();
-            in.close();
-        }catch(IOException j){
-            Log.i("========", "IO error");}
     }
 
 	// ModelObject
@@ -109,58 +80,31 @@ public class Presenter implements PresenterInterface
 
     public String assembleHTML()
     {
-        modelInterface.patient.patientName.setName("John");
-        modelInterface.patient.pcpName.setName("Billy Joe");
-        modelInterface.patient.medRecNum.setMrn("666");
-        modelInterface.patient.dateOfBirth.setDate("January", 6, 1537);
-        modelInterface.patient.codeStatus.setAsFull();
-        modelInterface.patient.attendingName.setName("Jackson");
-        modelInterface.patient.admDate.setDate("crapuary", 78, 2347);
-        modelInterface.patient.attendingName.setName("lolololol");
-        modelInterface.physician.name.setName("kevin");
-        modelInterface.physician.hospital.setHomeHospital("mercy");
-        modelInterface.physician.hospital.setDepartment("da hospital");
-        modelInterface.physician.hospital.setTitle("title");
-        modelInterface.physician.npi.setNPI("34234");
-        modelInterface.physician.contact.setEmail("sdfsdf@gmail.com");
-        modelInterface.physician.contact.setPhone("4123445323");
-        modelInterface.patient.chiefComplaint.setMedicalHistory("i hurt");
-        modelInterface.patient.hospitalCourse.setHospitalCourse("doctor class");
-        modelInterface.patient.medHistory.setMedicalHistory("fine before");
-        modelInterface.patient.patientDiagnosis.setComplications("dead");
-        modelInterface.patient.patientDiagnosis.setPrimaryDiagnosis("dying");
-        modelInterface.patient.patientDiagnosis.setSecondaryDiagnosis("still dying");
-
-
-
-
-
-
         HTMLTable patientTable = new HTMLTable();
         for(int i=0; i<7; i++)
         {
             patientTable.add(new HTMLTableRow());
         }
         patientTable.get(0).add("Name");
-        patientTable.get(0).add(modelInterface.patient.patientName.getName());
+        patientTable.get(0).add(modelInterface.patient.patientName);
 
         patientTable.get(1).add("MRN#");
-        patientTable.get(1).add(modelInterface.patient.medRecNum.getMrn());
+        patientTable.get(1).add(modelInterface.patient.medRecNum);
 
         patientTable.get(2).add ("DOB");
-        patientTable.get(2).add(modelInterface.patient.dateOfBirth.getDay()+"/"+modelInterface.patient.dateOfBirth.getMonth()+"/"+modelInterface.patient.dateOfBirth.getYear());
+        patientTable.get(2).add(modelInterface.patient.dateOfBirth);
 
         patientTable.get(3).add ("Date of Admittance");
-        patientTable.get(3).add(modelInterface.patient.admDate.getDay()+"/"+modelInterface.patient.admDate.getMonth()+"/"+modelInterface.patient.admDate.getYear());
+        patientTable.get(3).add(modelInterface.patient.admDate);
 
         patientTable.get(4).add ("Code Status");
-        patientTable.get(4).add(modelInterface.patient.codeStatus.getCodeStatus());
+        patientTable.get(4).add(modelInterface.patient.codeStatus);
 
         patientTable.get(5).add ("Attending Name");
-        patientTable.get(5).add(modelInterface.patient.attendingName.getName());
+        patientTable.get(5).add(modelInterface.patient.attendingName);
 
         patientTable.get(6).add ("PCP Name");
-        patientTable.get(6).add(modelInterface.patient.pcpName.getName());
+        patientTable.get(6).add(modelInterface.patient.pcpName);
 
         HTMLTable physicianTable = new HTMLTable();
         for(int i=0; i<4; i++){
@@ -168,13 +112,14 @@ public class Presenter implements PresenterInterface
         }
 
         physicianTable.get(0).add("Name");
-        physicianTable.get(0).add(modelInterface.physician.name.getName());
+        physicianTable.get(0).add(modelInterface.physician.name);
 
         physicianTable.get(1).add(modelInterface.physician.hospital.getHomeHospital());
-        physicianTable.get(1).add(modelInterface.physician.hospital.getDepartment()+"-"+modelInterface.physician.hospital.getTitle());
+        physicianTable.get(1).add(modelInterface.physician.hospital.getDepartment());
+        physicianTable.get(1).add(modelInterface.physician.hospital.getDepartment());
 
         physicianTable.get(2).add("NPI#");
-        physicianTable.get(2).add(modelInterface.physician.npi.getNPI());
+        physicianTable.get(2).add(modelInterface.physician.npi);
 
         physicianTable.get(3).add(modelInterface.physician.contact.getEmail());
         physicianTable.get(3).add(modelInterface.physician.contact.getPhone());
@@ -194,36 +139,14 @@ public class Presenter implements PresenterInterface
         str+=new HTMLParagraph(modelInterface.patient.hospitalCourse.getHospitalCourse());
         str+=new HTMLHeader("Relevant Medical History");
         str+=new HTMLParagraph(modelInterface.patient.medHistory.getMedicalHistory());
+        str+=new HTMLHeader("Relevant Medical History");
+        str+=new HTMLParagraph(modelInterface.patient.medHistory.getMedicalHistory());
         str+=new HTMLHeader("Patient Diagnosis");
         str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getPrimaryDiagnosis());
         str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getSecondaryDiagnosis());
         str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getComplications());
         str+="</html>";
         return str;
-    }
-
-    public File GenerateHTML(Context con)
-    {
-        BufferedWriter bw = null;
-        File file = new File(con.getFilesDir(), "htmlCode.html");
-        try {
-            FileOutputStream fou = con.openFileOutput(file.getName(), Context.MODE_APPEND);
-            bw = new BufferedWriter(new OutputStreamWriter(fou));
-            try {
-                String htmlResult = assembleHTML();
-                Log.i("==============",htmlResult);
-                bw.write(htmlResult);
-                bw.flush();
-                bw.close();
-                fou.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return file;
     }
 
 
