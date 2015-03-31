@@ -3,12 +3,13 @@ package medicalfaxnew.duqsp15.com.medicalfax.Presenter;
 import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
 import medicalfaxnew.duqsp15.com.medicalfax.MainActivity;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.PresenterInterface;
+import medicalfaxnew.duqsp15.com.medicalfax.R;
 
 
 import android.content.Context;
 import android.app.Activity;
 import java.util.ArrayList;
-
+import android.widget.EditText;
 
 /**
  * This class contains the functions pertaining to the Presenter.
@@ -80,127 +81,110 @@ public class Presenter implements PresenterInterface
     }
 
     /**
-     * Use to get an ArrayList of text box id's (as strings) of the required fields that are not filled
-     * @return the ArrayList of missing required field id's
+     * Use to get an array of text boxes (as EditText objects) of the required fields that are not filled
+     * @return An array of EditText text boxes that are empty required fields
      */
-    public ArrayList<String> getEmptyRequiredFields(){
+    public EditText[] getRequiredFields(){
        ArrayList<String> physicianFields, patientFields;
 
-        // get the ArrayLists from Model of all required fields not filled
+       // get the ArrayLists from Model of all required fields not filled
        physicianFields = ModelInterface.physician.verify(); //verifies physician info
-       patientFields = ModelInterface.patient.verify(); // verifies patient info 
-       ArrayList<String> requiredFields = new ArrayList <String>();
-       // send these ArrayLists to the View
+       patientFields = ModelInterface.patient.verify(); // verifies patient info
+       ArrayList<EditText> requiredFields = new ArrayList<EditText>();
+       EditText[] requiredFieldsArray;
+       EditText textField;
 
-        if (patientFields.contains("set allergy in list")) {
-            requiredFields.add("Home_Medications");
+  // send this info to the View
+        if (patientFields.contains("set allergy in list") || patientFields.contains("set medicine item in list")) {
+            textField = (EditText) ac.findViewById(R.id.Home_Medications);
+            requiredFields.add(textField);
         }
-
-
 
         if (patientFields.contains("set chief complaint")) {
-            requiredFields.add("Chief_Complaint");
+            textField = (EditText) ac.findViewById(R.id.Chief_Complaint);
+            requiredFields.add(textField);
         }
 
-
-        if (patientFields.contains("set code status")) {
-            requiredFields.add("code_status_spinner");
+  // date section may not be complete
+        if (patientFields.contains("set day")|| patientFields.contains("set month") || patientFields.contains("set year")) {
+            textField = (EditText) ac.findViewById(R.id.Admission_Date);
+            requiredFields.add(textField);
         }
-
-
-   // date section is not complete
-/*if (patientFields.contains("set day")) {
-requiredFields.add("Admission_Date"));
-}
-
-
-if (patientFields.contains("set month")) {
-requiredFields.add("Admission_Date");
-}
-
-
-if (patientFields.contains("set year")) {
-requiredFields.add("Admission_Date");
-}
-*/
 
         if (patientFields.contains("set patient primary diagnosis")) {
-            requiredFields.add("Primary");
+            textField = (EditText) ac.findViewById(R.id.Primary);
+            requiredFields.add(textField);
         }
 
         if (patientFields.contains("set history of present illness")) {
-            requiredFields.add("Past_Medical_History");
+            textField = (EditText) ac.findViewById(R.id.Complications);
+            requiredFields.add(textField);
         }
 
         if (patientFields.contains("set patient medical history")) {
-            requiredFields.add("Past_Medical_History");
+            textField = (EditText) ac.findViewById(R.id.Past_Medical_History);
+            requiredFields.add(textField);
         }
 
-        //medicine list is not complete
-/*if (patientFields.contains("set medicine item in list")) {
-requiredFields.add("Home_Medications");
-}
-*/
-
         if (patientFields.contains("set medicine course in list")) {
-            requiredFields.add("Current_Course");
+            textField = (EditText) ac.findViewById(R.id.Current_Course);
+            requiredFields.add(textField);
         }
 
         if (patientFields.contains("set medicine completed course in list")) {
-            requiredFields.add("Completed_Course");
+            textField = (EditText) ac.findViewById(R.id.Completed_Course);
+            requiredFields.add(textField);
         }
 
         if (patientFields.contains("set medical record num")) {
-            requiredFields.add("MRN");
+            textField = (EditText) ac.findViewById(R.id.MRN);
+            requiredFields.add(textField);
         }
 
         if (patientFields.contains("set name of attending")) {
-            requiredFields.add("Attending_Physician_Name");
+            textField = (EditText) ac.findViewById(R.id.Attending_Physician_Name);
+            requiredFields.add(textField);
         }
 
         if (patientFields.contains("set name of pcp")) {
-            requiredFields.add("PCP");
+            textField = (EditText) ac.findViewById(R.id.PCP);
+            requiredFields.add(textField);
         }
 
-        if (patientFields.contains("set name of patient")) {
-            requiredFields.add("Patient_Name");
+        if (patientFields.contains("set test name ")) {
+            textField = (EditText) ac.findViewById(R.id.Finalized);
+            requiredFields.add(textField);
         }
 
-
-
-/*
-if (patientFields.contains("set test name ")) {
-requiredFields.add("");
-}
-
-if (patientFields.contains("set test status")) {
-requiredFields.add("");
-}
-
-*/
-
+        if (patientFields.contains("set test status")) {
+            textField = (EditText) ac.findViewById(R.id.Pending);
+            requiredFields.add(textField);
+        }
 
         if (physicianFields.contains("setPatientName")) {
-            requiredFields.add("Patient_Name");
+            textField = (EditText) ac.findViewById(R.id.Patient_Name);
+            requiredFields.add(textField);
         }
 
         if (physicianFields.contains("setDepartment")) {
-            requiredFields.add("Department");
+            textField = (EditText) ac.findViewById(R.id.Department);
+            requiredFields.add(textField);
         }
         if (physicianFields.contains("setHomeHospital")) {
-            requiredFields.add("Home_Hospital");
+            textField = (EditText) ac.findViewById(R.id.Home_Hospital);
+            requiredFields.add(textField);
         }
         if (physicianFields.contains("setNPI")) {
-            requiredFields.add("NPI_Number");
+            textField = (EditText) ac.findViewById(R.id.NPI_Number);
+            requiredFields.add(textField);
         }
         if (physicianFields.contains("setEmail")) {
-            requiredFields.add("Email_Address");
+            textField = (EditText) ac.findViewById(R.id.Email_Address);
+            requiredFields.add(textField);
         }
 
-        return requiredFields;
-
-
-
+       requiredFieldsArray = requiredFields.toArray(new EditText[requiredFields.size()]);
+        return requiredFieldsArray;
     }
 
 }
