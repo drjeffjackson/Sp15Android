@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.view.View.OnLongClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Spinner;
 import android.widget.EditText;
@@ -22,18 +21,20 @@ import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.ViewPresenterIn
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Presenter;
 
 
-public class MainActivity extends ActionBarActivity implements ViewPresenterInterFace, OnTouchListener, OnLongClickListener{
+public class MainActivity extends ActionBarActivity implements ViewPresenterInterFace, OnTouchListener{
 
     private final int REQ_CODE_SPEECH_INPUT = 100; //constant necessary for validating Dictation
     private Presenter presenter;
     private EditText selectedView;
-//    private InputMethodManager inputMethodManager; // to hide and show keyboard
+    private InputMethodManager inputMethodManager; // to hide and show keyboard
+    private int keyboardState = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         presenter = new Presenter(this.getApplicationContext(), this);
-//        inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+//        inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         popUpHIPPA();
         setListenersAndInitializesFocus();
     }
@@ -129,8 +130,97 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     public void submits(View view)
     {
-        if(selectedView != null)
-            selectedView.setText("TEST");
+
+//        EditText[] field = presenter.getRequiredFields();
+//
+//        for(int i=0;i < field.length;i++) {
+//            if (field[i].getText().toString().isEmpty()) {
+//                field[i].setError("Field is required");
+//            }
+//        }
+
+        EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
+        if (Patient_Name.getText().toString().isEmpty()) {
+            Patient_Name.setError("Field is required");
+        }
+        else{
+            Patient_Name.setError(null);
+        }
+
+        EditText DOB = (EditText) findViewById(R.id.DOB);
+        if (DOB.getText().toString().isEmpty()) {
+            DOB.setError("Field is required");
+        }
+        else{
+            DOB.setError(null);
+        }
+        EditText MRN = (EditText) findViewById(R.id.MRN);
+        if (MRN.getText().toString().isEmpty()) {
+            MRN.setError("Field is required");
+        }
+        else{
+            MRN.setError(null);
+        }
+
+        EditText Admission_Date = (EditText) findViewById(R.id.Admission_Date);
+        if (Admission_Date.getText().toString().isEmpty()) {
+            Admission_Date.setError("Field is required");
+        }
+        else{
+            Admission_Date.setError(null);
+        }
+        EditText Attending_Physician_Name = (EditText) findViewById(R.id.Attending_Physician_Name);
+        if (Attending_Physician_Name.getText().toString().isEmpty()) {
+            Attending_Physician_Name.setError("Field is required");
+        }
+        else{
+            Attending_Physician_Name.setError(null);
+        }
+
+        EditText HPI = (EditText) findViewById(R.id.HPI);
+        if (HPI.getText().toString().isEmpty()) {
+            HPI.setError("Field is required");
+        }
+        else{
+            HPI.setError(null);
+        }
+        EditText Hospital_Course = (EditText) findViewById(R.id.Hospital_Course);
+        if (Hospital_Course.getText().toString().isEmpty()) {
+            Hospital_Course.setError("Field is required");
+        }
+        else{
+            Hospital_Course.setError(null);
+        }
+
+        EditText Chief_Complaint = (EditText) findViewById(R.id.Chief_Complaint);
+        if (Chief_Complaint.getText().toString().isEmpty()) {
+            Chief_Complaint.setError("Field is required");
+        }
+        else{
+            Chief_Complaint.setError(null);
+        }
+
+        EditText Home_Medications = (EditText) findViewById(R.id.Home_Medications);
+        if (Home_Medications.getText().toString().isEmpty()) {
+            Home_Medications.setError("Field is required");
+        }
+        else{
+            Home_Medications.setError(null);
+        }
+        EditText Primary = (EditText) findViewById(R.id.Primary);
+        if (Primary.getText().toString().isEmpty()) {
+            Primary.setError("Field is required");
+        }
+        else{
+            Primary.setError(null);
+        }
+        EditText Secondary = (EditText) findViewById(R.id.Secondary);
+        if (Secondary.getText().toString().isEmpty()) {
+            Secondary.setError("Field is required");
+        }
+        else{
+            Secondary.setError(null);
+        }
     }
     @Override
     public void fillBox(int boxNum, String transcribedText) {
@@ -149,26 +239,44 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         if (event.getAction() == MotionEvent.ACTION_UP && v.getId() != R.id.code_status_spinner) {
             v.requestFocus();
             selectedView = (EditText) v;
-//            inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.RESULT_HIDDEN);
+            inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+            keyboardState = InputMethodManager.HIDE_NOT_ALWAYS;
             return true;
         }
         return false;
     }
-    /** This method changes focus based on the user's touch shows the input keyboard
-     * @param v the touched view
-     * @return true if long click is made
-     * @return false otherwise
+
+    /** This method is called by the Show_Keyboard button to show and hide the soft input
+     *
+     * @param v the button
      */
-    @Override
-    public boolean onLongClick(View v) {
-        if(v.getId() != R.id.code_status_spinner) {
-            selectedView = (EditText) v;
-            v.requestFocus();
-            //  inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.RESULT_SHOWN);
-            return true;
+    public void showKeyboard(View v)
+    {
+        if(keyboardState == InputMethodManager.HIDE_NOT_ALWAYS) {
+            inputMethodManager.showSoftInput(selectedView, InputMethodManager.SHOW_IMPLICIT);
+            keyboardState = InputMethodManager.SHOW_IMPLICIT;
         }
-        return false;
+        else
+        {
+            inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            keyboardState = InputMethodManager.HIDE_NOT_ALWAYS;
+        }
     }
+//    /** This method changes focus based on the user's touch shows the input keyboard
+//     * @param v the touched view
+//     * @return true if long click is made
+//     * @return false otherwise
+//     */
+//    @Override
+//    public boolean onLongClick(View v) {
+//        if(v.getId() != R.id.code_status_spinner) {
+//            selectedView = (EditText) v;
+//            v.requestFocus();
+//            //  inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.RESULT_SHOWN);
+//            return true;
+//        }
+//        return false;
+//    }
 
 
     private void popUpHIPPA()
@@ -198,81 +306,56 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     {
         EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
         Patient_Name.setOnTouchListener(this);
-        Patient_Name.setOnLongClickListener(this);
         Patient_Name.requestFocus();
         selectedView = Patient_Name;
         EditText DOB = (EditText) findViewById(R.id.DOB);
         DOB.setOnTouchListener(this);
-        DOB.setOnLongClickListener(this);
         EditText MRN = (EditText) findViewById(R.id.MRN);
         MRN.setOnTouchListener(this);
-        MRN.setOnLongClickListener(this);
         EditText Admission_Date = (EditText) findViewById(R.id.Admission_Date);
         Admission_Date.setOnTouchListener(this);
-        Admission_Date.setOnLongClickListener(this);
         EditText PCP = (EditText) findViewById(R.id.PCP);
         PCP.setOnTouchListener(this);
-        PCP.setOnLongClickListener(this);
         EditText Attending_Physician_Name = (EditText) findViewById(R.id.Attending_Physician_Name);
         Attending_Physician_Name.setOnTouchListener(this);
-        Attending_Physician_Name.setOnLongClickListener(this);
         EditText Title = (EditText) findViewById(R.id.Title);
         Title.setOnTouchListener(this);
-        Title.setOnLongClickListener(this);
         EditText Department = (EditText) findViewById(R.id.Department);
         Department.setOnTouchListener(this);
-        Department.setOnLongClickListener(this);
         EditText Home_Hospital = (EditText) findViewById(R.id.Home_Hospital);
         Home_Hospital.setOnTouchListener(this);
-        Home_Hospital.setOnLongClickListener(this);
         EditText Phone_Number = (EditText) findViewById(R.id.Phone_Number);
         Phone_Number.setOnTouchListener(this);
-        Phone_Number.setOnLongClickListener(this);
         EditText Email_Address = (EditText) findViewById(R.id.Email_Address);
         Email_Address.setOnTouchListener(this);
-        Email_Address.setOnLongClickListener(this);
         EditText NPI_Number = (EditText) findViewById(R.id.NPI_Number);
         NPI_Number.setOnTouchListener(this);
-        NPI_Number.setOnLongClickListener(this);
         EditText Chief_Complaint = (EditText) findViewById(R.id.Chief_Complaint);
         Chief_Complaint.setOnTouchListener(this);
-        Chief_Complaint.setOnLongClickListener(this);
         EditText HPI = (EditText) findViewById(R.id.HPI);
         HPI.setOnTouchListener(this);
-        HPI.setOnLongClickListener(this);
         EditText Hospital_Course = (EditText) findViewById(R.id.Hospital_Course);
         Hospital_Course.setOnTouchListener(this);
-        Hospital_Course.setOnLongClickListener(this);
         EditText Consultants = (EditText) findViewById(R.id.Consultants);
         Consultants.setOnTouchListener(this);
-        Consultants.setOnLongClickListener(this);
         EditText Primary = (EditText) findViewById(R.id.Primary);
         Primary.setOnTouchListener(this);
-        Primary.setOnLongClickListener(this);
         EditText Secondary = (EditText) findViewById(R.id.Secondary);
         Secondary.setOnTouchListener(this);
-        Secondary.setOnLongClickListener(this);
         EditText Complications = (EditText) findViewById(R.id.Complications);
         Complications.setOnTouchListener(this);
-        Complications.setOnLongClickListener(this);
         EditText Finalized = (EditText) findViewById(R.id.Finalized);
         Finalized.setOnTouchListener(this);
-        Finalized.setOnLongClickListener(this);
         EditText Pending = (EditText) findViewById(R.id.Pending);
         Pending.setOnTouchListener(this);
-        Pending.setOnLongClickListener(this);
         EditText Completed_Course = (EditText) findViewById(R.id.Completed_Course);
         Completed_Course.setOnTouchListener(this);
-        Completed_Course.setOnLongClickListener(this);
         EditText Current_Course = (EditText) findViewById(R.id.Current_Course);
         Current_Course.setOnTouchListener(this);
-        Current_Course.setOnLongClickListener(this);
         EditText Past_Medical_History = (EditText) findViewById(R.id.Past_Medical_History);
         Past_Medical_History.setOnTouchListener(this);
-        Past_Medical_History.setOnLongClickListener(this);
         EditText Home_Medications = (EditText) findViewById(R.id.Home_Medications);
         Home_Medications.setOnTouchListener(this);
-        Home_Medications.setOnLongClickListener(this);
     }
 
     @Override
