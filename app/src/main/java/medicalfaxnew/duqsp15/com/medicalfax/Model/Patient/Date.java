@@ -17,12 +17,12 @@ public class Date {
     /**
      * the day in integer format (i.e. 1,...,30)
      */
-    private int day = 0;
+    private String day;
 
     /**
      * the year in integer format (i.e. 2015)
      */
-    private int year = 0;
+    private String year;
 
     /**
      * nullary constructor
@@ -38,7 +38,7 @@ public class Date {
      * @param day
      * @param year
      */
-    public Date(String month, int day, int year) {
+    public Date(String month, String day, String year) {
         this.month = month;
         this.day = day;
         this.year = year;
@@ -49,7 +49,7 @@ public class Date {
      * @param newDay
      * @param newYear
      */
-    public void setDate(String newMonth, int newDay, int newYear) {
+    public void setDate(String newMonth, String newDay, String newYear) {
         month = newMonth;
         day = newDay;
         year = newYear;
@@ -66,7 +66,7 @@ public class Date {
     /**
      * @param newDay
      */
-    public void setDay(int newDay) {
+    public void setDay(String newDay) {
 
         day = newDay;
     }
@@ -74,7 +74,7 @@ public class Date {
     /**
      * @param newYear
      */
-    public void setYear(int newYear) {
+    public void setYear(String newYear) {
 
         year = newYear;
     }
@@ -90,7 +90,7 @@ public class Date {
     /**
      * @return
      */
-    public int getDay() {
+    public String getDay() {
 
         return day;
     }
@@ -98,7 +98,7 @@ public class Date {
     /**
      * @return
      */
-    public int getYear() {
+    public String getYear() {
 
         return year;
     }
@@ -119,7 +119,7 @@ public class Date {
    @return Boolean
     */
     public Boolean verifyDay() {
-        if (day != 0) {
+        if (day != "") {
             return false;
         }
         return true;
@@ -130,7 +130,7 @@ public class Date {
    @return Boolean
     */
     public Boolean verifyYear() {
-        if (day != 0) {
+        if (day != "") {
             return false;
         }
         return true;

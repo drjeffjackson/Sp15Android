@@ -190,9 +190,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         //Have to check and make sure none of them are null otherwise Integer will freakkkk out
         if ((DOB.get(0) == null) && (DOB.get(1) == null) && (DOB.get(2) == null))
         {
-            ModelInterface.patient.dateOfBirth.setDay(Integer.parseInt(DOB.get(0)));
+            ModelInterface.patient.dateOfBirth.setDay(DOB.get(0));
             ModelInterface.patient.dateOfBirth.setMonth(DOB.get(1));
-            ModelInterface.patient.dateOfBirth.setYear(Integer.parseInt(DOB.get(2)));
+            ModelInterface.patient.dateOfBirth.setYear(DOB.get(2));
         }
 
         //Admission Date
@@ -200,9 +200,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper
 
         if ((AdmissionDate.get(0) == null) && (AdmissionDate.get(1) == null) && (AdmissionDate.get(2) == null)) {
 
-            ModelInterface.patient.admDate.setDay(Integer.parseInt(AdmissionDate.get(0)));
+            ModelInterface.patient.admDate.setDay((AdmissionDate.get(0)));
             ModelInterface.patient.admDate.setMonth(AdmissionDate.get(1));
-            ModelInterface.patient.admDate.setYear(Integer.parseInt(AdmissionDate.get(2)));
+            ModelInterface.patient.admDate.setYear((AdmissionDate.get(2)));
         }
 
 

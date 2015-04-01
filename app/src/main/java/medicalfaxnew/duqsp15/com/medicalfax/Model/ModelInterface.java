@@ -22,7 +22,7 @@ public class ModelInterface
     public static Patient patient; //Patient Object
     public static Physician physician; //Physician Object
     public static Dictation dictation;
-    protected static Email email;
+    public static Email email;
     public static InputOutput IO; //IO for Model Team ONLY
     public static ModelInterface MController; //Instance
     public static Presenter presenter;

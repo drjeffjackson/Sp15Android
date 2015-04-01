@@ -44,7 +44,7 @@ public class Presenter implements PresenterInterface
      * The object representing the MainActivity class.
      */
     public MainActivity ac;
-    //Context is required for database in model
+    public Context con;
 
     /**
      * This constructor will initialize a new Presenter object with a provided Context and Activity.
@@ -58,24 +58,7 @@ public class Presenter implements PresenterInterface
     	ac=(MainActivity)act;
         modelInterface = new ModelInterface(context, this, act);
         requestedBox = -1;
-        File f = GenerateHTML(context);
-
-        FileInputStream in = null;
-        try {
-            in = context.openFileInput("htmlCode.html");
-        }
-        catch(FileNotFoundException q) {}
-        InputStreamReader inputStreamReader = new InputStreamReader(in);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        String line=null;
-        try {
-            line = bufferedReader.readLine();
-            Log.i("======", line);
-            bufferedReader.close();
-            inputStreamReader.close();
-            in.close();
-        }catch(IOException j){
-            Log.i("========", "IO error");}
+        con=context;
     }
 
 	// ModelObject
@@ -142,6 +125,7 @@ public class Presenter implements PresenterInterface
         patientTable.get(6).add ("PCP Name");
         patientTable.get(6).add(modelInterface.patient.pcpName.getName());
 
+
         HTMLTable physicianTable = new HTMLTable();
         for(int i=0; i<4; i++){
             physicianTable.add(new HTMLTableRow());
@@ -169,7 +153,7 @@ public class Presenter implements PresenterInterface
         str+=new HTMLHeader("Chief Complaint").toString();
         str+=new HTMLParagraph(modelInterface.patient.chiefComplaint.getChiefComplaint());
         str+=new HTMLHeader("HPI").toString();
-        str+=new HTMLParagraph(modelInterface.patient.hpi.getHPI());
+        str+=new HTMLParagraph(modelInterface.patient.hpi.getHPI().get(0));
         str+=new HTMLHeader("Hospital Course");
         str+=new HTMLParagraph(modelInterface.patient.hospitalCourse.getHospitalCourse());
         str+=new HTMLHeader("Relevant Medical History");
@@ -185,13 +169,12 @@ public class Presenter implements PresenterInterface
     public File GenerateHTML(Context con)
     {
         BufferedWriter bw = null;
-        File file = new File(con.getFilesDir(), "htmlCode.html");
+        File file = new File(con.getExternalCacheDir(), "htmlCode.html");
         try {
             FileOutputStream fou = con.openFileOutput(file.getName(), Context.MODE_APPEND);
             bw = new BufferedWriter(new OutputStreamWriter(fou));
             try {
                 String htmlResult = assembleHTML();
-                Log.i("==============",htmlResult);
                 bw.write(htmlResult);
                 bw.flush();
                 bw.close();
@@ -210,20 +193,19 @@ public class Presenter implements PresenterInterface
 
         //Setting the date for Patient's Date of Birth
         String dob = ac.findViewById(R.id.DOB).toString();
-        String[] mdy = dob.split(", ");
-        int year = Integer.parseInt(mdy[1]);
-        String[] md = mdy[0].split(" ");
-        String month = md[0];
-        int day = Integer.parseInt(md[1]);
+        String[] mdy = dob.split(" ");
+        String year = mdy[2];
+        String month = mdy[0];
+        String day = mdy[1];
+        day = day.replaceAll("\\D+","");
 
         //Setting the date for Patient's Admission Date
         String adm = ac.findViewById(R.id.Admission_Date).toString();
-        String[] admDate = adm.split(", ");
-        int year2 = Integer.parseInt(admDate[1]);
-        String[] md2 = admDate[0].split(" ");
-        String month2 = md2[0];
-        int day2 = Integer.parseInt(md2[1]);
-
+        String[] amdy = dob.split(" ");
+        String ayear = amdy[2];
+        String amonth = amdy[0];
+        String aday = amdy[1];
+        aday = aday.replaceAll("\\D+","");
         /*
         Setting records for all data pertaining to Patient class
          */
@@ -231,7 +213,7 @@ public class Presenter implements PresenterInterface
         modelInterface.patient.patientName.setName(ac.findViewById(R.id.Patient_Name).toString());
         modelInterface.patient.dateOfBirth.setDate(month, day, year);
         modelInterface.patient.medRecNum.setMrn(ac.findViewById(R.id.MRN).toString());
-        modelInterface.patient.admDate.setDate(month2, day2, year2);
+        modelInterface.patient.admDate.setDate(amonth, aday, ayear);
         modelInterface.patient.pcpName.setName(ac.findViewById(R.id.PCP).toString());
         modelInterface.patient.attendingName.setName(ac.findViewById(R.id.Attending_Physician_Name).toString());
 
@@ -375,6 +357,11 @@ public class Presenter implements PresenterInterface
 
         requiredFieldsArray = requiredFields.toArray(new EditText[requiredFields.size()]);
         return requiredFieldsArray;
+    }
+
+    public void sendEmail(){
+        saveData();
+        modelInterface.email.sendEmail("Patient Information is in the attached Document.", android.net.Uri.parse(GenerateHTML(con).toURI().toString()));
     }
 
 

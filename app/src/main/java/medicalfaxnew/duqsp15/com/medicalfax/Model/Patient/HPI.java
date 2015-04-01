@@ -14,16 +14,11 @@ public class HPI {
     ArrayList<String> historyOfPresentIllness;  //array list of strings containing history of present illness.
 
     public HPI() {
+        historyOfPresentIllness = new ArrayList<String>();
     } // empty constructor.
 
-    public HPI(String newHistory) {
-
-        historyOfPresentIllness.ensureCapacity(historyOfPresentIllness.size() + 1);
-        historyOfPresentIllness.add(newHistory);
-    }
-
     public void setHPI(String newHistory) {
-        historyOfPresentIllness.ensureCapacity(historyOfPresentIllness.size() + 1);
+        //historyOfPresentIllness.ensureCapacity(historyOfPresentIllness.size() + 1);
         historyOfPresentIllness.add(newHistory);
     }
 

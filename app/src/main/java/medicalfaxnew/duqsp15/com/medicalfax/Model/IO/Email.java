@@ -19,7 +19,7 @@ public class Email {
         modelE=model;
         activity=ac;
     }
-    protected void sendEmail(String body, Uri u){
+    public void sendEmail(String body, Uri u){
         Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
         emailIntent.setType("text/html");
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "patient information");

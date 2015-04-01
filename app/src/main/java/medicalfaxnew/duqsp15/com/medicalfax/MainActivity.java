@@ -138,10 +138,12 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
 //                field[i].setError("Field is required");
 //            }
 //        }
+        boolean testsPassed = true;
 
         EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
         if (Patient_Name.getText().toString().isEmpty()) {
             Patient_Name.setError("Field is required");
+            testsPassed=false;
         }
         else{
             Patient_Name.setError(null);
@@ -150,6 +152,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         EditText DOB = (EditText) findViewById(R.id.DOB);
         if (DOB.getText().toString().isEmpty()) {
             DOB.setError("Field is required");
+            testsPassed=false;
         }
         else{
             DOB.setError(null);
@@ -157,6 +160,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         EditText MRN = (EditText) findViewById(R.id.MRN);
         if (MRN.getText().toString().isEmpty()) {
             MRN.setError("Field is required");
+            testsPassed=false;
         }
         else{
             MRN.setError(null);
@@ -165,6 +169,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         EditText Admission_Date = (EditText) findViewById(R.id.Admission_Date);
         if (Admission_Date.getText().toString().isEmpty()) {
             Admission_Date.setError("Field is required");
+            testsPassed=false;
         }
         else{
             Admission_Date.setError(null);
@@ -172,6 +177,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         EditText Attending_Physician_Name = (EditText) findViewById(R.id.Attending_Physician_Name);
         if (Attending_Physician_Name.getText().toString().isEmpty()) {
             Attending_Physician_Name.setError("Field is required");
+            testsPassed=false;
         }
         else{
             Attending_Physician_Name.setError(null);
@@ -180,6 +186,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         EditText HPI = (EditText) findViewById(R.id.HPI);
         if (HPI.getText().toString().isEmpty()) {
             HPI.setError("Field is required");
+            testsPassed=false;
         }
         else{
             HPI.setError(null);
@@ -187,6 +194,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         EditText Hospital_Course = (EditText) findViewById(R.id.Hospital_Course);
         if (Hospital_Course.getText().toString().isEmpty()) {
             Hospital_Course.setError("Field is required");
+            testsPassed=false;
         }
         else{
             Hospital_Course.setError(null);
@@ -195,6 +203,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         EditText Chief_Complaint = (EditText) findViewById(R.id.Chief_Complaint);
         if (Chief_Complaint.getText().toString().isEmpty()) {
             Chief_Complaint.setError("Field is required");
+            testsPassed=false;
         }
         else{
             Chief_Complaint.setError(null);
@@ -203,6 +212,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         EditText Home_Medications = (EditText) findViewById(R.id.Home_Medications);
         if (Home_Medications.getText().toString().isEmpty()) {
             Home_Medications.setError("Field is required");
+            testsPassed=false;
         }
         else{
             Home_Medications.setError(null);
@@ -217,10 +227,14 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         EditText Secondary = (EditText) findViewById(R.id.Secondary);
         if (Secondary.getText().toString().isEmpty()) {
             Secondary.setError("Field is required");
+            testsPassed=false;
         }
         else{
             Secondary.setError(null);
         }
+
+        if(testsPassed)
+            presenter.sendEmail();
     }
     @Override
     public void fillBox(int boxNum, String transcribedText) {
