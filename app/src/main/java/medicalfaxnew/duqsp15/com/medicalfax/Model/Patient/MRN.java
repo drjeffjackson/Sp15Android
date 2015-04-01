@@ -17,6 +17,14 @@ public class MRN {
     }
 
     /**
+     * Constructor with string
+     * @param mrn
+     */
+    public MRN(String mrn) {
+        this.mrn = mrn;
+    }
+
+    /**
      * This is the setter for the medical record number
      *
      * @param newMrn - the int to set the mrn to

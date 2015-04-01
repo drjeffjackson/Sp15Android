@@ -15,12 +15,12 @@ public class Date {
      */
     private String month;
     /**
-     * the day in integer format (i.e. 1,...,30)
+     * the day in string format (i.e. 1,...,30)
      */
     private String day;
 
     /**
-     * the year in integer format (i.e. 2015)
+     * the year in string format (i.e. 2015)
      */
     private String year;
 
@@ -119,7 +119,7 @@ public class Date {
    @return Boolean
     */
     public Boolean verifyDay() {
-        if (day != "") {
+        if (day.isEmpty()) {
             return false;
         }
         return true;
@@ -130,7 +130,7 @@ public class Date {
    @return Boolean
     */
     public Boolean verifyYear() {
-        if (day != "") {
+        if (day.isEmpty()) {
             return false;
         }
         return true;

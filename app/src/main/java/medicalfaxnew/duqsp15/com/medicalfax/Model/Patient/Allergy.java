@@ -21,12 +21,13 @@ public class Allergy {
 
     }
 
-    /*
-    String constructor
+    /**
+     * Constructor for allergy name
+     * @param allergy - allergy being added
      */
-    public Allergy(String newAllergy)
+    public Allergy(String allergy)
     {
-        setAllergy(newAllergy);
+        this.allergy = allergy;
     }
 
     /**
@@ -50,10 +51,10 @@ public class Allergy {
         return allergy;
     }
 
-    /*
-        Verifies that the allergy
-        @return Boolean
-         */
+    /**
+     * Verifies that the allergy object is not null
+     * @return boolean
+     */
     public Boolean verifyAllergy() {
         if (allergy.isEmpty()) {
             return false;

@@ -21,10 +21,10 @@ public class Medicine {
      */
     public Medicine(String medicine, String medicineCourse,
                     String medicineCompletedCourse) {
-        medicine = this.medicine;
-        medicineCourse = this.medicineCourse;
+        this.medicine = medicine;
+        this.medicineCourse = medicineCourse;
         // this might be easier to implement by using the dates...
-        medicineCompletedCourse = this.medicineCompletedCourse;
+        this.medicineCompletedCourse = medicineCompletedCourse;
     }
 
 

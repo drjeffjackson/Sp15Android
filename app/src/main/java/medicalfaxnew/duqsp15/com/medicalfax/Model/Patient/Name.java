@@ -21,6 +21,9 @@ public class Name {
         this.fullName = fullName;
     }
 
+    /**
+     * nullary constructor
+     */
     public Name() {
         //
     }

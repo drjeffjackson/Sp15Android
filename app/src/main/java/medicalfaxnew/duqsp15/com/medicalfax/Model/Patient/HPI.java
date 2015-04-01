@@ -13,24 +13,33 @@ public class HPI {
 
     ArrayList<String> historyOfPresentIllness;  //array list of strings containing history of present illness.
 
+    /**
+     * nullary constructor
+     */
     public HPI() {
-        historyOfPresentIllness = new ArrayList<String>();
-    } // empty constructor.
-
-    public void setHPI(String newHistory) {
-        //historyOfPresentIllness.ensureCapacity(historyOfPresentIllness.size() + 1);
-        historyOfPresentIllness.add(newHistory);
     }
 
+    /**
+     * constructor with arrayList
+     * @param historyOfPresentIllness
+     */
+    public HPI(ArrayList<String> historyOfPresentIllness) {
+        this.historyOfPresentIllness = historyOfPresentIllness;
+    }
+
+
+    public void setHPI(ArrayList<String> newHistoryOfPresentIllness) {
+        historyOfPresentIllness = newHistoryOfPresentIllness;
+    }
+
+    /**
+     * Getter for HPI
+     * @return hpi arraylist
+     */
     public ArrayList<String> getHPI() {
 
         return historyOfPresentIllness;
     }
-
-     /*
-     * This class will handle the HPI, to add a new line of history, you would call setHPI, on a per string
-     * basis. You can call setHPI using just a normal string. However an ArrayList<String> will be returned
-     * when you call the getHPI method.*/
 
     /*
    Verifies that the history of present illness is present, do we need this?

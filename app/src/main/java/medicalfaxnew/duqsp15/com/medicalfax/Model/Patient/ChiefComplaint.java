@@ -5,10 +5,22 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model.Patient;
  * Code based off, Coder Barbie MedicalHistory.
  */
 public class ChiefComplaint {
+
     String chiefComplaint;
 
+    /**
+     * nullary constructor
+     */
     public ChiefComplaint() {
 
+    }
+
+    /**
+     * Constructor with String
+     * @param chiefComplaint
+     */
+    public ChiefComplaint(String chiefComplaint) {
+        this.chiefComplaint = chiefComplaint;
     }
 
     /**
@@ -31,9 +43,9 @@ public class ChiefComplaint {
         return chiefComplaint;
     }
 
-    /*
-    Verifies that the chief complaint is present
-    @return Boolean
+    /**
+     * Verifies string is not empty
+     * @return boolean value
      */
     public Boolean verifyComplaint() {
         if (chiefComplaint.isEmpty()) {

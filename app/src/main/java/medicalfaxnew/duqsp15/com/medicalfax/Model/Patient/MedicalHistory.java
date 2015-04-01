@@ -13,6 +13,10 @@ public class MedicalHistory {
 
     }
 
+    public MedicalHistory(String medicalHistory) {
+        this.medicalHistory = medicalHistory;
+    }
+
     /**
      * Setter for Medical History
      *

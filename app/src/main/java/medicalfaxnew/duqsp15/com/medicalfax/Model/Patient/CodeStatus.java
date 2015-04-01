@@ -5,7 +5,7 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model.Patient;
  */
 
 /**
- * This is a temporary class until we talk to the view/presenter team
+ * Class for setting the code status using the drop down
  */
 public class CodeStatus {
 
@@ -19,6 +19,14 @@ public class CodeStatus {
      */
     public CodeStatus() {
 
+    }
+
+    /**
+     * Constructor for setting code status
+     * @param codeStatus - Full, Limited, or DNR/DNI
+     */
+    public  CodeStatus(String codeStatus) {
+        this.codeStatus = codeStatus;
     }
 
     /**
@@ -63,9 +71,9 @@ public class CodeStatus {
         return codeStatus;
     }
 
-    /*
-    Verifies that the code status is present
-    @return Boolean
+    /**
+     * Verifies code status is not empty
+     * @return boolean value
      */
     public Boolean verifyCodeStatus() {
         if (codeStatus.isEmpty()) {

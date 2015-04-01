@@ -24,6 +24,15 @@ public class Tests {
     }
 
     /**
+     * Constructor with strings
+     * @param testName
+     * @param testStatus
+     */
+    public Tests(String testName, String testStatus) {
+        this.testName = testName;
+        this.testStatus = testStatus;
+    }
+    /**
      * Setter for testName
      *
      * @param newTestName - new name to set testName to

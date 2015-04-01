@@ -37,8 +37,7 @@ public class Diagnosis {
      * @param primaryDiagnosis - the primary diagnosis for the patient
      */
     public Diagnosis(String primaryDiagnosis) {
-
-        primaryDiagnosis = this.primaryDiagnosis;
+        this.primaryDiagnosis = primaryDiagnosis;
     }
 
     /**
@@ -48,8 +47,20 @@ public class Diagnosis {
      * @param secondaryDiagnosis
      */
     public Diagnosis(String primaryDiagnosis, String secondaryDiagnosis) {
-        primaryDiagnosis = this.primaryDiagnosis;
-        secondaryDiagnosis = this.secondaryDiagnosis;
+        this.primaryDiagnosis = primaryDiagnosis;
+        this.secondaryDiagnosis = secondaryDiagnosis;
+    }
+
+    /**
+     * Constructor for all fields
+     * @param primaryDiagnosis
+     * @param secondaryDiagnosis
+     * @param complications
+     */
+    public Diagnosis(String primaryDiagnosis, String secondaryDiagnosis, String complications) {
+        this.primaryDiagnosis =  primaryDiagnosis;
+        this.secondaryDiagnosis = secondaryDiagnosis;
+        this.complications = complications;
     }
 
     /**
@@ -64,37 +75,48 @@ public class Diagnosis {
     /**
      * Setter for secondary diagnosis
      *
-     * @param newSecondaryDiagnosis -  what you want to se the secondary diagnosis to
+     * @param newSecondaryDiagnosis -  what you want to set the secondary diagnosis to
      */
     public void setSecondaryDiagnosis(String newSecondaryDiagnosis) {
         secondaryDiagnosis = newSecondaryDiagnosis;
     }
 
-
+    /**
+     * Setter for complications
+     * @param newComplications - the complication you want to add
+     */
     public void setComplications(String newComplications) {
-
         complications = newComplications;
     }
 
+    /**
+     * Getter for primary diagnosis
+     * @return primary diagnosis string
+     */
     public String getPrimaryDiagnosis() {
-
         return primaryDiagnosis;
     }
 
+    /**
+     * Getter for secondary diagnosis
+     * @return secondary diagnosis
+     */
     public String getSecondaryDiagnosis() {
-
         return secondaryDiagnosis;
     }
 
+    /**
+     * Getter
+     * @return complications
+     */
     public String getComplications() {
-
         return complications;
     }
 
-    /*
-   Verifies that there is a primary diagnosis
-   @return Boolean
-    */
+    /**
+     * Verifies that there is a primary diagnosis
+     * @return boolean value true if value is not empty
+     */
     public Boolean verifyPrimaryDiagnosis() {
         if (primaryDiagnosis.isEmpty()) {
             return false;

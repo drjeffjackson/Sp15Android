@@ -7,11 +7,27 @@ public class HospitalCourse {
 
     private String hospitalCourse;
 
+
+    /**
+     * nullary constructor
+     */
+    public HospitalCourse() {
+
+    }
+
+    public HospitalCourse(String hospitalCourse) {
+        this.hospitalCourse = hospitalCourse;
+    }
+
     public void setHospitalCourse(String newCourse) {
+
         this.hospitalCourse = newCourse;
     }
 
     public String getHospitalCourse() {
+
         return hospitalCourse;
     }
+
+
 }

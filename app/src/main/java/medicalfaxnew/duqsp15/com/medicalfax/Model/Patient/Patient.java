@@ -140,11 +140,6 @@ public class Patient implements ModelObj {
      */
 
     /**
-     * List of patient home medications
-     */
-    private ArrayList<Medicine> patientMedicationsListHome = new ArrayList<Medicine>();
-
-    /**
      * List of allergies
      */
     private ArrayList<Allergy> allergies = new ArrayList<>();
@@ -185,13 +180,6 @@ public class Patient implements ModelObj {
         patientMedicationsList.add(meds);
     }
 
-    /**
-     * Method for adding to the list of Medicines at home
-     * @param meds - the medication you want to add
-     */
-    public void addPatientMedicationListsHome(Medicine meds) {
-        patientMedicationsListHome.add(meds);
-    }
 
 
     /**
@@ -217,10 +205,6 @@ public class Patient implements ModelObj {
 
     public void removePatientMedicationList( int position) {
         patientMedicationsList.remove(position);
-    }
-
-    public void removePatientMedicationListHome( int position) {
-        patientMedicationsListHome.remove(position);
     }
 
     public void removeAllergiesList(int position) {
