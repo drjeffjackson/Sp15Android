@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -170,25 +171,19 @@ public class Presenter implements PresenterInterface
 
     public File GenerateHTML(Context con)
     {
-        BufferedWriter bw = null;
+        FileWriter fw = null;
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "htmlCode.html");
-        file.setReadable(true, false);
-        try {
-            FileOutputStream fou = con.openFileOutput(file.getName(), Context.MODE_APPEND);
-            bw = new BufferedWriter(new OutputStreamWriter(fou));
+
             try {
+                fw = new FileWriter(file);
                 String htmlResult = assembleHTML();
-                bw.write(htmlResult);
-                bw.flush();
-                bw.close();
-                fou.close();
+                fw.append(htmlResult);
+                fw.flush();
+                fw.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
         return file;
     }
 
