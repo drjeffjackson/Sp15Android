@@ -234,16 +234,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             ModelInterface.patient.addPatientMedicationList(new Medicine(pmed, "", ""));
         }
 
-        //Patient home meds
-        List<String> PatientHomeMedications = Arrays.asList(tmpHomeMedications.split(","));
-        if (!PatientHomeMedications.isEmpty()) {
-            for (String hmed : PatientHomeMedications)
-            {
-                if (hmed != null) {
-                    ModelInterface.patient.addPatientMedicationListsHome(new Medicine(hmed, "", ""));
-                }
-            }
-        }
+
 
         //Allergies
         List<String> Allergies = Arrays.asList(tmpAllergies.split(","));

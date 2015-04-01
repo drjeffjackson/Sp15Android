@@ -219,7 +219,7 @@ public class Presenter implements PresenterInterface
         modelInterface.patient.codeStatus.setAsString(((Spinner)(ac.findViewById(R.id.code_status_spinner))).getSelectedItem().toString());
 
         modelInterface.patient.chiefComplaint.setMedicalHistory(ac.findViewById(R.id.Chief_Complaint).toString());
-        modelInterface.patient.hpi.setHPI(ac.findViewById(R.id.HPI).toString());
+       // modelInterface.patient.hpi.setHPI(ac.findViewById(R.id.HPI).toString());
         modelInterface.patient.hospitalCourse.setHospitalCourse(ac.findViewById(R.id.Hospital_Course).toString());
         modelInterface.patient.patientName.setName(ac.findViewById(R.id.Patient_Name).toString());
         modelInterface.patient.addConsultantList(ac.findViewById(R.id.Consultants).toString());
