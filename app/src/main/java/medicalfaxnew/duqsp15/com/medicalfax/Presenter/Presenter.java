@@ -2,6 +2,8 @@ package medicalfaxnew.duqsp15.com.medicalfax.Presenter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -169,7 +171,8 @@ public class Presenter implements PresenterInterface
     public File GenerateHTML(Context con)
     {
         BufferedWriter bw = null;
-        File file = new File(con.getExternalCacheDir(), "htmlCode.html");
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "htmlCode.html");
+        file.setReadable(true, false);
         try {
             FileOutputStream fou = con.openFileOutput(file.getName(), Context.MODE_APPEND);
             bw = new BufferedWriter(new OutputStreamWriter(fou));
@@ -361,8 +364,7 @@ public class Presenter implements PresenterInterface
 
     public void sendEmail(){
         saveData();
-        modelInterface.email.sendEmail("Patient Information is in the attached Document.", android.net.Uri.parse(GenerateHTML(con).toURI().toString()));
+        modelInterface.email.sendEmail("Patient Information is in the attached Document.", Uri.fromFile(GenerateHTML(con)));
     }
-
 
 }

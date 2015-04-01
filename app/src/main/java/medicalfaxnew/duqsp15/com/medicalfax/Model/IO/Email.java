@@ -3,6 +3,7 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model.IO;
 import android.app.Activity;
 import android.net.Uri;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
@@ -20,8 +21,11 @@ public class Email {
         activity=ac;
     }
     public void sendEmail(String body, Uri u){
+        Log.w("=============",u.toString());
         Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-        emailIntent.setType("text/html");
+        emailIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        emailIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        emailIntent.setType("text/plain");
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "patient information");
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
         emailIntent.putExtra(Intent.EXTRA_STREAM, u);
