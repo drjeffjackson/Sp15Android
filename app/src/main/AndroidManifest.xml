@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="medicalfaxnew.duqsp15.com.medicalfax" >
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />​
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />​
+
     <application
         android:allowBackup="true"
         android:grantUriPermissions="true"
@@ -17,10 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-        <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />​
-        <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />​
+
     </application>
 
 </manifest>
