@@ -50,7 +50,7 @@
             android:clickable="true" />
 
         <Button
-            android:layout_width="75dp"
+            android:layout_width="60dp"
             android:layout_height="50dp"
             android:text="@string/Submit"
             android:focusableInTouchMode="false"
@@ -63,23 +63,23 @@
             android:background="@android:color/holo_red_dark"
             android:alpha=".4" />
 
-        <Button
-            android:layout_width="75dp"
+        <ImageButton
+            android:layout_width="60dp"
             android:layout_height="50dp"
             android:text="@string/Dictate"
             android:focusableInTouchMode="false"
             android:id="@+id/Dictate_Button"
             android:layout_centerVertical="true"
             android:onClick="dictates"
-            android:src="@drawable/microphone_button"
-            android:background="@android:color/holo_red_dark"
+            android:src="@drawable/dictation_icon"
+
             android:alpha=".4"
             android:layout_toLeftOf="@+id/Up_Button"
             android:layout_toStartOf="@+id/Up_Button" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:layout_width="75dp"
+            android:layout_height="50dp"
             android:text="Type"
             android:id="@+id/Show_Keyboard"
             android:layout_alignTop="@+id/Dictate_Button"
@@ -88,7 +88,8 @@
             android:layout_toStartOf="@+id/Dictate_Button"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:onClick="showKeyboard" />
+            android:onClick="showKeyboard"
+            android:src="@drawable/keyboard"/>
 
 
     </RelativeLayout>
