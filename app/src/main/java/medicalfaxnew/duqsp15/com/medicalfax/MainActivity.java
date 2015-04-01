@@ -34,9 +34,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         setContentView(R.layout.activity_main);
         presenter = new Presenter(this.getApplicationContext(), this);
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-//        inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         popUpHIPPA();
-        setListenersAndInitializesFocus();
+        setListenersInitializesFocusHideStartUpKeyboard();
     }
 
     /*This method was written by Brady Sheehan on 2/18/2015
@@ -262,22 +261,6 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
             keyboardState = InputMethodManager.HIDE_NOT_ALWAYS;
         }
     }
-//    /** This method changes focus based on the user's touch shows the input keyboard
-//     * @param v the touched view
-//     * @return true if long click is made
-//     * @return false otherwise
-//     */
-//    @Override
-//    public boolean onLongClick(View v) {
-//        if(v.getId() != R.id.code_status_spinner) {
-//            selectedView = (EditText) v;
-//            v.requestFocus();
-//            //  inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.RESULT_SHOWN);
-//            return true;
-//        }
-//        return false;
-//    }
-
 
     private void popUpHIPPA()
     {
@@ -302,12 +285,14 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         alert.show();  // This call causes an android.view.WindowLeaked: Activity medicalfaxnew.duqsp15.com.medicalfax.MainActivity has leaked window error
         // Exception happens at "medicalfaxnew.duqsp15.com.medicalfax.MainActivity.popUpHIPPA(MainActivity.java:178)"
     }
-    private void setListenersAndInitializesFocus()
+    private void setListenersInitializesFocusHideStartUpKeyboard()
     {
         EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
         Patient_Name.setOnTouchListener(this);
         Patient_Name.requestFocus();
         selectedView = Patient_Name;
+        inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+        keyboardState = InputMethodManager.HIDE_NOT_ALWAYS;
         EditText DOB = (EditText) findViewById(R.id.DOB);
         DOB.setOnTouchListener(this);
         EditText MRN = (EditText) findViewById(R.id.MRN);
