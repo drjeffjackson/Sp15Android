@@ -35,7 +35,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         presenter = new Presenter(this.getApplicationContext(), this);
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         popUpHIPPA();
-        setListenersInitializesFocusHideStartUpKeyboard();
+        setListeners();
+        initialDictation();
     }
 
     /*This method was written by Brady Sheehan on 2/18/2015
@@ -299,14 +300,10 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         alert.show();  // This call causes an android.view.WindowLeaked: Activity medicalfaxnew.duqsp15.com.medicalfax.MainActivity has leaked window error
         // Exception happens at "medicalfaxnew.duqsp15.com.medicalfax.MainActivity.popUpHIPPA(MainActivity.java:178)"
     }
-    private void setListenersInitializesFocusHideStartUpKeyboard()
+    private void setListeners()
     {
         EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
         Patient_Name.setOnTouchListener(this);
-        Patient_Name.requestFocus();
-        selectedView = Patient_Name;
-        inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
-        keyboardState = InputMethodManager.HIDE_NOT_ALWAYS;
         EditText DOB = (EditText) findViewById(R.id.DOB);
         DOB.setOnTouchListener(this);
         EditText MRN = (EditText) findViewById(R.id.MRN);
@@ -357,6 +354,16 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         Home_Medications.setOnTouchListener(this);
     }
 
+    /** This method selects the first text box and starts dictation
+     *
+     */
+    private void initialDictation()
+    {
+        EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
+        Patient_Name.requestFocus();
+        selectedView = Patient_Name;
+        dictates(Patient_Name);
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
