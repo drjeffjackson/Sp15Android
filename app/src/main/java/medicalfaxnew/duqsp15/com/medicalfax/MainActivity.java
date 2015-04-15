@@ -13,8 +13,8 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebView;
 import android.widget.PopupWindow;
-import android.widget.ScrollView;
 import android.widget.EditText;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -32,8 +32,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private EditText selectedView;
     private InputMethodManager inputMethodManager; // to hide and show keyboard
     private int keyboardState = 0;
-    private boolean agree = false; //may need to be saved to the database
-    private ScrollView previewLayout; // to view PDF
+    private boolean agree = true; //may need to be saved to the database and moved to the model level
+    private WebView previewLayout; // to view PDF
     private PopupWindow preview;
 
     @Override
@@ -107,6 +107,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     private void popUpPreview()
     {
+
 
         if(!preview.isShowing()) {
             preview.showAtLocation(findViewById(R.id.main_view), Gravity.CENTER, 0, 0);

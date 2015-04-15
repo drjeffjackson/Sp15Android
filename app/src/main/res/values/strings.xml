@@ -8,7 +8,8 @@
     <string name="UP">UP</string>
     <string name="Dictate">Dictate</string>
     <string name="Submit">Submit</string>
-
+    <string name="Preview">Preview</string>
+    <string name="Send">Send</string>
 
     <string name="First_name">First Name</string>
     <string name="Last_name">Last Name</string>
