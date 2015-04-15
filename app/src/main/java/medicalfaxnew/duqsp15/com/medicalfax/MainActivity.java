@@ -430,17 +430,20 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     @Override
     public void fillBox(int boxNum, String transcribedText) {
         EditText textBox = (EditText) findViewById(boxNum);
-        String currentmessage = textBox.getText().toString();
-        /** Todo
-         * May be crashes because the textBox's string is not initialized as ""
-         */
-        if(!currentmessage.isEmpty()) {
-            textBox.setText(currentmessage + " " + transcribedText);
-        }
-        else {
+        String currentMessage = textBox.getText().toString();
+        if(currentMessage == null)
+        {
             textBox.setText(transcribedText);
         }
-        textBox.setSelection(textBox.getText().toString().length());
+        else if(!currentMessage.isEmpty()) {
+                textBox.setText(currentMessage + " " + transcribedText);
+            }
+            else {
+                textBox.setText(transcribedText);
+            }
+        if((currentMessage = textBox.getText().toString()) != null) {
+            textBox.setSelection(currentMessage.length());
+        }
     }
     @Override
     protected void onDestroy() {
