@@ -33,10 +33,12 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private EditText selectedView;
     private InputMethodManager inputMethodManager; // to hide and show keyboard
     private int keyboardState = 0;
+
     private boolean agree = false; //may need to be saved to the database and moved to the model level
-    private WebView previewLayout;
-    private PopupWindow preview;
-    private View popupView;
+
+    private WebView htmlViewer; //View that displays the HTML code
+    private PopupWindow popUpPreview; //The physical popup window
+    private View popUpPreviewLayout; //The design/layout of the popup window
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,27 +99,27 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         LayoutInflater layoutInflater
                 = (LayoutInflater)getBaseContext()
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
-        popupView = layoutInflater.inflate(R.layout.preview_popup, null);
-        preview = new PopupWindow(
-                popupView,
+        popUpPreviewLayout = layoutInflater.inflate(R.layout.preview_popup, null);
+        popUpPreview = new PopupWindow(
+                popUpPreviewLayout,
                 LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT);
 
     }
 
-    /** This method displays the popup preview
+    /** This method displays the popup preview, sets up the HTML document preview
      *
      */
     private void popUpPreview()
     {
-        previewLayout = (WebView) popupView.findViewById(R.id.HTMLView);
         presenter.saveData();
 
-        previewLayout.getSettings().setJavaScriptEnabled(true);
-        previewLayout.loadDataWithBaseURL(null, presenter.assembleHTML(), "text/html", "utf-8", null);
+        htmlViewer = (WebView) popUpPreviewLayout.findViewById(R.id.HTMLView);
+        htmlViewer.getSettings().setJavaScriptEnabled(true);
+        htmlViewer.loadDataWithBaseURL(null, presenter.assembleHTML(), "text/html", "utf-8", null);
 
-        if(!preview.isShowing()) {
-            preview.showAtLocation(findViewById(R.id.main_view), Gravity.CENTER, 0, 0);
+        if(!popUpPreview.isShowing()) {
+            popUpPreview.showAtLocation(findViewById(R.id.main_view), Gravity.CENTER, 0, 0);
         }
     }
 
@@ -136,8 +138,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     public void close(View v)
     {
-        if(preview.isShowing()) {
-            preview.dismiss();
+        if(popUpPreview.isShowing()) {
+            popUpPreview.dismiss();
         }
     }
 
