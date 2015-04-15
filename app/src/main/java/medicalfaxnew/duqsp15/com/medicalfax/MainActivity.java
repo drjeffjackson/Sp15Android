@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private EditText selectedView;
     private InputMethodManager inputMethodManager; // to hide and show keyboard
     private int keyboardState = 0;
-
+    private boolean agree = false;
     private ScrollView previewLayout; // to view PDF
     private PopupWindow preview;
 
@@ -42,7 +42,9 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         setContentView(R.layout.activity_main);
         presenter = new Presenter(this.getApplicationContext(), this);
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        popUpHIPPA();
+        if(!agree) {
+            popUpHIPPA();
+        }
         setListeners();
         createPopUpPreview();
         initialDictation();
@@ -322,6 +324,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         builder.setMessage("This app is not HIPPA compliant. It is for demo purposes only. Do not use real data. By clicking 'I agree' I as the user assume all liability.");
         builder.setPositiveButton("I agree", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
+                agree = true;
                 dialog.dismiss(); // Let the app continue
             }
         });
@@ -329,6 +332,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         builder.setNegativeButton("I disagree", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                agree = false;
                 System.exit(0); // Close the app
             }
         });
@@ -426,7 +430,17 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     @Override
     public void fillBox(int boxNum, String transcribedText) {
         EditText textBox = (EditText) findViewById(boxNum);
-        textBox.setText(transcribedText);
+        String currentmessage = textBox.getText().toString();
+        /** Todo
+         * May be crashes because the textBox's string is not initialized as ""
+         */
+        if(!currentmessage.isEmpty()) {
+            textBox.setText(currentmessage + " " + transcribedText);
+        }
+        else {
+            textBox.setText(transcribedText);
+        }
+        textBox.setSelection(textBox.getText().toString().length());
     }
     @Override
     protected void onDestroy() {
