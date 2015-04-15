@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,7 +19,7 @@ import android.widget.PopupWindow;
 import android.widget.EditText;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-
+import android.widget.TextView;
 
 
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.ViewPresenterInterFace;
@@ -32,9 +33,10 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private EditText selectedView;
     private InputMethodManager inputMethodManager; // to hide and show keyboard
     private int keyboardState = 0;
-    private boolean agree = true; //may need to be saved to the database and moved to the model level
-    private WebView previewLayout; // to view PDF
+    private boolean agree = false; //may need to be saved to the database and moved to the model level
+    private WebView previewLayout;
     private PopupWindow preview;
+    private View popupView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,11 +97,12 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         LayoutInflater layoutInflater
                 = (LayoutInflater)getBaseContext()
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = layoutInflater.inflate(R.layout.preview_popup, null);
+        popupView = layoutInflater.inflate(R.layout.preview_popup, null);
         preview = new PopupWindow(
                 popupView,
                 LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT);
+
     }
 
     /** This method displays the popup preview
@@ -107,7 +110,11 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     private void popUpPreview()
     {
+        previewLayout = (WebView) popupView.findViewById(R.id.HTMLView);
+        presenter.saveData();
 
+        previewLayout.getSettings().setJavaScriptEnabled(true);
+        previewLayout.loadDataWithBaseURL(null, presenter.assembleHTML(), "text/html", "utf-8", null);
 
         if(!preview.isShowing()) {
             preview.showAtLocation(findViewById(R.id.main_view), Gravity.CENTER, 0, 0);

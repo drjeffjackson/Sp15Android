@@ -9,7 +9,6 @@
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_margin="20dp"
         android:background="@android:color/black">
 
         <RelativeLayout
@@ -22,38 +21,37 @@
                 android:layout_height="50dp"
                 android:id="@+id/close"
                 android:layout_gravity="center_horizontal"
-                android:layout_alignBottom="@+id/textView"
                 android:layout_alignParentTop="true"
                 android:onClick="close"
                 android:background="@drawable/ic_action_cancel"
-                android:layout_toRightOf="@+id/textView"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:backgroundTint="#ffadadad"
                 android:clickable="true" />
 
-            <WebView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/webView"
-                android:layout_above="@+id/send"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/close"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignBottom="@+id/close"
+                android:layout_toLeftOf="@+id/close"
+                android:layout_toStartOf="@+id/close">
 
-            <TextView
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/Preview"
-                android:id="@+id/textView"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:gravity="center_vertical|center_horizontal"
-                android:textColor="#fff2f2f2"
-                android:background="@android:color/darker_gray" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/Preview"
+                    android:id="@+id/Preview"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="#fff2f2f2"
+                    android:background="@android:color/darker_gray"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
@@ -66,6 +64,34 @@
                 android:layout_alignEnd="@+id/close"
                 android:onClick="send"
                 android:background="@android:color/darker_gray" />
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/scrollView"
+                android:layout_above="@+id/send"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@color/White"
+                android:layout_below="@+id/close">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <WebView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/HTMLView"
+                        android:longClickable="true"
+                        android:layout_margin="3dp"
+                        android:background="@color/White" />
+                </LinearLayout>
+            </ScrollView>
+
         </RelativeLayout>
     </FrameLayout>
 </RelativeLayout>
