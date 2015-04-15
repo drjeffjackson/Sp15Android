@@ -30,7 +30,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:backgroundTint="#ffadadad"
-                android:layout_alignParentStart="false"
                 android:clickable="true" />
 
             <ScrollView

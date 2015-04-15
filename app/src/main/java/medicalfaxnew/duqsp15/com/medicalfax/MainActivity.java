@@ -4,13 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Spinner;
+import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.EditText;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -28,6 +32,10 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private EditText selectedView;
     private InputMethodManager inputMethodManager; // to hide and show keyboard
     private int keyboardState = 0;
+
+    private ScrollView previewLayout; // to view PDF
+    private PopupWindow preview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +44,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         popUpHIPPA();
         setListeners();
+        createPopUpPreview();
         initialDictation();
     }
 
@@ -76,41 +85,49 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
 
         return super.onOptionsItemSelected(item);
     }
-    /** This method is called when Up Button is clicked
-     *  It causes the cursor to move up once to the text field above the current position
-     *  Created by: Kinardi Isnata, February 16 2015
+
+    /** This method creates the preview pop up
+     *
      */
-    public void up(View view)
+    private void createPopUpPreview()
     {
-        if(selectedView != null && selectedView.getId() != R.id.Patient_Name)
-        {
-            if((selectedView.getId() -1) == R.id.code_status_spinner) {
-                selectedView = (EditText) findViewById(selectedView.getId() - 2);
-            }
-            else
-            {
-                selectedView = (EditText) findViewById(selectedView.getId() - 1);
-            }
-            selectedView.requestFocus();
+        LayoutInflater layoutInflater
+                = (LayoutInflater)getBaseContext()
+                .getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = layoutInflater.inflate(R.layout.preview_popup, null);
+        preview = new PopupWindow(
+                popupView,
+                LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT);
+    }
+
+    /** This method displays the popup preview
+     *
+     */
+    private void popUpPreview()
+    {
+        if(!preview.isShowing()) {
+            preview.showAtLocation(findViewById(R.id.main_view), Gravity.CENTER, 0, 0);
         }
     }
-    /** This method is called when Down Button is clicked
-     *  It causes the cursor to move down once to the text field below the current position
-     *  Created by: Kinardi Isnata, February 16 2015
-     */
-    public void down(View view)
-    {
-        if(selectedView != null && selectedView.getId() != R.id.Home_Medications)
-        {
-            if((selectedView.getId() + 1) == R.id.code_status_spinner) {
-                selectedView = (EditText) findViewById(selectedView.getId() + 2);
-            }
-            else
-            {
-                selectedView = (EditText) findViewById(selectedView.getId() + 1);
-            }
 
-            selectedView.requestFocus();
+    /** This method is called by send button in the popup preview
+     *
+     * @param v: the send_button
+     */
+    public void send(View v)
+    {
+        presenter.sendEmail();
+    }
+
+    /** This method closes the popup preview
+     *
+     * @param v: the close_button
+     */
+    public void close(View v)
+    {
+        if(preview.isShowing()) {
+            preview.dismiss();
         }
     }
 
@@ -124,12 +141,19 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
             presenter.startTranscription(selectedView.getId());
         }
     }
+
     /**
      * This method is called when the Submit_Button is clicked
      * @param view is the submit button
      */
     public void submits(View view)
     {
+/**
+ **
+ ** TODO
+ *******THIS METHOD NEEDS TO BE FIXED AFTER THE SAVE FUNCTION IS DONE!! THIS LENGTHY CODE IS MERELY AN EMERGENCY SOLUTION!!*****
+ **
+ **/
 
 //        EditText[] field = presenter.getRequiredFields();
 //
@@ -234,32 +258,46 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         }
 
         if(testsPassed)
-            presenter.sendEmail();
-    }
-    @Override
-    public void fillBox(int boxNum, String transcribedText) {
-        EditText textBox = (EditText) findViewById(boxNum);
-        textBox.setText(transcribedText);
+            popUpPreview();
     }
 
-    /** This method changes focus based on the user's touch and hides the input keyboard
-     * @param v the touched view
-     * @param event MotionEvent's event
-     * @return true if focus change is made
-     * @return  false otherwise
+    /** This method is called when Up Button is clicked
+     *  It causes the cursor to move up once to the text field above the current position
+     *  Created by: Kinardi Isnata, February 16 2015
      */
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_UP && v.getId() != R.id.code_status_spinner) {
-            v.requestFocus();
-            selectedView = (EditText) v;
-            inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
-            keyboardState = InputMethodManager.HIDE_NOT_ALWAYS;
-            return true;
+    public void up(View view)
+    {
+        if(selectedView != null && selectedView.getId() != R.id.Patient_Name)
+        {
+            if((selectedView.getId() -1) == R.id.code_status_spinner) {
+                selectedView = (EditText) findViewById(selectedView.getId() - 2);
+            }
+            else
+            {
+                selectedView = (EditText) findViewById(selectedView.getId() - 1);
+            }
+            selectedView.requestFocus();
         }
-        return false;
     }
+    /** This method is called when Down Button is clicked
+     *  It causes the cursor to move down once to the text field below the current position
+     *  Created by: Kinardi Isnata, February 16 2015
+     */
+    public void down(View view)
+    {
+        if(selectedView != null && selectedView.getId() != R.id.Home_Medications)
+        {
+            if((selectedView.getId() + 1) == R.id.code_status_spinner) {
+                selectedView = (EditText) findViewById(selectedView.getId() + 2);
+            }
+            else
+            {
+                selectedView = (EditText) findViewById(selectedView.getId() + 1);
+            }
 
+            selectedView.requestFocus();
+        }
+    }
     /** This method is called by the Show_Keyboard button to show and hide the soft input
      *
      * @param v the button
@@ -300,6 +338,21 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         alert.show();  // This call causes an android.view.WindowLeaked: Activity medicalfaxnew.duqsp15.com.medicalfax.MainActivity has leaked window error
         // Exception happens at "medicalfaxnew.duqsp15.com.medicalfax.MainActivity.popUpHIPPA(MainActivity.java:178)"
     }
+
+    /** This method selects the first text box and starts dictation
+     *
+     */
+    private void initialDictation()
+    {
+        EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
+        Patient_Name.requestFocus();
+        selectedView = Patient_Name;
+        dictates(Patient_Name);
+    }
+
+    /** This method set an onTouchListener to all the EditText objects so that they are touchable
+     *
+     */
     private void setListeners()
     {
         EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
@@ -354,15 +407,26 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         Home_Medications.setOnTouchListener(this);
     }
 
-    /** This method selects the first text box and starts dictation
-     *
+    /** This method changes focus based on the user's touch and hides the input keyboard
+     * @param v the touched view
+     * @param event MotionEvent's event
+     * @return true if focus change is made
      */
-    private void initialDictation()
-    {
-        EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
-        Patient_Name.requestFocus();
-        selectedView = Patient_Name;
-        dictates(Patient_Name);
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_UP && v.getId() != R.id.code_status_spinner) {
+            v.requestFocus();
+            selectedView = (EditText) v;
+            inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+            keyboardState = InputMethodManager.HIDE_NOT_ALWAYS;
+            return true;
+        }
+        return false;
+    }
+    @Override
+    public void fillBox(int boxNum, String transcribedText) {
+        EditText textBox = (EditText) findViewById(boxNum);
+        textBox.setText(transcribedText);
     }
     @Override
     protected void onDestroy() {
