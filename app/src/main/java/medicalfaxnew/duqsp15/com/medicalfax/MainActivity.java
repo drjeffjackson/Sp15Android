@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private EditText selectedView;
     private InputMethodManager inputMethodManager; // to hide and show keyboard
     private int keyboardState = 0;
-    private boolean agree = false;
+    private boolean agree = false; //may need to be saved to the database
     private ScrollView previewLayout; // to view PDF
     private PopupWindow preview;
 
@@ -42,12 +42,11 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         setContentView(R.layout.activity_main);
         presenter = new Presenter(this.getApplicationContext(), this);
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        setListeners();
+        createPopUpPreview();
         if(!agree) {
             popUpHIPPA();
         }
-        setListeners();
-        createPopUpPreview();
-        initialDictation();
     }
 
     /*This method was written by Brady Sheehan on 2/18/2015
@@ -108,6 +107,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     private void popUpPreview()
     {
+
         if(!preview.isShowing()) {
             preview.showAtLocation(findViewById(R.id.main_view), Gravity.CENTER, 0, 0);
         }
@@ -326,6 +326,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
             public void onClick(DialogInterface dialog, int which) {
                 agree = true;
                 dialog.dismiss(); // Let the app continue
+                initialDictation();
             }
         });
 
