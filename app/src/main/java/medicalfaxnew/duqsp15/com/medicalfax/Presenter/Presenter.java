@@ -194,7 +194,7 @@ public class Presenter implements PresenterInterface
     public void saveData() {
 
         //Setting the date for Patient's Date of Birth
-        String dob = ac.findViewById(R.id.DOB).toString();
+        String dob = ((EditText)(ac.findViewById(R.id.DOB))).getText().toString();
         String[] mdy = dob.split(" ");
         String year = mdy[2];
         String month = mdy[0];
@@ -202,7 +202,7 @@ public class Presenter implements PresenterInterface
         day = day.replaceAll("\\D+","");
 
         //Setting the date for Patient's Admission Date
-        String adm = ac.findViewById(R.id.Admission_Date).toString();
+        String adm = ((EditText)(ac.findViewById(R.id.Admission_Date))).getText().toString();
         String[] amdy = dob.split(" ");
         String ayear = amdy[2];
         String amonth = amdy[0];
@@ -212,49 +212,49 @@ public class Presenter implements PresenterInterface
         Setting records for all data pertaining to Patient class
          */
 
-        modelInterface.patient.patientName.setName(ac.findViewById(R.id.Patient_Name).toString());
+        modelInterface.patient.patientName.setName(((EditText)(ac.findViewById(R.id.Patient_Name))).getText().toString());
         modelInterface.patient.dateOfBirth.setDate(month, day, year);
-        modelInterface.patient.medRecNum.setMrn(ac.findViewById(R.id.MRN).toString());
+        modelInterface.patient.medRecNum.setMrn(((EditText)(ac.findViewById(R.id.MRN))).getText().toString());
         modelInterface.patient.admDate.setDate(amonth, aday, ayear);
-        modelInterface.patient.pcpName.setName(ac.findViewById(R.id.PCP).toString());
-        modelInterface.patient.attendingName.setName(ac.findViewById(R.id.Attending_Physician_Name).toString());
+        modelInterface.patient.pcpName.setName(((EditText)(ac.findViewById(R.id.PCP))).getText().toString());
+        modelInterface.patient.attendingName.setName(((EditText)(ac.findViewById(R.id.Attending_Physician_Name))).getText().toString());
 
         //May need to be revised?
         modelInterface.patient.codeStatus.setAsString(((Spinner)(ac.findViewById(R.id.code_status_spinner))).getSelectedItem().toString());
 
-        modelInterface.patient.chiefComplaint.setMedicalHistory(ac.findViewById(R.id.Chief_Complaint).toString());
-       // modelInterface.patient.hpi.setHPI(ac.findViewById(R.id.HPI).toString());
-        modelInterface.patient.hospitalCourse.setHospitalCourse(ac.findViewById(R.id.Hospital_Course).toString());
-        modelInterface.patient.patientName.setName(ac.findViewById(R.id.Patient_Name).toString());
-        modelInterface.patient.addConsultantList(ac.findViewById(R.id.Consultants).toString());
-        modelInterface.patient.patientDiagnosis.setPrimaryDiagnosis(ac.findViewById(R.id.Primary).toString());
-        modelInterface.patient.patientDiagnosis.setSecondaryDiagnosis(ac.findViewById(R.id.Secondary).toString());
-        modelInterface.patient.patientDiagnosis.setComplications(ac.findViewById(R.id.Complications).toString());
-        modelInterface.patient.patientName.setName(ac.findViewById(R.id.Patient_Name).toString());
+        modelInterface.patient.chiefComplaint.setMedicalHistory(((EditText)(ac.findViewById(R.id.Chief_Complaint))).getText().toString());
+//       modelInterface.patient.hpi.setHPI(((EditText)(ac.findViewById(R.id.HPI))).getText().toString());
+        modelInterface.patient.hospitalCourse.setHospitalCourse(((EditText)(ac.findViewById(R.id.Hospital_Course))).getText().toString());
+        modelInterface.patient.patientName.setName(((EditText)(ac.findViewById(R.id.Patient_Name))).getText().toString());
+        modelInterface.patient.addConsultantList(((EditText)(ac.findViewById(R.id.Consultants))).getText().toString());
+        modelInterface.patient.patientDiagnosis.setPrimaryDiagnosis(((EditText)(ac.findViewById(R.id.Primary))).getText().toString());
+        modelInterface.patient.patientDiagnosis.setSecondaryDiagnosis(((EditText)(ac.findViewById(R.id.Secondary))).getText().toString());
+        modelInterface.patient.patientDiagnosis.setComplications(((EditText)(ac.findViewById(R.id.Complications))).getText().toString());
+        modelInterface.patient.patientName.setName(((EditText)(ac.findViewById(R.id.Patient_Name))).getText().toString());
 
         //something for listOfTests
         Tests t = new Tests();
-        if(ac.findViewById(R.id.Finalized).toString()!="") { t.setFinalized(); }
-        else if(ac.findViewById(R.id.Pending).toString()!="") { t.setPending(); }
+        if(((EditText)(ac.findViewById(R.id.Finalized))).getText().toString()!="") { t.setFinalized(); }
+        else if(((EditText)(ac.findViewById(R.id.Pending))).getText().toString()!="") { t.setPending(); }
         modelInterface.patient.addTestList(t);
 
         //Not really sure what the first argument should be, as there is no field for "medicine" to pull data from
-        modelInterface.patient.addPatientMedicationList(new Medicine(ac.findViewById(R.id.Home_Medications).toString(),
-                ac.findViewById(R.id.Current_Course).toString(), ac.findViewById(R.id.Completed_Course).toString()));
+        modelInterface.patient.addPatientMedicationList(new Medicine(((EditText)(ac.findViewById(R.id.Home_Medications))).getText().toString(),
+                ((EditText)(ac.findViewById(R.id.Current_Course))).getText().toString(), ((EditText)(ac.findViewById(R.id.Completed_Course))).getText().toString()));
 
-        modelInterface.patient.medHistory.setMedicalHistory(ac.findViewById(R.id.Past_Medical_History).toString());
-        modelInterface.patient.addAllergiesList(new Allergy(ac.findViewById(R.id.Home_Medications).toString()));
+        modelInterface.patient.medHistory.setMedicalHistory(((EditText)(ac.findViewById(R.id.Past_Medical_History))).getText().toString());
+        modelInterface.patient.addAllergiesList(new Allergy(((EditText)(ac.findViewById(R.id.Home_Medications))).getText().toString()));
 
 
         /*
         Setting records for all data pertaining to Physician class
          */
 
-        modelInterface.physician.name.setName(ac.findViewById(R.id.Attending_Physician_Name).toString());
-        modelInterface.physician.hospital.setHomeHospital(ac.findViewById(R.id.Home_Hospital).toString());
-        modelInterface.physician.npi.setNPI(ac.findViewById(R.id.NPI_Number).toString());
-        modelInterface.physician.contact.setEmail(ac.findViewById(R.id.Email_Address).toString());
-        modelInterface.physician.contact.setPhone(ac.findViewById(R.id.Phone_Number).toString());
+        modelInterface.physician.name.setName(((EditText)(ac.findViewById(R.id.Attending_Physician_Name))).getText().toString());
+        modelInterface.physician.hospital.setHomeHospital(((EditText)(ac.findViewById(R.id.Home_Hospital))).getText().toString());
+        modelInterface.physician.npi.setNPI(((EditText)(ac.findViewById(R.id.NPI_Number))).getText().toString());
+        modelInterface.physician.contact.setEmail(((EditText)(ac.findViewById(R.id.Email_Address))).getText().toString());
+        modelInterface.physician.contact.setPhone(((EditText)(ac.findViewById(R.id.Phone_Number))).getText().toString());
 
     }
 
