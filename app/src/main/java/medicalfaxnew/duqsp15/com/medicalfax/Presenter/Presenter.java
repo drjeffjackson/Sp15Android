@@ -48,7 +48,10 @@ public class Presenter implements PresenterInterface
      */
     public MainActivity ac;
     public Context con;
-
+    /**
+     * HTML String
+     */
+    private String htmlResult;
     /**
      * This constructor will initialize a new Presenter object with a provided Context and Activity.
      * @param context The object representing the Context.
@@ -62,6 +65,7 @@ public class Presenter implements PresenterInterface
         modelInterface = new ModelInterface(context, this, act);
         requestedBox = -1;
         con=context;
+        htmlResult = "";
     }
 
 	// ModelObject
@@ -166,6 +170,7 @@ public class Presenter implements PresenterInterface
         str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getSecondaryDiagnosis());
         str+=new HTMLParagraph(modelInterface.patient.patientDiagnosis.getComplications());
         str+="</html>";
+        htmlResult = str;
         return str;
     }
 
@@ -176,7 +181,6 @@ public class Presenter implements PresenterInterface
 
             try {
                 fw = new FileWriter(file);
-                String htmlResult = assembleHTML();
                 fw.append(htmlResult);
                 fw.flush();
                 fw.close();
