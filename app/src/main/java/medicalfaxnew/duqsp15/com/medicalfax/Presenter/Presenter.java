@@ -48,6 +48,7 @@ public class Presenter implements PresenterInterface
      */
     public MainActivity ac;
     public Context con;
+    private SaverLoader SL;
     /**
      * HTML String
      */
@@ -66,6 +67,7 @@ public class Presenter implements PresenterInterface
         requestedBox = -1;
         con=context;
         htmlResult = "";
+        SL = new SaverLoader(this);
     }
 
 	// ModelObject
