@@ -20,7 +20,7 @@ public class HPI {
     }
 
     /**
-     * constructor with arrayList
+     * constructor with String
      * @param historyOfPresentIllness
      */
     public HPI(String historyOfPresentIllness) {
@@ -34,7 +34,7 @@ public class HPI {
 
     /**
      * Getter for HPI
-     * @return hpi arraylist
+     * @return hpi
      */
     public String getHPI() {
 

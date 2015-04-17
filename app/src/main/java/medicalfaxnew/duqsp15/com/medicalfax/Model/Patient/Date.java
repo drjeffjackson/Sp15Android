@@ -24,11 +24,25 @@ public class Date {
      */
     private String year;
 
+
+    /**
+     *
+     */
+    private String date;
+
     /**
      * nullary constructor
      */
     public Date() {
         //
+    }
+
+    /**
+     * Constructor that takes in the date string
+     * @param date
+     */
+    public Date(String date) {
+       this.date = date;
     }
 
     /**
@@ -45,26 +59,23 @@ public class Date {
     }
 
     /**
-     * @param newMonth
-     * @param newDay
-     * @param newYear
+     * @param newDate set the string date as
      */
-    public void setDate(String newMonth, String newDay, String newYear) {
-        month = newMonth;
-        day = newDay;
-        year = newYear;
+    public void setDate(String newDate) {
+        date = newDate;
     }
 
     /**
-     * @param newMonth
+     * @param newMonth set the month as
      */
     public void setMonth(String newMonth) {
 
         month = newMonth;
     }
 
+
     /**
-     * @param newDay
+     * @param newDay set the day as
      */
     public void setDay(String newDay) {
 
@@ -72,7 +83,7 @@ public class Date {
     }
 
     /**
-     * @param newYear
+     * @param newYear set the year as
      */
     public void setYear(String newYear) {
 
@@ -80,7 +91,7 @@ public class Date {
     }
 
     /**
-     * @return
+     * @return the month
      */
     public String getMonth() {
 
@@ -88,7 +99,7 @@ public class Date {
     }
 
     /**
-     * @return
+     * @return the day of the week
      */
     public String getDay() {
 
@@ -96,12 +107,33 @@ public class Date {
     }
 
     /**
-     * @return
+     * @return the year
      */
     public String getYear() {
 
         return year;
     }
+
+
+    /**
+     *
+     * @return the date
+     */
+    public String getDate() {
+        return date;
+    }
+
+    /*
+   Verifies that the date is present
+   @return Boolean
+    */
+    public Boolean verifyDate() {
+        if (date.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
 
     /*
     Verifies that the month is present
