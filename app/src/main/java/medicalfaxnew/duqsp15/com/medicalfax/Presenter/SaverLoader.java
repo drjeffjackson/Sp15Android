@@ -20,38 +20,27 @@ public class SaverLoader {
         }
 
         public void saveData() {
-
-            //Setting the date for Patient's Date of Birth
-            String dob = ((EditText)(mypres.ac.findViewById(R.id.DOB))).getText().toString();
-            String[] mdy = dob.split(" ");
-            String year = mdy[2];
-            String month = mdy[0];
-            String day = mdy[1];
-            day = day.replaceAll("\\D+","");
-
-            //Setting the date for Patient's Admission Date
-            String adm = ((EditText)(mypres.ac.findViewById(R.id.Admission_Date))).getText().toString();
-            String[] amdy = dob.split(" ");
-            String ayear = amdy[2];
-            String amonth = amdy[0];
-            String aday = amdy[1];
-            aday = aday.replaceAll("\\D+","");
         /*
         Setting records for all data pertaining to Patient class
          */
 
+            //Setting the date for Patient's Date of Birth
+            String dob = ((EditText)(mypres.ac.findViewById(R.id.DOB))).getText().toString();
+
+            //Setting the date for Patient's Admission Date
+            String adm = ((EditText)(mypres.ac.findViewById(R.id.Admission_Date))).getText().toString();
+
             mypres.modelInterface.patient.patientName.setName(((EditText)(mypres.ac.findViewById(R.id.Patient_Name))).getText().toString());
-            mypres.modelInterface.patient.dateOfBirth.setDate(month, day, year);
+            mypres.modelInterface.patient.dateOfBirth.setDate(dob);
             mypres.modelInterface.patient.medRecNum.setMrn(((EditText)(mypres.ac.findViewById(R.id.MRN))).getText().toString());
-            mypres.modelInterface.patient.admDate.setDate(amonth, aday, ayear);
+            mypres.modelInterface.patient.admDate.setDate(((EditText)(mypres.ac.findViewById(R.id.DOB))).getText().toString());
             mypres.modelInterface.patient.pcpName.setName(((EditText)(mypres.ac.findViewById(R.id.PCP))).getText().toString());
             mypres.modelInterface.patient.attendingName.setName(((EditText)(mypres.ac.findViewById(R.id.Attending_Physician_Name))).getText().toString());
 
-            //May need to be revised?
             mypres.modelInterface.patient.codeStatus.setAsString(((Spinner)(mypres.ac.findViewById(R.id.code_status_spinner))).getSelectedItem().toString());
 
             mypres.modelInterface.patient.chiefComplaint.setMedicalHistory(((EditText)(mypres.ac.findViewById(R.id.Chief_Complaint))).getText().toString());
-//       modelInterface.patient.hpi.setHPI(((EditText)(ac.findViewById(R.id.HPI))).getText().toString());
+            mypres.modelInterface.patient.hpi.setHPI(((EditText)(mypres.ac.findViewById(R.id.HPI))).getText().toString());
             mypres.modelInterface.patient.hospitalCourse.setHospitalCourse(((EditText)(mypres.ac.findViewById(R.id.Hospital_Course))).getText().toString());
             mypres.modelInterface.patient.patientName.setName(((EditText)(mypres.ac.findViewById(R.id.Patient_Name))).getText().toString());
             mypres.modelInterface.patient.addConsultantList(((EditText)(mypres.ac.findViewById(R.id.Consultants))).getText().toString());
@@ -60,7 +49,7 @@ public class SaverLoader {
             mypres.modelInterface.patient.patientDiagnosis.setComplications(((EditText)(mypres.ac.findViewById(R.id.Complications))).getText().toString());
             mypres.modelInterface.patient.patientName.setName(((EditText)(mypres.ac.findViewById(R.id.Patient_Name))).getText().toString());
 
-            //something for listOfTests
+            //for listOfTests
             Tests t = new Tests();
             if(((EditText)(mypres.ac.findViewById(R.id.Finalized))).getText().toString()!="") { t.setFinalized(); }
             else if(((EditText)(mypres.ac.findViewById(R.id.Pending))).getText().toString()!="") { t.setPending(); }

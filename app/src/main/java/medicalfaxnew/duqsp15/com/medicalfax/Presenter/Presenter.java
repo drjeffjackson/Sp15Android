@@ -4,27 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
-import android.util.Log;
 import android.widget.EditText;
-import android.widget.Spinner;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 import medicalfaxnew.duqsp15.com.medicalfax.MainActivity;
 import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
-import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Allergy;
-import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Medicine;
-import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Tests;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.PresenterInterface;
 import medicalfaxnew.duqsp15.com.medicalfax.R;
 
@@ -68,6 +56,7 @@ public class Presenter implements PresenterInterface
         con=context;
         htmlResult = "";
         SL = new SaverLoader(this);
+        saveData();
     }
 
 	// ModelObject
@@ -194,74 +183,12 @@ public class Presenter implements PresenterInterface
     }
 
     public void saveData() {
+        SL.saveData();
+    }
 
-        //Setting the date for Patient's Date of Birth
-        String dob = ((EditText)(ac.findViewById(R.id.DOB))).getText().toString();
-
-        //Presenter team, I commented these to make the code not break -Claire (feel free to change)
-//        String[] mdy = dob.split(" ");
-//        String year = mdy[2];
-//        String month = mdy[0];
-//        String day = mdy[1];
-//        day = day.replaceAll("\\D+","");
-
-
-        //Setting the date for Patient's Admission Date
-        String adm = ((EditText)(ac.findViewById(R.id.Admission_Date))).getText().toString();
-        //Presenter team, I commented these to make the code not break -Claire (feel free to change)
-//        String[] amdy = dob.split(" ");
-//        String ayear = amdy[2];
-//        String amonth = amdy[0];
-//        String aday = amdy[1];
-//        aday = aday.replaceAll("\\D+","");
-        /*
-        Setting records for all data pertaining to Patient class
-         */
-
-        modelInterface.patient.patientName.setName(((EditText)(ac.findViewById(R.id.Patient_Name))).getText().toString());
-        modelInterface.patient.dateOfBirth.setDate(dob); //This line was modified by model- feel free to change
-        modelInterface.patient.medRecNum.setMrn(((EditText)(ac.findViewById(R.id.MRN))).getText().toString());
-        modelInterface.patient.admDate.setDate(adm); //This line was modified by model- feel free to change
-        modelInterface.patient.pcpName.setName(((EditText)(ac.findViewById(R.id.PCP))).getText().toString());
-        modelInterface.patient.attendingName.setName(((EditText)(ac.findViewById(R.id.Attending_Physician_Name))).getText().toString());
-
-        //May need to be revised?
-        modelInterface.patient.codeStatus.setAsString(((Spinner)(ac.findViewById(R.id.code_status_spinner))).getSelectedItem().toString());
-
-        modelInterface.patient.chiefComplaint.setMedicalHistory(((EditText)(ac.findViewById(R.id.Chief_Complaint))).getText().toString());
-//       modelInterface.patient.hpi.setHPI(((EditText)(ac.findViewById(R.id.HPI))).getText().toString());
-        modelInterface.patient.hospitalCourse.setHospitalCourse(((EditText)(ac.findViewById(R.id.Hospital_Course))).getText().toString());
-        modelInterface.patient.patientName.setName(((EditText)(ac.findViewById(R.id.Patient_Name))).getText().toString());
-        modelInterface.patient.addConsultantList(((EditText)(ac.findViewById(R.id.Consultants))).getText().toString());
-        modelInterface.patient.patientDiagnosis.setPrimaryDiagnosis(((EditText)(ac.findViewById(R.id.Primary))).getText().toString());
-        modelInterface.patient.patientDiagnosis.setSecondaryDiagnosis(((EditText)(ac.findViewById(R.id.Secondary))).getText().toString());
-        modelInterface.patient.patientDiagnosis.setComplications(((EditText)(ac.findViewById(R.id.Complications))).getText().toString());
-        modelInterface.patient.patientName.setName(((EditText)(ac.findViewById(R.id.Patient_Name))).getText().toString());
-
-        //something for listOfTests
-        Tests t = new Tests();
-        if(((EditText)(ac.findViewById(R.id.Finalized))).getText().toString()!="") { t.setFinalized(); }
-        else if(((EditText)(ac.findViewById(R.id.Pending))).getText().toString()!="") { t.setPending(); }
-        modelInterface.patient.addTestList(t);
-
-        //Not really sure what the first argument should be, as there is no field for "medicine" to pull data from
-        modelInterface.patient.addPatientMedicationList(new Medicine(((EditText)(ac.findViewById(R.id.Home_Medications))).getText().toString(),
-                ((EditText)(ac.findViewById(R.id.Current_Course))).getText().toString(), ((EditText)(ac.findViewById(R.id.Completed_Course))).getText().toString()));
-
-        modelInterface.patient.medHistory.setMedicalHistory(((EditText)(ac.findViewById(R.id.Past_Medical_History))).getText().toString());
-        modelInterface.patient.addAllergiesList(new Allergy(((EditText)(ac.findViewById(R.id.Home_Medications))).getText().toString()));
-
-
-        /*
-        Setting records for all data pertaining to Physician class
-         */
-
-        modelInterface.physician.name.setName(((EditText)(ac.findViewById(R.id.Attending_Physician_Name))).getText().toString());
-        modelInterface.physician.hospital.setHomeHospital(((EditText)(ac.findViewById(R.id.Home_Hospital))).getText().toString());
-        modelInterface.physician.npi.setNPI(((EditText)(ac.findViewById(R.id.NPI_Number))).getText().toString());
-        modelInterface.physician.contact.setEmail(((EditText)(ac.findViewById(R.id.Email_Address))).getText().toString());
-        modelInterface.physician.contact.setPhone(((EditText)(ac.findViewById(R.id.Phone_Number))).getText().toString());
-
+    public void updateDatabase() {
+        modelInterface.patient.update();
+        modelInterface.physician.update();
     }
 
     public EditText[] getRequiredFields(){
