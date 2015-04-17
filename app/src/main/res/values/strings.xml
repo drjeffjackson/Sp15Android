@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="NonCont_Dictation">Noncontinuous Dictation</string>
+    <string name="Cont_Dictation">Continuous Dictation</string>
     <string name="app_name">MedicalFax</string>
     <string name="action_settings">Settings</string>
 
