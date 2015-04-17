@@ -14,13 +14,30 @@ public class Physician implements ModelObj
     public static final Hospital hospital = new Hospital();
     public static final NPI npi = new NPI();
     public static final Contact contact = new Contact();
+    public static boolean dictation;
 
     /*
     Physician constructor
      */
     public Physician()
     {
-      //
+      this.dictation = false;
+    }
+
+    /*
+       Gets boolean if the cont. dictation is enabled
+    */
+    public boolean getContinuousDictation()
+    {
+        return dictation;
+    }
+
+    /*
+    Sets cont. dictation setting to passed boolean
+     */
+    public void setContinuousDictation(boolean p)
+    {
+        dictation = p;
     }
 
     /*
