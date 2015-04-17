@@ -160,7 +160,7 @@ public class Presenter implements PresenterInterface
         str+=new HTMLHeader("Chief Complaint").toString();
         str+=new HTMLParagraph(modelInterface.patient.chiefComplaint.getChiefComplaint());
         str+=new HTMLHeader("HPI").toString();
-        str+=new HTMLParagraph(modelInterface.patient.hpi.getHPI().get(0));
+        str+=new HTMLParagraph(modelInterface.patient.hpi.getHPI());
         str+=new HTMLHeader("Hospital Course");
         str+=new HTMLParagraph(modelInterface.patient.hospitalCourse.getHospitalCourse());
         str+=new HTMLHeader("Relevant Medical History");
