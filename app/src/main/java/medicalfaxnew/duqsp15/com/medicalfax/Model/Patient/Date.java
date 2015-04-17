@@ -5,6 +5,8 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model.Patient;
  */
 
 /**
+ *
+ * EDIT: The date class sets a string date
  * The Date class contains 3 fields: month, day, year that can be set and
  * retrieved
  */

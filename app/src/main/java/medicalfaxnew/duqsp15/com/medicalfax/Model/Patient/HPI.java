@@ -1,13 +1,13 @@
 package medicalfaxnew.duqsp15.com.medicalfax.Model.Patient;
 
-import java.util.ArrayList;
 
-/** Justin!!!! No one likes arraylists
- * Created by Coder Barbie on 3/26/15.
+/**
+ * Created by Justin & Coder Barbie on 3/26/15.
  */
 
 /**
  * This class for is the HPI (History of Present illness)
+ * EDIT: the HPI was changed to a string
  */
 public class HPI {
 

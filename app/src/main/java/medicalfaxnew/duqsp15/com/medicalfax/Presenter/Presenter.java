@@ -195,6 +195,8 @@ public class Presenter implements PresenterInterface
 
         //Setting the date for Patient's Date of Birth
         String dob = ((EditText)(ac.findViewById(R.id.DOB))).getText().toString();
+
+        //Presenter team, I commented these to make the code not break -Claire (feel free to change)
 //        String[] mdy = dob.split(" ");
 //        String year = mdy[2];
 //        String month = mdy[0];
@@ -204,6 +206,7 @@ public class Presenter implements PresenterInterface
 
         //Setting the date for Patient's Admission Date
         String adm = ((EditText)(ac.findViewById(R.id.Admission_Date))).getText().toString();
+        //Presenter team, I commented these to make the code not break -Claire (feel free to change)
 //        String[] amdy = dob.split(" ");
 //        String ayear = amdy[2];
 //        String amonth = amdy[0];
@@ -214,9 +217,9 @@ public class Presenter implements PresenterInterface
          */
 
         modelInterface.patient.patientName.setName(((EditText)(ac.findViewById(R.id.Patient_Name))).getText().toString());
-        modelInterface.patient.dateOfBirth.setDate(dob);
+        modelInterface.patient.dateOfBirth.setDate(dob); //This line was modified by model- feel free to change
         modelInterface.patient.medRecNum.setMrn(((EditText)(ac.findViewById(R.id.MRN))).getText().toString());
-        modelInterface.patient.admDate.setDate(adm);
+        modelInterface.patient.admDate.setDate(adm); //This line was modified by model- feel free to change
         modelInterface.patient.pcpName.setName(((EditText)(ac.findViewById(R.id.PCP))).getText().toString());
         modelInterface.patient.attendingName.setName(((EditText)(ac.findViewById(R.id.Attending_Physician_Name))).getText().toString());
 
