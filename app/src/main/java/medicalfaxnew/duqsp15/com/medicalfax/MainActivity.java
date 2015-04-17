@@ -19,6 +19,8 @@ import android.widget.PopupWindow;
 import android.widget.EditText;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.view.MenuInflater;
+import android.widget.Toast;
 import android.widget.TextView;
 
 
@@ -33,7 +35,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private EditText selectedView;
     private InputMethodManager inputMethodManager; // to hide and show keyboard
     private int keyboardState = 0;
-
+    private boolean continuousDictation = true;
     private boolean agree = false; //may need to be saved to the database and moved to the model level
 
     private WebView htmlViewer; //View that displays the HTML code
@@ -72,8 +74,9 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.items, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -83,11 +86,19 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if( id == R.id.Cont_Dictation) {
+            continuousDictation = true;
+            item.setChecked(true);
         }
-
+        if( id == R.id.NonCont_Dictation) {
+            continuousDictation = false;
+            item.setChecked(true);
+        }
+        if(continuousDictation) {
+            Toast.makeText(getApplicationContext(), "Continuous Dictation preference set!", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "NonContinuous Dictation preference set!", Toast.LENGTH_LONG).show();
+        }
         return super.onOptionsItemSelected(item);
     }
 
