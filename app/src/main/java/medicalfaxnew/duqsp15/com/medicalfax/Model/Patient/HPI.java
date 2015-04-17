@@ -2,7 +2,7 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model.Patient;
 
 import java.util.ArrayList;
 
-/**
+/** Justin!!!! No one likes arraylists
  * Created by Coder Barbie on 3/26/15.
  */
 
@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class HPI {
 
-    ArrayList<String> historyOfPresentIllness;  //array list of strings containing history of present illness.
+    String historyOfPresentIllness;  //array list of strings containing history of present illness.
 
     /**
      * nullary constructor
@@ -23,12 +23,12 @@ public class HPI {
      * constructor with arrayList
      * @param historyOfPresentIllness
      */
-    public HPI(ArrayList<String> historyOfPresentIllness) {
+    public HPI(String historyOfPresentIllness) {
         this.historyOfPresentIllness = historyOfPresentIllness;
     }
 
 
-    public void setHPI(ArrayList<String> newHistoryOfPresentIllness) {
+    public void setHPI(String newHistoryOfPresentIllness) {
         historyOfPresentIllness = newHistoryOfPresentIllness;
     }
 
@@ -36,7 +36,7 @@ public class HPI {
      * Getter for HPI
      * @return hpi arraylist
      */
-    public ArrayList<String> getHPI() {
+    public String getHPI() {
 
         return historyOfPresentIllness;
     }
