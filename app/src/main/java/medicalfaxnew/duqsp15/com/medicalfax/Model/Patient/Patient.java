@@ -215,7 +215,7 @@ public class Patient implements ModelObj {
     Verifies required fields and returns if compliant
      */
     public ArrayList<String> verify() {
-        //FOR DEMONSTRATION PURPOSES - CODE BELOW
+
         ArrayList<String> missingFields = new ArrayList<String>();
         missingFields.add("PatientNPI");
 
@@ -233,14 +233,8 @@ public class Patient implements ModelObj {
         if (!chiefComplaint.verifyComplaint()) {
             missingFields.add("set chief complaint");
         }
-        if (!admDate.verifyDay()) {
-            missingFields.add("set day");
-        }
-        if (!admDate.verifyMonth()) {
-            missingFields.add("set month");
-        }
-        if (!admDate.verifyYear()) {
-            missingFields.add("set year");
+        if (!admDate.verifyDate()) {
+            missingFields.add("set date");
         }
         if (!patientDiagnosis.verifyPrimaryDiagnosis()) {
             missingFields.add("set patient primary diagnosis");
