@@ -21,6 +21,7 @@ import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
 import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Allergy;
 import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Medicine;
 import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Patient;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Tests;
 
 public class MySQLiteHelper extends SQLiteOpenHelper
 {
@@ -35,6 +36,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public final String PHYSICIAN_COLUMN_TITLE = "Title";
     public final String PHYSICIAN_COLUMN_PHONE = "Phone";
     public final String PHYSICIAN_COLUMN_EMAIL = "Email";
+    public final String PHYSICIAN_COLUMN_DICTATION = "Dictation";
 
     private final String PHYSICIAN_TABLE_CREATE = "create table IF NOT EXISTS "
             + TABLE_PHYSICIAN + "(" + PHYSICIAN_COLUMN_ID
@@ -45,7 +47,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper
             + PHYSICIAN_COLUMN_DEPARTMENT + " text,"
             + PHYSICIAN_COLUMN_TITLE + " text,"
             + PHYSICIAN_COLUMN_PHONE + " text,"
-            + PHYSICIAN_COLUMN_EMAIL + " text"
+            + PHYSICIAN_COLUMN_EMAIL + " text,"
+            + PHYSICIAN_COLUMN_DICTATION + " text"
             + ");";
 
 
@@ -69,7 +72,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     public final String PATIENT_COLUMN_MedicalHistory = "MedicalHistory";
     public final String PATIENT_COLUMN_Allergies = "Allergies";
     public final String PATIENT_COLUMN_DIAGNOSIS = "Diagnosis";
-    public final String PATIENT_COLUMN_ANTIBIOTIC = "Antibiotics";
 
     private final String PATIENT_TABLE_CREATE = "create table IF NOT EXISTS "
             + TABLE_PATIENT + "(" + PATIENT_COLUMN_ID
@@ -168,11 +170,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         ModelInterface.patient.hospitalCourse.setHospitalCourse(c.getString(c.getColumnIndex(PATIENT_COLUMN_HospitalCourse)));
         ModelInterface.patient.medHistory.setMedicalHistory(c.getString(c.getColumnIndex(PATIENT_COLUMN_MedicalHistory)));
         ModelInterface.patient.patientDiagnosis.setPrimaryDiagnosis(c.getString(c.getColumnIndex(PATIENT_COLUMN_DIAGNOSIS)));
-
-
-
-
-
+        ModelInterface.patient.hpi.setHPI(c.getString(c.getColumnIndex(PATIENT_COLUMN_HPI)));
 
         //Now when we load the array lists, they're stored separated by commas, so we have to explode them
         String tmpDOB = c.getString(c.getColumnIndex(PATIENT_COLUMN_DOB));
@@ -182,7 +180,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         String tmpPatientMedications = c.getString(c.getColumnIndex(PATIENT_COLUMN_PatientMedications));
         String tmpHomeMedications = c.getString(c.getColumnIndex(PATIENT_COLUMN_HomeMedications));
         String tmpAllergies = c.getString(c.getColumnIndex(PATIENT_COLUMN_Allergies));
-        String tmpHPI = c.getString(c.getColumnIndex(PATIENT_COLUMN_HPI));
+
 
         //Date Of Birth
         List<String> DOB = Arrays.asList(tmpDOB.split("/"));
@@ -206,25 +204,21 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         }
 
 
-        //HPI
-        List<String> HPI = Arrays.asList(tmpHPI.split(","));
-        for (String hpi : HPI)
-        {
-            //Todo
-        }
+
 
         //Consultants
         List<String> Consultants = Arrays.asList(tmpConsultants.split(","));
         for (String consultant : Consultants)
         {
-            //
+            ModelInterface.patient.addConsultantList(consultant);
         }
 
         //Tests
         List<String> Tests = Arrays.asList(tmpTests.split(","));
         for (String test : Tests)
         {
-            //ModelInterface.patient.addTestList();
+            //Todo add field to allow for test field
+            ModelInterface.patient.addTestList(new medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Tests(test, ""));
         }
 
         //Patient meds
@@ -288,6 +282,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         cv.put(PHYSICIAN_COLUMN_TITLE, "");
         cv.put(PHYSICIAN_COLUMN_PHONE, "");
         cv.put(PHYSICIAN_COLUMN_EMAIL, "");
+        cv.put(PHYSICIAN_COLUMN_DICTATION, "1");
         database.insert(TABLE_PHYSICIAN, null, cv); //Insert statement
 
     }
@@ -310,6 +305,15 @@ public class MySQLiteHelper extends SQLiteOpenHelper
                 ModelInterface.physician.hospital.setTitle(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_TITLE)));
                 ModelInterface.physician.contact.setPhone(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_PHONE)));
                 ModelInterface.physician.contact.setEmail(c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_EMAIL)));
+
+                if (c.getString(c.getColumnIndex(PHYSICIAN_COLUMN_DICTATION)) == "1")
+                {
+                    ModelInterface.physician.setContinuousDictation(true);
+                }
+                else
+                {
+                    ModelInterface.physician.setContinuousDictation(false);
+                }
             }
         }
         catch (Exception e)
@@ -333,6 +337,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         cv.put(PHYSICIAN_COLUMN_TITLE, ModelInterface.physician.hospital.getTitle());
         cv.put(PHYSICIAN_COLUMN_PHONE, ModelInterface.physician.contact.getPhone());
         cv.put(PHYSICIAN_COLUMN_EMAIL, ModelInterface.physician.contact.getEmail());
+
+
+        if (ModelInterface.physician.getContinuousDictation() == true)
+        {
+            cv.put(PHYSICIAN_COLUMN_DICTATION, "1");
+        }
+        else
+        {
+            cv.put(PHYSICIAN_COLUMN_DICTATION, "0");
+        }
 
         database.update(TABLE_PHYSICIAN, cv, PHYSICIAN_COLUMN_ID + "=1", null);
     }
