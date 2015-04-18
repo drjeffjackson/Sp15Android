@@ -22,8 +22,11 @@ import android.content.DialogInterface;
 import android.view.MenuInflater;
 import android.widget.Toast;
 import android.widget.TextView;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
+import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.PresenterInterface;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.ViewPresenterInterFace;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Presenter;
 
@@ -50,6 +53,9 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         setListeners();
         createPopUpPreview();
+        MyTimerTask save = new MyTimerTask();
+        Timer myTimer = new Timer();
+        myTimer.schedule(save, 60000, 60000);
         if(!agree) {
             popUpHIPPA();
         }
@@ -484,5 +490,12 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         if (presenter.modelInterface.IO.getHelper() != null) {
             presenter.modelInterface.IO.getHelper().close();
         }
+    }
+}
+
+class MyTimerTask extends TimerTask {
+    public Presenter update;
+    public void run() {
+        update.updateDatabase();
     }
 }
