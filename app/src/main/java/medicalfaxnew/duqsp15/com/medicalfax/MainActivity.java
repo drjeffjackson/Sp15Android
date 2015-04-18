@@ -76,31 +76,42 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         // Inflate the menu; this adds items to the action bar if it is present.
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.items, menu);
+        inflater.inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if( id == R.id.Cont_Dictation) {
-            continuousDictation = true;
-            item.setChecked(true);
-        }
-        if( id == R.id.NonCont_Dictation) {
-            continuousDictation = false;
-            item.setChecked(true);
+        //noinspection SimplifiableIfStatement\
+        //converted to a switch statement by Coder Thanatos
+        switch(id) {
+            case R.id.action_submit:
+                submits(selectedView);
+                return true;
+            case R.id.Cont_Dictation:
+                continuousDictation = true;
+                item.setChecked(true);
+                break;
+            case R.id.NonCont_Dictation:
+                continuousDictation = false;
+                item.setChecked(false);
+                break;
         }
         if(continuousDictation) {
             Toast.makeText(getApplicationContext(), "Continuous Dictation preference set!", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(getApplicationContext(), "NonContinuous Dictation preference set!", Toast.LENGTH_LONG).show();
         }
-        return super.onOptionsItemSelected(item);
+
+
+          return super.onOptionsItemSelected(item);
     }
+
+
 
     /** This method creates the preview pop up
      *

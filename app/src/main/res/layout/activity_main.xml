@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,17 +16,17 @@
     <ImageView
         android:layout_width="200dp"
         android:layout_height="300dp"
-        android:id="@+id/imageView"
+        android:id="@+id/backgroundLogo"
         android:src="@drawable/logo"
         android:visibility="visible"
         android:tintMode="screen"
         android:clickable="false"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="false"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false" />
+        android:layout_alignParentStart="false"
+        android:layout_alignParentBottom="true" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -49,8 +50,11 @@
             android:layout_toStartOf="@+id/Down_Button"
             android:textColor="@color/White"
             android:onClick="up"
-            android:background="@null"
-            android:src="@drawable/up_button" />
+            android:background="@drawable/tab_up"
+             />
+        <!-- Extra options for above up button ^ -->
+        <!-- android:src="@drawable/up_button" -->
+        <!-- End of extra options @Coder Thanatos  -->
 
         <!-- Down_Button: moves cursor down one text field from the current position -->
         <ImageButton
@@ -64,11 +68,14 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:onClick="down"
-            android:background="@null"
-            android:src="@drawable/down_button"
-            android:clickable="true" />
+            android:background="@drawable/tab_down"
 
-        <Button
+            android:clickable="true" />
+        <!-- Extra options for above down button ^ -->
+        <!-- android:src="@drawable/down_button" -->
+        <!-- End of extra options @Coder Thanatos  -->
+
+        <ImageButton
             android:layout_width="60dp"
             android:layout_height="50dp"
             android:text="@string/Submit"
@@ -77,27 +84,35 @@
             android:layout_gravity="center_horizontal"
             android:id="@+id/Submit_Button"
             android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@android:color/holo_red_dark"
-            android:alpha=".4" />
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="false"
+            android:background="@drawable/ic_action_send"
+            android:alpha="1.0" />
 
         <ImageButton
             android:layout_width="60dp"
             android:layout_height="50dp"
-            android:text="@string/Dictate"
+
             android:focusableInTouchMode="false"
             android:id="@+id/Dictate_Button"
             android:layout_centerVertical="true"
             android:onClick="dictates"
-            android:src="@drawable/dictation_icon"
 
-            android:alpha=".4"
+
+
             android:layout_toLeftOf="@+id/Up_Button"
-            android:layout_toStartOf="@+id/Up_Button" />
+            android:layout_toStartOf="@+id/Up_Button"
+            android:background="@android:drawable/ic_btn_speak_now"
+            />
+
+        <!-- Extra options for above dictate button ^ -->
+        <!-- android:text="@string/Dictate" -->
+        <!-- android:src="@drawable/dictation_icon" -->
+        <!-- android:alpha="0.4" -->
+        <!-- End of extra options @Coder Thanatos  -->
 
         <ImageButton
-            android:layout_width="75dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="Type"
             android:id="@+id/Show_Keyboard"
@@ -108,7 +123,8 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:onClick="showKeyboard"
-            android:src="@drawable/keyboard"/>
+            android:src="@drawable/ic_action_keyboard"
+            android:background="@null" />
 
 
     </RelativeLayout>
@@ -609,7 +625,6 @@
 
 
 </RelativeLayout>
-
 
 
 

@@ -1,0 +1,6 @@
+This file to address anyone know bugs or issues in the code, that you could not fix easily.
+Be sure to update this list with additions and subtractions of items.
+
+
+    1. Keyboard hides lower buttons when raised. (fix in progress)
+    2. Landscape mode resets HIPPA waiver. (fix in progress)
