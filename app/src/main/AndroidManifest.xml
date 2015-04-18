@@ -11,12 +11,12 @@
         android:allowBackup="true"
         android:grantUriPermissions="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Medical App"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:windowSoftInputMode="stateHidden"
+            android:label="Medical App"
+            android:windowSoftInputMode="stateHidden|adjustPan"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,3 +28,8 @@
     </application>
 
 </manifest>
+
+       <!-- Removed from the activity
+              android:windowSoftInputMode="stateHidden"
+              android:screenOrientation="portrait"
+                     @Coder Thanatos -->
