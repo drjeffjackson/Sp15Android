@@ -21,7 +21,7 @@ public class Physician implements ModelObj
      */
     public Physician()
     {
-      this.dictation = false;
+      this.dictation = true;
     }
 
     /*

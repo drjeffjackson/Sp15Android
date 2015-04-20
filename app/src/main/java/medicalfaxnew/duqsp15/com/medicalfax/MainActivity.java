@@ -114,9 +114,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         } else {
             Toast.makeText(getApplicationContext(), "NonContinuous Dictation preference set!", Toast.LENGTH_LONG).show();
         }
-
-
-          return super.onOptionsItemSelected(item);
+        presenter.modelInterface.physician.setContinuousDictation(continuousDictation);
+        return super.onOptionsItemSelected(item);
     }
 
 
