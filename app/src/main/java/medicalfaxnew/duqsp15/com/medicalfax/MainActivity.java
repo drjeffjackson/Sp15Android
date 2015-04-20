@@ -453,7 +453,6 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-
        if (event.getAction() == MotionEvent.ACTION_UP) {
             actionUpTime = event.getEventTime() - actionDownTime;
             if (actionUpTime > 0 && v.getId() != R.id.code_status_spinner) {
