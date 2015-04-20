@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,7 +20,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.MenuInflater;
 import android.widget.Toast;
-import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -196,13 +194,16 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
  **/
 
 //        EditText[] field = presenter.getRequiredFields();
-//
-//        for(int i=0;i < field.length;i++) {
-//            if (field[i].getText().toString().isEmpty()) {
-//                field[i].setError("Field is required");
-//            }
-//        }
         boolean testsPassed = true;
+//        if(field.length > 0) {
+//            for (int i = 0; i < field.length; i++) {
+//                if (field[i].getText().toString().isEmpty()) {
+//                    field[i].setError("Field is required");
+//                }
+//            }
+//            testsPassed = false;
+//        }
+
 
         EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
         if (Patient_Name.getText().toString().isEmpty()) {
