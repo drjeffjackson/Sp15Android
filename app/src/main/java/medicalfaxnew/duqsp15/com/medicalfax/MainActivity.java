@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         setListeners();
         createPopUpPreview();
-        MyTimerTask save = new MyTimerTask();
+        MyTimerTask save = new MyTimerTask(presenter);
         Timer myTimer = new Timer();
         myTimer.schedule(save, 60000, 60000);
         if(!agree) {
@@ -491,10 +491,27 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
             presenter.modelInterface.IO.getHelper().close();
         }
     }
+    public void onBackPressed()
+    {
+        if(popUpPreview.isShowing())
+        {
+            popUpPreview.dismiss();
+            return;
+        }
+        presenter.saveData();
+        super.onBackPressed();
+    }
+
 }
+
 
 class MyTimerTask extends TimerTask {
     public Presenter update;
+
+    public MyTimerTask(Presenter p)
+    {
+        update = p;
+    }
     public void run() {
         update.updateDatabase();
     }

@@ -16,8 +16,9 @@
         <activity
             android:name=".MainActivity"
             android:label="Medical App"
-            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait">
+            <!--  android:windowSoftInputMode="stateHidden|adjustPan"-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
