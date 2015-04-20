@@ -23,8 +23,6 @@ import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
-import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.PresenterInterface;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.ViewPresenterInterFace;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Presenter;
 
@@ -42,6 +40,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private WebView htmlViewer; //View that displays the HTML code
     private PopupWindow popUpPreview; //The physical popup window
     private View popUpPreviewLayout; //The design/layout of the popup window
+
+    private long actionDownTime = -1, actionUpTime = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -348,14 +348,14 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     public void showKeyboard(View v)
     {
-        if(keyboardState == InputMethodManager.HIDE_NOT_ALWAYS) {
+        if(keyboardState == InputMethodManager.RESULT_HIDDEN) {
             inputMethodManager.showSoftInput(selectedView, InputMethodManager.SHOW_IMPLICIT);
-            keyboardState = InputMethodManager.SHOW_IMPLICIT;
+            keyboardState = InputMethodManager.RESULT_SHOWN;
         }
         else
         {
             inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-            keyboardState = InputMethodManager.HIDE_NOT_ALWAYS;
+            keyboardState = InputMethodManager.RESULT_HIDDEN;
         }
     }
 
@@ -453,12 +453,25 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_UP && v.getId() != R.id.code_status_spinner) {
-            v.requestFocus();
-            selectedView = (EditText) v;
-            inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
-            keyboardState = InputMethodManager.HIDE_NOT_ALWAYS;
+
+       if (event.getAction() == MotionEvent.ACTION_UP) {
+            actionUpTime = event.getEventTime() - actionDownTime;
+            if (actionUpTime > 0 && v.getId() != R.id.code_status_spinner) {
+                v.requestFocus();
+                selectedView = (EditText) v;
+                if (actionUpTime < 600) {
+                    inputMethodManager.hideSoftInputFromWindow(selectedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    keyboardState = InputMethodManager.RESULT_HIDDEN;
+                } else {
+                    inputMethodManager.showSoftInput(selectedView, InputMethodManager.SHOW_IMPLICIT);
+                    keyboardState = InputMethodManager.RESULT_SHOWN;
+                }
+            }
             return true;
+        }
+        else
+        {
+            actionDownTime = event.getEventTime();
         }
         return false;
     }
