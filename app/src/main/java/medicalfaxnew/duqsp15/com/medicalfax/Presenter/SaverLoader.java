@@ -56,8 +56,7 @@ public class SaverLoader {
             mypres.modelInterface.patient.addTestList(t);
 
             //Not really sure what the first argument should be, as there is no field for "medicine" to pull data from
-            mypres.modelInterface.patient.addPatientMedicationList(new Medicine(((EditText)(mypres.ac.findViewById(R.id.Home_Medications))).getText().toString(),
-                    ((EditText)(mypres.ac.findViewById(R.id.Current_Course))).getText().toString(), ((EditText)(mypres.ac.findViewById(R.id.Completed_Course))).getText().toString()));
+           // Deleted the statement containing "current course" and "completed course"
 
             mypres.modelInterface.patient.medHistory.setMedicalHistory(((EditText)(mypres.ac.findViewById(R.id.Past_Medical_History))).getText().toString());
             mypres.modelInterface.patient.addAllergiesList(new Allergy(((EditText)(mypres.ac.findViewById(R.id.Home_Medications))).getText().toString()));

@@ -54,7 +54,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         MyTimerTask save = new MyTimerTask(presenter);
         Timer myTimer = new Timer();
         myTimer.schedule(save, 60000, 60000);
-        if(!agree) {
+        if(!getAgreement()) {
             popUpHIPPA();
         }
     }
@@ -101,11 +101,11 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
                 submits(selectedView);
                 return true;
             case R.id.Cont_Dictation:
-                continuousDictation = true;
+                setContinuousDictation(true);
                 item.setChecked(true);
                 break;
             case R.id.NonCont_Dictation:
-                continuousDictation = false;
+                setContinuousDictation(false);
                 item.setChecked(false);
                 break;
         }
@@ -329,7 +329,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     public void down(View view)
     {
-        if(selectedView != null && selectedView.getId() != R.id.Home_Medications)
+        if(selectedView != null && selectedView.getId() != R.id.Pending)
         {
             if((selectedView.getId() + 1) == R.id.code_status_spinner) {
                 selectedView = (EditText) findViewById(selectedView.getId() + 2);
@@ -366,7 +366,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         builder.setMessage("This app is not HIPPA compliant. It is for demo purposes only. Do not use real data. By clicking 'I agree' I as the user assume all liability.");
         builder.setPositiveButton("I agree", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                agree = true;
+                setAgreement(true);
                 dialog.dismiss(); // Let the app continue
                 initialDictation();
             }
@@ -375,7 +375,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         builder.setNegativeButton("I disagree", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                agree = false;
+                setAgreement(false);
                 System.exit(0); // Close the app
             }
         });
@@ -414,10 +414,6 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         PCP.setOnTouchListener(this);
         EditText Attending_Physician_Name = (EditText) findViewById(R.id.Attending_Physician_Name);
         Attending_Physician_Name.setOnTouchListener(this);
-        EditText Title = (EditText) findViewById(R.id.Title);
-        Title.setOnTouchListener(this);
-        EditText Department = (EditText) findViewById(R.id.Department);
-        Department.setOnTouchListener(this);
         EditText Home_Hospital = (EditText) findViewById(R.id.Home_Hospital);
         Home_Hospital.setOnTouchListener(this);
         EditText Phone_Number = (EditText) findViewById(R.id.Phone_Number);
@@ -444,10 +440,6 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         Finalized.setOnTouchListener(this);
         EditText Pending = (EditText) findViewById(R.id.Pending);
         Pending.setOnTouchListener(this);
-        EditText Completed_Course = (EditText) findViewById(R.id.Completed_Course);
-        Completed_Course.setOnTouchListener(this);
-        EditText Current_Course = (EditText) findViewById(R.id.Current_Course);
-        Current_Course.setOnTouchListener(this);
         EditText Past_Medical_History = (EditText) findViewById(R.id.Past_Medical_History);
         Past_Medical_History.setOnTouchListener(this);
         EditText Home_Medications = (EditText) findViewById(R.id.Home_Medications);
@@ -504,6 +496,22 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         }
         presenter.saveData();
         super.onBackPressed();
+    }
+public void setAgreement(boolean a)
+{
+    agree = a;
+}
+    public boolean getAgreement()
+    {
+        return agree;
+    }
+    public void setContinuousDictation(boolean cd)
+    {
+        continuousDictation = cd;
+    }
+    public boolean getContinuousDictation()
+    {
+        return continuousDictation;
     }
 
 }

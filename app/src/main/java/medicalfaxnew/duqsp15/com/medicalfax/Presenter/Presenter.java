@@ -50,7 +50,7 @@ public class Presenter implements PresenterInterface
     {
         //Activity for dictation
 
-    	ac=(MainActivity)act;
+        ac=(MainActivity)act;
         modelInterface = new ModelInterface(context, this, act);
         requestedBox = -1;
         con=context;
@@ -59,22 +59,22 @@ public class Presenter implements PresenterInterface
         saveData();
     }
 
-	// ModelObject
-	// ViewObject
+    // ModelObject
+    // ViewObject
 
     /**
      * Notifies the Model via the ModelInterface to begin dictation.
      * @param boxNum The number id from the textbox where transcribed text is to appear.
      */
-	@Override
-	public void startTranscription(int boxNum)
+    @Override
+    public void startTranscription(int boxNum)
     {
         requestedBox = boxNum;
-		ModelInterface.dictation.getSpeechInput();
+        ModelInterface.dictation.getSpeechInput();
 //        if(modelInterface.physician.getContinuousDictation()){
 //            //load database fields into corresponding text-boxes
 //        }
-	}
+    }
 
     public void stopRequest() {
         // TODO Auto-generated method stub
@@ -174,14 +174,14 @@ public class Presenter implements PresenterInterface
         FileWriter fw = null;
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "htmlCode.html");
 
-            try {
-                fw = new FileWriter(file);
-                fw.append(htmlResult);
-                fw.flush();
-                fw.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            fw = new FileWriter(file);
+            fw.append(htmlResult);
+            fw.flush();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return file;
     }
@@ -237,15 +237,9 @@ public class Presenter implements PresenterInterface
             requiredFields.add(textField);
         }
 
-        if (patientFields.contains("set medicine course in list")) {
-            textField = (EditText) ac.findViewById(R.id.Current_Course);
-            requiredFields.add(textField);
-        }
+        // Deleted "Current Course" statement
 
-        if (patientFields.contains("set medicine completed course in list")) {
-            textField = (EditText) ac.findViewById(R.id.Completed_Course);
-            requiredFields.add(textField);
-        }
+        // Deleted "Completed Course" statement
 
         if (patientFields.contains("set medical record num")) {
             textField = (EditText) ac.findViewById(R.id.MRN);
@@ -277,10 +271,8 @@ public class Presenter implements PresenterInterface
             requiredFields.add(textField);
         }
 
-        if (physicianFields.contains("setDepartment")) {
-            textField = (EditText) ac.findViewById(R.id.Department);
-            requiredFields.add(textField);
-        }
+        // Deleted "Department" statement
+
         if (physicianFields.contains("setHomeHospital")) {
             textField = (EditText) ac.findViewById(R.id.Home_Hospital);
             requiredFields.add(textField);
