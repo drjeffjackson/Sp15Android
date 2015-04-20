@@ -59,13 +59,17 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         }
     }
 
-    /*This method was written by Brady Sheehan on 2/18/2015
-    * this method catches the startActivtyForResult call in Dictation class
-    * and proceeds to extract the data from the Intent with its call to returnSpeech()
-    * returnSpeech(data) will actually make a call to the presenter class with
-    * the result of dictation
-    * */
-    @Override
+     /**
+     * This method catches the startActivtyForResult call in Dictation class
+     * and proceeds to extract the data from the Intent with its call to returnSpeech()
+     * returnSpeech(data) will actually make a call to the presenter class with
+     * the result of dictation if continuous dictation is not enabled.
+     * If continuous dictation is enabled, data is immediately stored in the database and
+     * no additional call is made to presenter.
+     * @author Brady Sheehan
+     * @return void
+     */
+     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         //speech recognition (like this) must require an internet connection!
         super.onActivityResult(requestCode, resultCode, data);

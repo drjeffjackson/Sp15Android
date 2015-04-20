@@ -10,16 +10,19 @@ import android.speech.RecognizerIntent;
 import android.widget.Toast;
 
 import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.Parser.*;
 import medicalfaxnew.duqsp15.com.medicalfax.R;
 
 /**
  * Created by austinpilz on 2/16/15.
  * Edited by Brady Sheehan and Coder Thanatos on 2/16/15
  * Added getSpeechInput() and returnSpeech() methods - Brady Sheehan 2/18/15
+ * Updated to include parsing functionality - Brady Sheehan
  */
 public class Dictation
 {
     public Activity activity;
+    private DictationParser parser;
     private boolean processing;
     private final int REQ_CODE_SPEECH_INPUT = 100; //constant
     ModelInterface modelI;
@@ -54,6 +57,8 @@ public class Dictation
      * Needs to be passed the intent from the main method in onActivityResult()
      * it will then extract the EXTRA_RESULTS which is the dictation from the
      * intent object and pass the results of dictation to the presenter object.
+     * If the user wants to use continuous dictation, then the result of dictation gets parsed
+     * right here and can be immediately stored in the database with the call to parseString() .
      * @author Brady Sheehan
      * @return void
      */
@@ -61,6 +66,15 @@ public class Dictation
     {
         ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
         System.err.println(result.get(0));
-        modelI.presenter.doneListening(result);
+        if(modelI.physician.getContinuousDictation()){ //if continuous dictation is enabled
+            parser = new DictationParser();
+            parser.parseString(result.get(0)); //this parses and stores the results of dictation in the
+                                               //database
+        //however, the results in the database need to be immediately loaded into the text boxes
+        }
+        else{ //when continuous dictation is not enable, presenter will store put
+              //dictation results in the appropriate text boxes with the call to this method
+            modelI.presenter.doneListening(result);
+        }
     }
 }

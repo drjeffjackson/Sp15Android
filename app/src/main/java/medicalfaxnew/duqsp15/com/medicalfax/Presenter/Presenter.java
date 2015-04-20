@@ -71,6 +71,9 @@ public class Presenter implements PresenterInterface
     {
         requestedBox = boxNum;
 		ModelInterface.dictation.getSpeechInput();
+//        if(modelInterface.physician.getContinuousDictation()){
+//            //load database fields into corresponding text-boxes
+//        }
 	}
 
     public void stopRequest() {
@@ -81,6 +84,7 @@ public class Presenter implements PresenterInterface
 
     /**
      * Retrieves transcribed text from dictation and sends it the appropriate textbox.
+     * Does not retrieve the text if continuous dictation is enabled.
      * Also checks for errors in the textbox selection.
      * @param transcribedText ArrayList containing the transcribed text from dictation.
      */

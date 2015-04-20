@@ -22,7 +22,6 @@ public class DictationParser {
      * @param dictationString the string being passed in to parse
      */
     public DictationParser(String dictationString) {
-
         this.dictationString = dictationString;
     }
 
