@@ -258,18 +258,34 @@ public class Patient implements ModelObj {
      * The following methods are there to remove elements from the private arraylists
      */
 
+    /**
+     * Removes an element from the consutantList
+     * @param position - the position being removed
+     */
     public void removeConsultantList(int position) {
         consultantList.remove(position);
     }
 
+    /**
+     * Removes an element from the testList
+     * @param position - the position being removed
+     */
     public void removeTestList(int position) {
         listOfTests.remove(position);
     }
 
+    /**
+     * Removes and element from the medication list
+     * @param position - the position being removed
+     */
     public void removePatientMedicationList( int position) {
         patientMedicationsList.remove(position);
     }
 
+    /**
+     * Removes and element from the allergy list
+     * @param position - the position being removed
+     */
     public void removeAllergiesList(int position) {
         allergies.remove(position);
     }
