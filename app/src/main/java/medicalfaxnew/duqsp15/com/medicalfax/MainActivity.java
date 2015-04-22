@@ -484,7 +484,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
             }
             return true;
         }
-        actionDownTime = event.getEventTime();
+        actionDownTime = event.getDownTime();
         return false;
     }
     @Override
