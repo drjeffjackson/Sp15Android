@@ -106,10 +106,14 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
                 return true;
             case R.id.Cont_Dictation:
                 setContinuousDictation(true);
+                Toast.makeText(getApplicationContext(), "Continuous Dictation preference set!", Toast.LENGTH_LONG).show();
+                presenter.modelInterface.physician.setContinuousDictation(continuousDictation);
                 item.setChecked(true);
                 break;
             case R.id.NonCont_Dictation:
                 setContinuousDictation(false);
+                Toast.makeText(getApplicationContext(), "NonContinuous Dictation preference set!", Toast.LENGTH_LONG).show();
+                presenter.modelInterface.physician.setContinuousDictation(continuousDictation);
                 item.setChecked(false);
                 break;
             case R.id.action_tab_down:
@@ -125,12 +129,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
                 dictates(selectedView);
                 break;
         }
-        if(continuousDictation) {
-            Toast.makeText(getApplicationContext(), "Continuous Dictation preference set!", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "NonContinuous Dictation preference set!", Toast.LENGTH_LONG).show();
-        }
-        presenter.modelInterface.physician.setContinuousDictation(continuousDictation);
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -404,48 +403,16 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private void setListeners()
     {
 
-        EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
-        Patient_Name.setOnTouchListener(this);
-        EditText DOB = (EditText) findViewById(R.id.DOB);
-        DOB.setOnTouchListener(this);
-        EditText MRN = (EditText) findViewById(R.id.MRN);
-        MRN.setOnTouchListener(this);
-        EditText Admission_Date = (EditText) findViewById(R.id.Admission_Date);
-        Admission_Date.setOnTouchListener(this);
-        EditText PCP = (EditText) findViewById(R.id.PCP);
-        PCP.setOnTouchListener(this);
-        EditText Attending_Physician_Name = (EditText) findViewById(R.id.Attending_Physician_Name);
-        Attending_Physician_Name.setOnTouchListener(this);
-        EditText Home_Hospital = (EditText) findViewById(R.id.Home_Hospital);
-        Home_Hospital.setOnTouchListener(this);
-        EditText Phone_Number = (EditText) findViewById(R.id.Phone_Number);
-        Phone_Number.setOnTouchListener(this);
-        EditText Email_Address = (EditText) findViewById(R.id.Email_Address);
-        Email_Address.setOnTouchListener(this);
-        EditText NPI_Number = (EditText) findViewById(R.id.NPI_Number);
-        NPI_Number.setOnTouchListener(this);
-        EditText Chief_Complaint = (EditText) findViewById(R.id.Chief_Complaint);
-        Chief_Complaint.setOnTouchListener(this);
-        EditText HPI = (EditText) findViewById(R.id.HPI);
-        HPI.setOnTouchListener(this);
-        EditText Hospital_Course = (EditText) findViewById(R.id.Hospital_Course);
-        Hospital_Course.setOnTouchListener(this);
-        EditText Consultants = (EditText) findViewById(R.id.Consultants);
-        Consultants.setOnTouchListener(this);
-        EditText Primary = (EditText) findViewById(R.id.Primary);
-        Primary.setOnTouchListener(this);
-        EditText Secondary = (EditText) findViewById(R.id.Secondary);
-        Secondary.setOnTouchListener(this);
-        EditText Complications = (EditText) findViewById(R.id.Complications);
-        Complications.setOnTouchListener(this);
-        EditText Finalized = (EditText) findViewById(R.id.Finalized);
-        Finalized.setOnTouchListener(this);
-        EditText Pending = (EditText) findViewById(R.id.Pending);
-        Pending.setOnTouchListener(this);
-        EditText Past_Medical_History = (EditText) findViewById(R.id.Past_Medical_History);
-        Past_Medical_History.setOnTouchListener(this);
-        EditText Home_Medications = (EditText) findViewById(R.id.Home_Medications);
-        Home_Medications.setOnTouchListener(this);
+        EditText currentView = (EditText) findViewById(R.id.Patient_Name);
+        currentView.setOnTouchListener(this);
+        EditText nextView = (EditText) currentView.focusSearch(currentView.FOCUS_DOWN);
+        while(!currentView.equals(nextView))
+        {
+            currentView = nextView;
+            currentView.setOnTouchListener(this);
+            nextView = (EditText) currentView.focusSearch(currentView.FOCUS_DOWN);
+        }
+
     }
 
     /** This method changes focus based on the user's touch and hides the input keyboard
