@@ -171,38 +171,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         ModelInterface.patient.medHistory.setMedicalHistory(c.getString(c.getColumnIndex(PATIENT_COLUMN_MedicalHistory)));
         ModelInterface.patient.patientDiagnosis.setPrimaryDiagnosis(c.getString(c.getColumnIndex(PATIENT_COLUMN_DIAGNOSIS)));
         ModelInterface.patient.hpi.setHPI(c.getString(c.getColumnIndex(PATIENT_COLUMN_HPI)));
-
+        ModelInterface.patient.dateOfBirth.setDate(c.getString(c.getColumnIndex(PATIENT_COLUMN_DOB)));
+        ModelInterface.patient.admDate.setDate(c.getString(c.getColumnIndex(PATIENT_COLUMN_ADMISSIONDATE)));
         //Now when we load the array lists, they're stored separated by commas, so we have to explode them
-        String tmpDOB = c.getString(c.getColumnIndex(PATIENT_COLUMN_DOB));
-        String tmpAdmissionDate = c.getString(c.getColumnIndex(PATIENT_COLUMN_ADMISSIONDATE));
+
+
         String tmpConsultants = c.getString(c.getColumnIndex(PATIENT_COLUMN_Consultants));
         String tmpTests = c.getString(c.getColumnIndex(PATIENT_COLUMN_Tests));
         String tmpPatientMedications = c.getString(c.getColumnIndex(PATIENT_COLUMN_PatientMedications));
         String tmpHomeMedications = c.getString(c.getColumnIndex(PATIENT_COLUMN_HomeMedications));
         String tmpAllergies = c.getString(c.getColumnIndex(PATIENT_COLUMN_Allergies));
-
-
-        //Date Of Birth
-        List<String> DOB = Arrays.asList(tmpDOB.split("/"));
-
-        //Have to check and make sure none of them are null otherwise Integer will freakkkk out
-        if ((DOB.get(0) == null) && (DOB.get(1) == null) && (DOB.get(2) == null))
-        {
-            ModelInterface.patient.dateOfBirth.setDay(DOB.get(0));
-            ModelInterface.patient.dateOfBirth.setMonth(DOB.get(1));
-            ModelInterface.patient.dateOfBirth.setYear(DOB.get(2));
-        }
-
-        //Admission Date
-        List<String> AdmissionDate = Arrays.asList(tmpAdmissionDate.split("/"));
-
-        if ((AdmissionDate.get(0) == null) && (AdmissionDate.get(1) == null) && (AdmissionDate.get(2) == null)) {
-
-            ModelInterface.patient.admDate.setDay((AdmissionDate.get(0)));
-            ModelInterface.patient.admDate.setMonth(AdmissionDate.get(1));
-            ModelInterface.patient.admDate.setYear((AdmissionDate.get(2)));
-        }
-
 
 
 
@@ -247,22 +225,22 @@ public class MySQLiteHelper extends SQLiteOpenHelper
     {
         ContentValues cv = new ContentValues();
         cv.put(PATIENT_COLUMN_NAME, ModelInterface.patient.patientName.getName());
-        cv.put(PATIENT_COLUMN_DOB, "");
+        cv.put(PATIENT_COLUMN_DOB, ModelInterface.patient.dateOfBirth.getDate());
         cv.put(PATIENT_COLUMN_MRN, ModelInterface.patient.medRecNum.getMrn().toString());
-        cv.put(PATIENT_COLUMN_ADMISSIONDATE, "");
+        cv.put(PATIENT_COLUMN_ADMISSIONDATE, ModelInterface.patient.admDate.getDate());
         cv.put(PATIENT_COLUMN_PCPName, ModelInterface.patient.pcpName.getName());
         cv.put(PATIENT_COLUMN_AttendingName, ModelInterface.patient.attendingName.getName());
         cv.put(PATIENT_COLUMN_CodeStatus, ModelInterface.patient.codeStatus.getCodeStatus());
         cv.put(PATIENT_COLUMN_ChiefComplaint, ModelInterface.patient.chiefComplaint.getChiefComplaint());
-        cv.put(PATIENT_COLUMN_HPI, "");
+        cv.put(PATIENT_COLUMN_HPI, ModelInterface.patient.hpi.getHPI());
         cv.put(PATIENT_COLUMN_HospitalCourse, ModelInterface.patient.hospitalCourse.getHospitalCourse());
         cv.put(PATIENT_COLUMN_Consultants, "");
         cv.put(PATIENT_COLUMN_Tests, "");
         cv.put(PATIENT_COLUMN_PatientMedications, "");
         cv.put(PATIENT_COLUMN_HomeMedications, "");
         cv.put(PATIENT_COLUMN_MedicalHistory, "");
-        cv.put(PATIENT_COLUMN_Allergies, "");
         cv.put(PATIENT_COLUMN_DIAGNOSIS, "");
+
 
         database.update(TABLE_PATIENT, cv, PATIENT_COLUMN_ID + "=1", null);
     }
