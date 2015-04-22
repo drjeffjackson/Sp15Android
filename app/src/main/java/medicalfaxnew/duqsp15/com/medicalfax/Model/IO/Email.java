@@ -3,12 +3,13 @@ package medicalfaxnew.duqsp15.com.medicalfax.Model.IO;
 import android.app.Activity;
 import android.net.Uri;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
 import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
 
-public class Email {
+public class Email extends AsyncTask<Object, Void, Void> {
     /**
      * created by Xun Yang, on 3/30/2015,working with Joel and Phil
      */
@@ -25,7 +26,11 @@ public class Email {
         modelE=model;
         activity=ac;
     }
-    public void sendEmail(String[] recipients, String[] carbon, String body, Uri u){
+    protected Void doInBackground(Object... params){
+        String[] recipients = (String[]) params[0];
+        String[] carbon = (String[]) params[1];
+        String body = (String) params[2];
+        Uri u = (Uri) params[3];
         Log.w("=============",u.toString());
         /* ACTION_SEND indicates that one attachment will be sent. */
         Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -55,6 +60,7 @@ public class Email {
             Toast.makeText(activity, "No email client configured on system.",
                     Toast.LENGTH_LONG).show();
         }
+        return null;
     }
 }
 

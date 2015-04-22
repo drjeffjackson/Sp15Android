@@ -293,7 +293,7 @@ public class Presenter implements PresenterInterface
     public void sendEmail(){
         saveData();
         /* Recipient and CC's can be pre-filled by passing String[] containing them, otherwise pass null */
-        modelInterface.email.sendEmail(null,null ,"Patient Information is in the attached Document.", Uri.fromFile(GenerateHTML()));
+        modelInterface.email.execute(null,null ,"Patient Information is in the attached Document.", Uri.fromFile(GenerateHTML()));
     }
 
 }
