@@ -157,6 +157,14 @@ public class Patient implements ModelObj {
     }
 
     /**
+     * Method for adding to the list of Allergies
+     * @param allergy - the allergy to add to the list
+     */
+    public void addAllergiesList(Allergy allergy) {
+        allergies.add(allergy);
+    }
+
+    /**
      * Method for adding to the list of consultants
      * @param entry - the string entry you want to add
      */
@@ -181,13 +189,68 @@ public class Patient implements ModelObj {
     }
 
 
+    /**
+     * Method for returning the concatenated consultant list
+     * @return concatenated string
+     */
+    public String getConsultantList() {
+        String catList = new String();
+        for (int i = 0; i < consultantList.size(); i++) {
+            if (i == 0) {
+                catList = consultantList.get(i);
+            } else {
+                catList = catList + ", " + consultantList.get(i);
+            }
+
+        } return catList;
+    }
 
     /**
-     * Method for adding to the list of Allergies
-     * @param allergy - the allergy to add to the list
+     * Method for returning the concatenated med list
+     * @return concatenated string
      */
-    public void addAllergiesList(Allergy allergy) {
-        allergies.add(allergy);
+    public String getMedList() {
+        String catList = new String();
+        for (int i = 0; i < patientMedicationsList.size(); i++) {
+            if (i == 0) {
+                catList = patientMedicationsList.get(i).toString();
+            } else {
+                catList = catList + ", " + patientMedicationsList.get(i).toString();
+            }
+
+        } return catList;
+    }
+
+    /**
+     * Method for returning the concatenated test list
+     * @return concatenated string
+     */
+    public String getTestList() {
+        String catList = new String();
+        for (int i = 0; i < listOfTests.size(); i++) {
+            if (i == 0) {
+                catList = listOfTests.get(i).toString();
+            } else {
+                catList = catList + ", " + listOfTests.get(i).toString();
+            }
+
+        } return catList;
+    }
+
+    /**
+     * Method for returning the concatenated allergy list
+     * @return concatenated string
+     */
+    public String getAllergyList() {
+        String catList = new String();
+        for (int i = 0; i < allergies.size(); i++) {
+            if (i == 0) {
+                catList = allergies.get(i).toString();
+            } else {
+                catList = catList + ", " + allergies.get(i).toString();
+            }
+
+        } return catList;
     }
 
 
