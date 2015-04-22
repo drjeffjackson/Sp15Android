@@ -15,14 +15,21 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
+import android.widget.FrameLayout;
 import android.widget.PopupWindow;
 import android.widget.EditText;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.MenuInflater;
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
+import android.widget.TabHost.TabContentFactory;
+import android.widget.TabWidget;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.ViewPresenterInterFace;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Presenter;
@@ -51,6 +58,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         presenter = new Presenter(this.getApplicationContext(), this);
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         setListeners();
+        createTabs();
         createPopUpPreview();
         //
         //TODO add  presenter.saveData(); or LoadData ?? for restoring previous content?
@@ -67,7 +75,46 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setIcon(R.drawable.ic_launcher);
     }
+public void createTabs()
+{
+    TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+    tabHost.setup();
 
+    final TabWidget tabWidget = tabHost.getTabWidget();
+    final FrameLayout tabContent = tabHost.getTabContentView();
+
+    // Get the original tab textviews and remove them from the viewgroup.
+    TextView[] originalTextViews = new TextView[tabWidget.getTabCount()];
+    for (int index = 0; index < tabWidget.getTabCount(); index++) {
+        originalTextViews[index] = (TextView) tabWidget.getChildTabViewAt(index);
+    }
+    tabWidget.removeAllViews();
+
+    // Ensure that all tab content childs are not visible at startup.
+    for (int index = 0; index < tabContent.getChildCount(); index++) {
+        tabContent.getChildAt(index).setVisibility(View.GONE);
+    }
+
+    // Create the tabspec based on the textview childs in the xml file.
+    // Or create simple tabspec instances in any other way...
+    for (int index = 0; index < originalTextViews.length; index++) {
+        final TextView tabWidgetTextView = originalTextViews[index];
+        final View tabContentView = tabContent.getChildAt(index);
+        TabSpec tabSpec = tabHost.newTabSpec((String) tabWidgetTextView.getTag());
+        tabSpec.setContent(new TabContentFactory() {
+            @Override
+            public View createTabContent(String tag) {
+                return tabContentView;
+            }
+        });
+        if (tabWidgetTextView.getBackground() == null) {
+            tabSpec.setIndicator(tabWidgetTextView.getText());
+        } else {
+            tabSpec.setIndicator(tabWidgetTextView.getText(), tabWidgetTextView.getBackground());
+        }
+        tabHost.addTab(tabSpec);
+    }
+}
      /**
      * This method catches the startActivtyForResult call in Dictation class
      * and proceeds to extract the data from the Intent with its call to returnSpeech()
