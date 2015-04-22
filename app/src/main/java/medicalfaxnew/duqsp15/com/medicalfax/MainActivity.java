@@ -35,7 +35,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private EditText selectedView;
     private InputMethodManager inputMethodManager; // to hide and show keyboard
     private int keyboardState = 0;
-    private boolean continuousDictation = true;
+    private boolean continuousDictation = false;
     private boolean agree = false; //may need to be saved to the database and moved to the model level
 
     private WebView htmlViewer; //View that displays the HTML code
@@ -55,9 +55,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         MyTimerTask save = new MyTimerTask(presenter);
         Timer myTimer = new Timer();
         myTimer.schedule(save, 60000, 60000);
-        if(!getAgreement()) {
-            popUpHIPPA();
-        }
+        if(!getAgreement()) { popUpHIPPA();}
+        if(getAgreement()) {initialDictation();}
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setIcon(R.drawable.ic_launcher);
@@ -361,49 +360,49 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
 
     private void popUpHIPPA()
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("User Agreement");
-        builder.setMessage("This app is not HIPPA compliant. It is for demo purposes only. Do not use real data. By clicking 'I agree' I as the user assume all liability.");
-        builder.setPositiveButton("I agree", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                setAgreement(true);
-                dialog.dismiss(); // Let the app continue
-                initialDictation();
-            }
-        });
+        if(!getAgreement()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("User Agreement");
+            builder.setMessage("This app is not HIPPA compliant. It is for demo purposes only. Do not use real data. By clicking 'I agree' I as the user assume all liability.");
+            builder.setPositiveButton("I agree", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    setAgreement(true);
+                    dialog.dismiss(); // Let the app continue
+                    initialDictation();
+                }
+            });
 
-        builder.setNegativeButton("I disagree", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                setAgreement(false);
-                System.exit(0); // Close the app
-            }
-        });
+            builder.setNegativeButton("I disagree", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    setAgreement(false);
+                    System.exit(0); // Close the app
+                }
+            });
 
-        AlertDialog alert = builder.create();
-        alert.setCancelable(false);
-        alert.show();  // This call causes an android.view.WindowLeaked: Activity medicalfaxnew.duqsp15.com.medicalfax.MainActivity has leaked window error
-        // Exception happens at "medicalfaxnew.duqsp15.com.medicalfax.MainActivity.popUpHIPPA(MainActivity.java:178)"
+            AlertDialog alert = builder.create();
+            alert.setCancelable(false);
+            alert.show();  // This call causes an android.view.WindowLeaked: Activity medicalfaxnew.duqsp15.com.medicalfax.MainActivity has leaked window error
+            // Exception happens at "medicalfaxnew.duqsp15.com.medicalfax.MainActivity.popUpHIPPA(MainActivity.java:178)"
+        }
     }
 
-    /** This method selects the first text box and starts dictation
+    /** This method starts dictation on the first focused view
      *
      */
     private void initialDictation()
     {
-        EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
-        Patient_Name.requestFocus();
-        selectedView = Patient_Name;
-        dictates(Patient_Name);
+        dictates(selectedView);
     }
 
     /** This method set an onTouchListener to all the EditText objects so that they are touchable
-     *
+     *  and set focus on the first EditText
      */
     private void setListeners()
     {
-
         EditText currentView = (EditText) findViewById(R.id.Patient_Name);
+        selectedView = currentView;
+        selectedView.requestFocus();
         currentView.setOnTouchListener(this);
         EditText nextView = (EditText) currentView.focusSearch(currentView.FOCUS_DOWN);
         while(!currentView.equals(nextView))
@@ -412,7 +411,6 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
             currentView.setOnTouchListener(this);
             nextView = (EditText) currentView.focusSearch(currentView.FOCUS_DOWN);
         }
-
     }
 
     /** This method changes focus based on the user's touch and hides the input keyboard

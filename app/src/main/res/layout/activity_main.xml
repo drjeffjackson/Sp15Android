@@ -56,7 +56,6 @@
             android:state_pressed="true"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:text="@string/UP"
             android:id="@+id/Up_Button"
             android:focusableInTouchMode="false"
             android:layout_gravity="center_horizontal"
@@ -75,7 +74,6 @@
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:text="@string/DN"
             android:id="@+id/Down_Button"
             android:focusableInTouchMode="false"
             android:layout_gravity="right"
@@ -95,14 +93,10 @@
         <ImageButton
             android:layout_width="60dp"
             android:layout_height="50dp"
-
             android:focusableInTouchMode="false"
             android:id="@+id/Dictate_Button"
             android:layout_centerVertical="true"
             android:onClick="dictates"
-
-
-
             android:layout_toLeftOf="@+id/Up_Button"
             android:layout_toStartOf="@+id/Up_Button"
             android:background="@drawable/dictation_action"
