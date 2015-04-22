@@ -51,9 +51,10 @@ public class Physician implements ModelObj
         if(name.verifyName()){
             missingFields.add("setPatientName");
         }
-        if(!hospital.verifyDepartment()){
-            missingFields.add("setDepartment");
-        }
+        //commenting out department
+//        if(!hospital.verifyDepartment()){
+//            missingFields.add("setDepartment");
+//        }
         if(!hospital.verifyHomeHospital()){
             missingFields.add("setHomeHospital");
         }
