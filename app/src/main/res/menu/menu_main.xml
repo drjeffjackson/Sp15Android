@@ -1,10 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
-    <item android:id="@+id/action_submit" android:title="Submit Document" android:icon="@drawable/ic_action_send"
-        app:showAsAction="always"/>
-
-
+    <item android:id="@+id/action_submit" android:title="Submit Document" android:icon="@drawable/submit_action"
+        app:showAsAction="always|withText" />
+    <item android:id="@+id/action_keybaord" android:title="Toggle Keybaord" android:icon="@drawable/ic_action_keyboard"
+        app:showAsAction="always|withText"/>
+    <item android:id="@+id/action_dictation" android:title="Toggle Dictation" android:icon="@drawable/dictation_action"
+        app:showAsAction="always|withText"/>
+    <item android:id="@+id/action_tab_down"  android:title="Tab Down" android:icon="@drawable/tab_down_action"
+        app:showAsAction="always|withText"/>
+    <item android:id="@+id/action_tab_up"  android:title="Tab Up" android:icon="@drawable/tab_up_action"
+        app:showAsAction="always|withText"/>
 </menu>
 
     <!-- extra

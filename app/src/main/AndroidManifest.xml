@@ -8,22 +8,27 @@
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />​
 
     <application
+        android:uiOptions="splitActionBarWhenNarrow"
         android:allowBackup="true"
         android:grantUriPermissions="true"
         android:icon="@drawable/ic_launcher"
+        android:logo="@drawable/ic_launcher"
         android:label="Medical App"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
             android:label="Medical App"
-            android:windowSoftInputMode="stateHidden"
+            android:logo="@drawable/ic_launcher"
+            android:windowSoftInputMode="stateHidden|adjustPan"
             android:screenOrientation="portrait">
-            <!--  android:windowSoftInputMode="stateHidden|adjustPan"-->
+            <!--  android:windowSoftInputMode="stateHidden"-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data android:name="android.support.UI_OPTIONS"
+                android:value="splitActionBarWhenNarrow" />
         </activity>
 
     </application>

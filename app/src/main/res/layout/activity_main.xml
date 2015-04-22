@@ -39,6 +39,21 @@
         <!-- Up_Button: moves cursor up one text field from the current position -->
 
         <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:text="@string/Submit"
+            android:focusableInTouchMode="false"
+            android:onClick="submits"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/Submit_Button"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="false"
+            android:background="@drawable/submit_action"
+            android:alpha="1.0" />
+
+        <ImageButton
+            android:state_pressed="true"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="@string/UP"
@@ -50,7 +65,7 @@
             android:layout_toStartOf="@+id/Down_Button"
             android:textColor="@color/White"
             android:onClick="up"
-            android:background="@drawable/tab_up"
+            android:background="@drawable/tab_up_action"
              />
         <!-- Extra options for above up button ^ -->
         <!-- android:src="@drawable/up_button" -->
@@ -68,26 +83,14 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:onClick="down"
-            android:background="@drawable/tab_down"
+            android:background="@drawable/tab_down_action"
 
             android:clickable="true" />
         <!-- Extra options for above down button ^ -->
         <!-- android:src="@drawable/down_button" -->
         <!-- End of extra options @Coder Thanatos  -->
 
-        <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:text="@string/Submit"
-            android:focusableInTouchMode="false"
-            android:onClick="submits"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/Submit_Button"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentStart="false"
-            android:background="@drawable/ic_action_send"
-            android:alpha="1.0" />
+
 
         <ImageButton
             android:layout_width="60dp"
@@ -102,7 +105,7 @@
 
             android:layout_toLeftOf="@+id/Up_Button"
             android:layout_toStartOf="@+id/Up_Button"
-            android:background="@android:drawable/ic_btn_speak_now"
+            android:background="@drawable/dictation_action"
             />
 
         <!-- Extra options for above dictate button ^ -->

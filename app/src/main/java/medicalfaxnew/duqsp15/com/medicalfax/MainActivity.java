@@ -1,5 +1,6 @@
 package medicalfaxnew.duqsp15.com.medicalfax;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -57,6 +58,9 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         if(!getAgreement()) {
             popUpHIPPA();
         }
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setIcon(R.drawable.ic_launcher);
     }
 
      /**
@@ -107,6 +111,18 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
             case R.id.NonCont_Dictation:
                 setContinuousDictation(false);
                 item.setChecked(false);
+                break;
+            case R.id.action_tab_down:
+                down(selectedView);
+                break;
+            case R.id.action_tab_up:
+                up(selectedView);
+                break;
+            case R.id.action_keybaord:
+                showKeyboard(selectedView);
+                break;
+            case R.id.action_dictation:
+                dictates(selectedView);
                 break;
         }
         if(continuousDictation) {

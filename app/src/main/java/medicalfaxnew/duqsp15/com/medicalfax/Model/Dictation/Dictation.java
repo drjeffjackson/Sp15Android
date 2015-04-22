@@ -21,6 +21,7 @@ import medicalfaxnew.duqsp15.com.medicalfax.R;
  */
 public class Dictation
 {
+    private boolean dictationState = true;
     public Activity activity;
     private DictationParser parser;
     private boolean processing;
@@ -48,8 +49,10 @@ public class Dictation
         ArrayList<String> result = new ArrayList<String>();
         try{
             activity.startActivityForResult(intent, REQ_CODE_SPEECH_INPUT); //this is called on the implicit activity that was created
+            setDictation(true);
         }catch(ActivityNotFoundException a){
             Toast.makeText(activity.getApplicationContext(),activity.getString(R.string.speech_not_supported),Toast.LENGTH_SHORT ).show();
+            setDictation(false);
         }
     }
 
@@ -76,5 +79,12 @@ public class Dictation
               //dictation results in the appropriate text boxes with the call to this method
             modelI.presenter.doneListening(result);
         }
+    }
+
+    private void setDictation(boolean dictationState){
+        this.dictationState = dictationState;
+    }
+    public boolean getDictationState(){
+        return dictationState;
     }
 }
