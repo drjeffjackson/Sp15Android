@@ -52,6 +52,12 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         setListeners();
         createPopUpPreview();
+        //
+        //TODO add  presenter.saveData(); or LoadData ?? for restoring previous content?
+        //TODO Have the agreement flag and continuous dictation flag been included in the save and load data??
+        //TODO Does the continuous dictation flag match the one in the database ???
+        //TODO Has the the agreement flag included in the database and has its value in the database been set as false?
+        //
         MyTimerTask save = new MyTimerTask(presenter);
         Timer myTimer = new Timer();
         myTimer.schedule(save, 60000, 60000);
@@ -205,8 +211,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     {
 /**
  **
- ** TODO
- *******THIS METHOD NEEDS TO BE FIXED AFTER THE SAVE FUNCTION IS DONE!! THIS LENGTHY CODE IS MERELY AN EMERGENCY SOLUTION!!*****
+ ** TODO THIS METHOD NEEDS TO BE FIXED AFTER THE SAVE FUNCTION IS DONE!! THIS LENGTHY CODE IS MERELY AN EMERGENCY SOLUTION!!*****
+ *******
  **
  **/
 
@@ -462,6 +468,11 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         if (presenter.modelInterface.IO.getHelper() != null) {
             presenter.modelInterface.IO.getHelper().close();
         }
+        //TODO may want to add saveData or UpdateDataBase here
+        //TODO reset the agreement flag as FALSE in the database ???
+
+        //TODO Conjecture(based on previous testing): when the app is closed not using the back button but using the close button on the android background app lists, the onDestroy is not called
+        //TODO which, in this case we may want to be able to RESET the whole database (need to find what method is called and reset the dataBase)
     }
     public void onBackPressed()
     {
@@ -470,8 +481,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
             popUpPreview.dismiss();
             return;
         }
-        presenter.saveData();
-        super.onBackPressed();
+        super.onBackPressed(); //TODO onDestroy is also called (analyze how to deal with the current data)
     }
 public void setAgreement(boolean a)
 {
