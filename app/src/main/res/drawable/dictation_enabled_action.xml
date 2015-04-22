@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_active="false"
+        android:drawable="@drawable/ic_btn_speak_now_normal"/>
+    <item android:state_active="true"
+        android:drawable="@drawable/ic_btn_speak_now_active"/>
+
+</selector>
+
+    <!--This class performs a conditional statement to display the appropriate dictation button.
+        Ultimately this will check for an available microphone and then display appropriate icon
+        accordingly. It will then display an icon for when dictation is active or inactive.
+
+        This is not finished, the check for the microphone still needs to be added.
+            @Coder Thanatos. -->

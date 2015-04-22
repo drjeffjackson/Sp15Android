@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true"
+        android:drawable="@drawable/ic_action_send_pressed"/>
+    <item android:state_pressed="false"
+        android:drawable="@drawable/ic_action_send_normal"/>
+</selector>
+
+    <!--This class performs a conditional statement to display the appropriate submit button.
+        Depending on whether or not the button is pressed.
+            @Coder Thanatos. -->
