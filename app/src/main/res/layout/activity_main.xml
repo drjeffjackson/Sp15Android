@@ -556,6 +556,7 @@
                 android:textStyle="bold"/>
             <EditText android:id="@+id/Pending"
                 android:nextFocusUp="@+id/Finalized"
+                android:nextFocusDown="@+id/Pending"
                 android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

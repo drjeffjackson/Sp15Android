@@ -327,15 +327,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     public void up(View view)
     {
-        if(selectedView != null && selectedView.getId() != R.id.Patient_Name)
-        {
-            if((selectedView.getId() -1) == R.id.code_status_spinner) {
-                selectedView = (EditText) findViewById(selectedView.getId() - 2);
-            }
-            else
-            {
-                selectedView = (EditText) findViewById(selectedView.getId() - 1);
-            }
+        if(selectedView != null) {
+            selectedView = (EditText) selectedView.focusSearch(selectedView.FOCUS_UP);
             selectedView.requestFocus();
         }
     }
@@ -345,16 +338,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     public void down(View view)
     {
-        if(selectedView != null && selectedView.getId() != R.id.Pending)
-        {
-            if((selectedView.getId() + 1) == R.id.code_status_spinner) {
-                selectedView = (EditText) findViewById(selectedView.getId() + 2);
-            }
-            else
-            {
-                selectedView = (EditText) findViewById(selectedView.getId() + 1);
-            }
-
+        if(selectedView != null) {
+            selectedView = (EditText) selectedView.focusSearch(selectedView.FOCUS_DOWN);
             selectedView.requestFocus();
         }
     }
@@ -418,6 +403,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
      */
     private void setListeners()
     {
+
         EditText Patient_Name = (EditText) findViewById(R.id.Patient_Name);
         Patient_Name.setOnTouchListener(this);
         EditText DOB = (EditText) findViewById(R.id.DOB);
