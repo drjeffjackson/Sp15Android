@@ -52,6 +52,8 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
 
     private long actionDownTime = -1, actionUpTime = -1;
 
+    private TabHost tabHost;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,15 +78,19 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setIcon(R.drawable.ic_launcher);
     }
+
+    /**
+     * This method setups the Tabs layout and builds its descendant layout
+     */
 public void createTabs()
 {
-    TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+    tabHost = (TabHost) findViewById(R.id.tabHost);
     tabHost.setup();
 
     final TabWidget tabWidget = tabHost.getTabWidget();
     final FrameLayout tabContent = tabHost.getTabContentView();
 
-    // Get the original tab textviews and remove them from the viewgroup.
+    // Extract the ImageViews for icons on the tabs.
     ImageView[] originalImageViews = new ImageView[tabWidget.getTabCount()];
     for (int index = 0; index < tabWidget.getTabCount(); index++) {
         originalImageViews[index] = (ImageView) tabWidget.getChildTabViewAt(index);
@@ -96,8 +102,7 @@ public void createTabs()
         tabContent.getChildAt(index).setVisibility(View.GONE);
     }
 
-    // Create the tabspec based on the textview childs in the xml file.
-    // Or create simple tabspec instances in any other way...
+    // Create the tabspec based on the Imageview childs in the xml file.
     for (int index = 0; index < originalImageViews.length; index++) {
         final ImageView tabWidgetImageView = originalImageViews[index];
         final View tabContentView = tabContent.getChildAt(index);
@@ -111,6 +116,20 @@ public void createTabs()
         tabSpec.setIndicator("", tabWidgetImageView.getDrawable());
         tabHost.addTab(tabSpec);
     }
+    tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener(){
+        @Override
+        public void onTabChanged(String tabId) {
+            switch(tabId)
+            {
+                case "tab1": selectedView = (EditText) findViewById(R.id.Patient_Name); selectedView.requestFocus(); break;
+                case "tab2": selectedView = (EditText) findViewById(R.id.Attending_Physician_Name); selectedView.requestFocus(); break;
+                case "tab3": selectedView = (EditText) findViewById(R.id.Admission_Date); selectedView.requestFocus(); break;
+                case "tab4": selectedView = (EditText) findViewById(R.id.Primary); selectedView.requestFocus(); break;
+                case "tab5": selectedView = (EditText) findViewById(R.id.Finalized); selectedView.requestFocus(); break;
+                default: break;
+            }
+
+        }});
 }
      /**
      * This method catches the startActivtyForResult call in Dictation class
@@ -378,6 +397,13 @@ public void createTabs()
         if(selectedView != null) {
             selectedView = (EditText) selectedView.focusSearch(selectedView.FOCUS_UP);
             selectedView.requestFocus();
+            switch(selectedView.getId()) {
+                case R.id.Home_Medications: tabHost.setCurrentTab(0); break;
+                case R.id.NPI_Number: tabHost.setCurrentTab(1); break;
+                case R.id.Consultants: tabHost.setCurrentTab(2); break;
+                case R.id.Complications: tabHost.setCurrentTab(3); break;
+                default: break;
+            }
         }
     }
     /** This method is called when Down Button is clicked
@@ -389,6 +415,13 @@ public void createTabs()
         if(selectedView != null) {
             selectedView = (EditText) selectedView.focusSearch(selectedView.FOCUS_DOWN);
             selectedView.requestFocus();
+            switch(selectedView.getId()) {
+                case R.id.Attending_Physician_Name: tabHost.setCurrentTab(1); break;
+                case R.id.Admission_Date: tabHost.setCurrentTab(2); break;
+                case R.id.Primary: tabHost.setCurrentTab(3); break;
+                case R.id.Finalized: tabHost.setCurrentTab(4); break;
+                default: break;
+            }
         }
     }
     /** This method is called by the Show_Keyboard button to show and hide the soft input

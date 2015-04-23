@@ -35,7 +35,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:clickable="true"
+        android:clickable="false"
         android:longClickable="false"
         android:visibility="visible">
 
@@ -53,36 +53,38 @@
 
                 <ImageView
                 android:layout_width="wrap_content"
-                android:tag="tab0"
+                android:tag="tab1"
                 android:text="Patient ID"
-                    android:src="@drawable/patient"
+                android:src="@drawable/patient"
                 android:layout_height="fill_parent"
-                android:textColor="@color/White"/>
+                android:textColor="@color/White"
+                android:focusable="false"
+                android:focusableInTouchMode="false"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:tag="tab1"
+                    android:tag="tab2"
                     android:text="Physician ID"
                     android:src="@drawable/doctor"
                     android:layout_height="fill_parent"
                     android:textColor="@color/White"/>
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:tag="tab2"
+                    android:tag="tab3"
                     android:text="HPI"
                     android:src="@drawable/hospital"
                     android:layout_height="fill_parent"
                        android:textColor="@color/White"/>
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:tag="tab3"
+                    android:tag="tab4"
                     android:text="Diagnosis"
                     android:src="@drawable/diagnosis"
                     android:layout_height="fill_parent"
                     android:textColor="@color/White"/>
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:tag="tab4"
+                    android:tag="tab5"
                     android:text="Results"
                     android:src="@drawable/result"
                     android:layout_height="fill_parent"
