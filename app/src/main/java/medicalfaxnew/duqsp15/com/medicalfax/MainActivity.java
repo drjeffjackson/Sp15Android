@@ -43,7 +43,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private EditText selectedView;
     private InputMethodManager inputMethodManager; // to hide and show keyboard
     private int keyboardState = 0;
-    private boolean continuousDictation = false;
+    private boolean continuousDictation = true;
     private boolean agree = false; //may need to be saved to the database and moved to the model level
 
     private WebView htmlViewer; //View that displays the HTML code
@@ -69,7 +69,6 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         //TODO Does the continuous dictation flag match the one in the database ???
         //TODO Has the the agreement flag included in the database and has its value in the database been set as false?
         //
-        presenter.modelInterface.physician.setContinuousDictation(continuousDictation);
         MyTimerTask save = new MyTimerTask(presenter);
         Timer myTimer = new Timer();
         myTimer.schedule(save, 60000, 60000);
