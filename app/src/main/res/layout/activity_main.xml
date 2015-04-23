@@ -51,35 +51,40 @@
                 android:background="#ff6b6b6b"
                 android:clickable="true">
 
-                <TextView
+                <ImageView
                 android:layout_width="wrap_content"
                 android:tag="tab0"
                 android:text="Patient ID"
+                    android:src="@drawable/patient"
                 android:layout_height="fill_parent"
-                    android:textColor="@color/White"/>
+                android:textColor="@color/White"/>
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:tag="tab1"
                     android:text="Physician ID"
+                    android:src="@drawable/doctor"
                     android:layout_height="fill_parent"
                     android:textColor="@color/White"/>
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:tag="tab2"
                     android:text="HPI"
+                    android:src="@drawable/hospital"
                     android:layout_height="fill_parent"
                        android:textColor="@color/White"/>
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:tag="tab3"
                     android:text="Diagnosis"
+                    android:src="@drawable/diagnosis"
                     android:layout_height="fill_parent"
                     android:textColor="@color/White"/>
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:tag="tab4"
                     android:text="Results"
+                    android:src="@drawable/result"
                     android:layout_height="fill_parent"
                        android:textColor="@color/White"/>
                 </TabWidget>
@@ -381,8 +386,7 @@
                                 android:text="HPI:"
                                 android:textSize="17dp"
                                 android:textColor="@android:color/black"
-                                android:layout_marginBottom="15dp"
-                                android:layout_marginTop="40dp"/>
+                                android:layout_marginBottom="15dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -587,8 +591,7 @@
                                 android:text="TEST/PROCEDURE RESULTS:"
                                 android:textColor="@android:color/black"
                                 android:textSize="17dp"
-                                android:layout_marginBottom="15dp"
-                                android:layout_marginTop="40dp"/>
+                                android:layout_marginBottom="15dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"

@@ -16,6 +16,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.EditText;
 import android.app.AlertDialog;
@@ -84,9 +85,9 @@ public void createTabs()
     final FrameLayout tabContent = tabHost.getTabContentView();
 
     // Get the original tab textviews and remove them from the viewgroup.
-    TextView[] originalTextViews = new TextView[tabWidget.getTabCount()];
+    ImageView[] originalImageViews = new ImageView[tabWidget.getTabCount()];
     for (int index = 0; index < tabWidget.getTabCount(); index++) {
-        originalTextViews[index] = (TextView) tabWidget.getChildTabViewAt(index);
+        originalImageViews[index] = (ImageView) tabWidget.getChildTabViewAt(index);
     }
     tabWidget.removeAllViews();
 
@@ -97,21 +98,17 @@ public void createTabs()
 
     // Create the tabspec based on the textview childs in the xml file.
     // Or create simple tabspec instances in any other way...
-    for (int index = 0; index < originalTextViews.length; index++) {
-        final TextView tabWidgetTextView = originalTextViews[index];
+    for (int index = 0; index < originalImageViews.length; index++) {
+        final ImageView tabWidgetImageView = originalImageViews[index];
         final View tabContentView = tabContent.getChildAt(index);
-        TabSpec tabSpec = tabHost.newTabSpec((String) tabWidgetTextView.getTag());
+        TabSpec tabSpec = tabHost.newTabSpec((String) tabWidgetImageView.getTag());
         tabSpec.setContent(new TabContentFactory() {
             @Override
             public View createTabContent(String tag) {
                 return tabContentView;
             }
         });
-        if (tabWidgetTextView.getBackground() == null) {
-            tabSpec.setIndicator(tabWidgetTextView.getText());
-        } else {
-            tabSpec.setIndicator(tabWidgetTextView.getText(), tabWidgetTextView.getBackground());
-        }
+        tabSpec.setIndicator("", tabWidgetImageView.getDrawable());
         tabHost.addTab(tabSpec);
     }
 }
