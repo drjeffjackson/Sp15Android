@@ -215,7 +215,7 @@ public class Patient implements ModelObj {
             if (i == 0) {
                 catList = patientMedicationsList.get(i).toString();
             } else {
-                catList = catList + ", " + patientMedicationsList.get(i).toString();
+                catList = catList + ", " + patientMedicationsList.get(i).getMedicine();
             }
 
         } return catList;
@@ -229,9 +229,9 @@ public class Patient implements ModelObj {
         String catList = new String();
         for (int i = 0; i < listOfTests.size(); i++) {
             if (i == 0) {
-                catList = listOfTests.get(i).toString();
+                catList = listOfTests.get(i).getTestName();
             } else {
-                catList = catList + ", " + listOfTests.get(i).toString();
+                catList = catList + ", " + listOfTests.get(i).getTestName();
             }
 
         } return catList;
@@ -245,9 +245,9 @@ public class Patient implements ModelObj {
         String catList = new String();
         for (int i = 0; i < allergies.size(); i++) {
             if (i == 0) {
-                catList = allergies.get(i).toString();
+                catList = allergies.get(i).getAllergy();
             } else {
-                catList = catList + ", " + allergies.get(i).toString();
+                catList = catList + ", " + allergies.get(i).getAllergy();
             }
 
         } return catList;
