@@ -69,6 +69,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         //TODO Does the continuous dictation flag match the one in the database ???
         //TODO Has the the agreement flag included in the database and has its value in the database been set as false?
         //
+        presenter.modelInterface.physician.setContinuousDictation(continuousDictation);
         MyTimerTask save = new MyTimerTask(presenter);
         Timer myTimer = new Timer();
         myTimer.schedule(save, 60000, 60000);
@@ -396,7 +397,6 @@ public void createTabs()
     {
         if(selectedView != null) {
             selectedView = (EditText) selectedView.focusSearch(selectedView.FOCUS_UP);
-            selectedView.requestFocus();
             switch(selectedView.getId()) {
                 case R.id.Home_Medications: tabHost.setCurrentTab(0); break;
                 case R.id.NPI_Number: tabHost.setCurrentTab(1); break;
@@ -404,6 +404,7 @@ public void createTabs()
                 case R.id.Complications: tabHost.setCurrentTab(3); break;
                 default: break;
             }
+            selectedView.requestFocus();
         }
     }
     /** This method is called when Down Button is clicked
@@ -414,7 +415,6 @@ public void createTabs()
     {
         if(selectedView != null) {
             selectedView = (EditText) selectedView.focusSearch(selectedView.FOCUS_DOWN);
-            selectedView.requestFocus();
             switch(selectedView.getId()) {
                 case R.id.Attending_Physician_Name: tabHost.setCurrentTab(1); break;
                 case R.id.Admission_Date: tabHost.setCurrentTab(2); break;
@@ -422,6 +422,7 @@ public void createTabs()
                 case R.id.Finalized: tabHost.setCurrentTab(4); break;
                 default: break;
             }
+            selectedView.requestFocus();
         }
     }
     /** This method is called by the Show_Keyboard button to show and hide the soft input
