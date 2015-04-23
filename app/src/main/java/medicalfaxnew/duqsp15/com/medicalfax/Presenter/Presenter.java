@@ -196,7 +196,7 @@ public class Presenter implements PresenterInterface
     }
 
 
-    public EditText[] getRequiredFields(){return SL.getRequiredFields();}
+    public boolean testRequiredFields(){return SL.testRequiredFields();}
 
     public void sendEmail(){
         saveData();
