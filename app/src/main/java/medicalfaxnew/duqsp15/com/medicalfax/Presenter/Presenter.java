@@ -55,7 +55,7 @@ public class Presenter implements PresenterInterface
         requestedBox = -1;
         con=context;
         htmlResult = "";
-        SL = new SaverLoader(this);
+        SL = new SaverLoader(this, ac);
         saveData();
     }
 
@@ -195,100 +195,8 @@ public class Presenter implements PresenterInterface
         modelInterface.physician.update();
     }
 
-    public EditText[] getRequiredFields(){
-        ArrayList<String> physicianFields, patientFields;
 
-        // get the ArrayLists from Model of all required fields not filled
-        physicianFields = modelInterface.physician.verify(); //verifies physician info
-        patientFields = modelInterface.patient.verify(); // verifies patient info
-        ArrayList<EditText> requiredFields = new ArrayList<EditText>();
-        EditText[] requiredFieldsArray;
-        EditText textField;
-
-        // send this info to the View
-        if (patientFields.contains("set allergy in list") || patientFields.contains("set medicine item in list")) {
-            textField = (EditText) ac.findViewById(R.id.Home_Medications);
-            requiredFields.add(textField);
-        }
-
-        if (patientFields.contains("set chief complaint")) {
-            textField = (EditText) ac.findViewById(R.id.Chief_Complaint);
-            requiredFields.add(textField);
-        }
-
-        // date section may not be complete
-        if (patientFields.contains("set day")|| patientFields.contains("set month") || patientFields.contains("set year")) {
-            textField = (EditText) ac.findViewById(R.id.Admission_Date);
-            requiredFields.add(textField);
-        }
-
-        if (patientFields.contains("set patient primary diagnosis")) {
-            textField = (EditText) ac.findViewById(R.id.Primary);
-            requiredFields.add(textField);
-        }
-
-        if (patientFields.contains("set history of present illness")) {
-            textField = (EditText) ac.findViewById(R.id.Complications);
-            requiredFields.add(textField);
-        }
-
-        if (patientFields.contains("set patient medical history")) {
-            textField = (EditText) ac.findViewById(R.id.Past_Medical_History);
-            requiredFields.add(textField);
-        }
-
-        // Deleted "Current Course" statement
-
-        // Deleted "Completed Course" statement
-
-        if (patientFields.contains("set medical record num")) {
-            textField = (EditText) ac.findViewById(R.id.MRN);
-            requiredFields.add(textField);
-        }
-
-        if (patientFields.contains("set name of attending")) {
-            textField = (EditText) ac.findViewById(R.id.Attending_Physician_Name);
-            requiredFields.add(textField);
-        }
-
-        if (patientFields.contains("set name of pcp")) {
-            textField = (EditText) ac.findViewById(R.id.PCP);
-            requiredFields.add(textField);
-        }
-
-        if (patientFields.contains("set test name ")) {
-            textField = (EditText) ac.findViewById(R.id.Finalized);
-            requiredFields.add(textField);
-        }
-
-        if (patientFields.contains("set test status")) {
-            textField = (EditText) ac.findViewById(R.id.Pending);
-            requiredFields.add(textField);
-        }
-
-        if (physicianFields.contains("setPatientName")) {
-            textField = (EditText) ac.findViewById(R.id.Patient_Name);
-            requiredFields.add(textField);
-        }
-
-        // Deleted "Department" statement
-
-        if (physicianFields.contains("setHomeHospital")) {
-            textField = (EditText) ac.findViewById(R.id.Home_Hospital);
-            requiredFields.add(textField);
-        }
-        if (physicianFields.contains("setNPI")) {
-            textField = (EditText) ac.findViewById(R.id.NPI_Number);
-            requiredFields.add(textField);
-        }
-        if (physicianFields.contains("setEmail")) {
-            textField = (EditText) ac.findViewById(R.id.Email_Address);
-            requiredFields.add(textField);
-        }
-
-        requiredFieldsArray = requiredFields.toArray(new EditText[requiredFields.size()]);
-        return requiredFieldsArray;
-    }
+    public EditText[] getRequiredFields(){return SL.getRequiredFields();}
 
     public void sendEmail(){
         saveData();
