@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
-import android.widget.EditText;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -19,9 +18,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import medicalfaxnew.duqsp15.com.medicalfax.MainActivity;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.IO.InputOutput;
 import medicalfaxnew.duqsp15.com.medicalfax.Model.ModelInterface;
 import medicalfaxnew.duqsp15.com.medicalfax.Presenter.Interfaces.PresenterInterface;
-import medicalfaxnew.duqsp15.com.medicalfax.R;
 
 /**
  * This class contains the functions pertaining to the Presenter.
@@ -44,6 +43,7 @@ public class Presenter implements PresenterInterface
     public MainActivity ac;
     public Context con;
     private SaverLoader SL;
+    private InputOutput myio;
     /**
      * HTML String
      */
@@ -63,7 +63,7 @@ public class Presenter implements PresenterInterface
         con=context;
         htmlResult = "";
         SL = new SaverLoader(this, ac);
-        saveData();
+        myio = new InputOutput(context);
     }
 
     // ModelObject
@@ -208,11 +208,17 @@ public class Presenter implements PresenterInterface
    }
     public void saveData() {
         SL.saveData();
+
+        //these update calls crash the app...
+        //modelInterface.patient.update();
+        //modelInterface.physician.update();
     }
 
-    public void updateDatabase() {
-        modelInterface.patient.update();
-        modelInterface.physician.update();
+    public void loadData() {
+        myio.loadPatient();
+        myio.loadPhysician();
+
+        SL.loadData();
     }
 
 

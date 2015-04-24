@@ -4,10 +4,9 @@ import android.app.Activity;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import java.util.ArrayList;
-
+import medicalfaxnew.duqsp15.com.medicalfax.MainActivity;
 import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Allergy;
-import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Medicine;
+import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.CodeStatus;
 import medicalfaxnew.duqsp15.com.medicalfax.Model.Patient.Tests;
 import medicalfaxnew.duqsp15.com.medicalfax.R;
 
@@ -22,6 +21,9 @@ public class SaverLoader {
     public Activity ac;
 
     Presenter mypres;
+
+    boolean dictationFlag;
+    boolean agreementFlag;
 
     public SaverLoader(Presenter pres, Activity act) {
         mypres = pres;
@@ -44,7 +46,6 @@ public class SaverLoader {
         mypres.modelInterface.patient.medRecNum.setMrn(((EditText) (mypres.ac.findViewById(R.id.MRN))).getText().toString());
         mypres.modelInterface.patient.admDate.setDate(((EditText) (mypres.ac.findViewById(R.id.DOB))).getText().toString());
         mypres.modelInterface.patient.pcpName.setName(((EditText) (mypres.ac.findViewById(R.id.PCP))).getText().toString());
-        mypres.modelInterface.patient.attendingName.setName(((EditText) (mypres.ac.findViewById(R.id.Attending_Physician_Name))).getText().toString());
 
         mypres.modelInterface.patient.codeStatus.setAsString(((Spinner) (mypres.ac.findViewById(R.id.code_status_spinner))).getSelectedItem().toString());
 
@@ -56,16 +57,16 @@ public class SaverLoader {
         mypres.modelInterface.patient.patientDiagnosis.setPrimaryDiagnosis(((EditText) (mypres.ac.findViewById(R.id.Primary))).getText().toString());
         mypres.modelInterface.patient.patientDiagnosis.setSecondaryDiagnosis(((EditText) (mypres.ac.findViewById(R.id.Secondary))).getText().toString());
         mypres.modelInterface.patient.patientDiagnosis.setComplications(((EditText) (mypres.ac.findViewById(R.id.Complications))).getText().toString());
-        mypres.modelInterface.patient.patientName.setName(((EditText) (mypres.ac.findViewById(R.id.Patient_Name))).getText().toString());
 
         //for listOfTests
-        Tests t = new Tests();
-        if (((EditText) (mypres.ac.findViewById(R.id.Finalized))).getText().toString() != "") {
-            t.setFinalized();
-        } else if (((EditText) (mypres.ac.findViewById(R.id.Pending))).getText().toString() != "") {
-            t.setPending();
-        }
-        mypres.modelInterface.patient.addTestList(t);
+        String testName = ((EditText)(mypres.ac.findViewById(R.id.Finalized))).getText().toString();
+        String testStatus = ((EditText)(mypres.ac.findViewById(R.id.Pending))).getText().toString();
+
+        Tests t1 = new Tests(testName, testStatus);
+        if (t1.getTestName() != "") { t1.setFinalized(); }
+        if (t1.getStatus() != "") { t1.setPending(); }
+
+        mypres.modelInterface.patient.addTestList(t1);
 
         //Not really sure what the first argument should be, as there is no field for "medicine" to pull data from
         // Deleted the statement containing "current course" and "completed course"
@@ -84,9 +85,62 @@ public class SaverLoader {
         mypres.modelInterface.physician.contact.setEmail(((EditText) (mypres.ac.findViewById(R.id.Email_Address))).getText().toString());
         mypres.modelInterface.physician.contact.setPhone(((EditText) (mypres.ac.findViewById(R.id.Phone_Number))).getText().toString());
 
+        dictationFlag = mypres.modelInterface.physician.getContinuousDictation();
+        agreementFlag = ((MainActivity)(ac)).getAgreement();
+
     }
 
     public void loadData() {
+         /*
+         Loading Patient data from Model Object into text boxes
+         */
+
+        CodeStatus cs = new CodeStatus();
+
+        int spinnerID;
+
+        if (cs.getCodeStatus() == "Full") { spinnerID = 0; }
+
+        else if (cs.getCodeStatus() == "Limited") { spinnerID = 1; }
+
+        else { spinnerID = 2; }
+
+
+        ((EditText)(mypres.ac.findViewById(R.id.Patient_Name))).setText((mypres.modelInterface.patient.patientName).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.DOB))).setText((mypres.modelInterface.patient.dateOfBirth).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.MRN))).setText((mypres.modelInterface.patient.medRecNum).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.Admission_Date))).setText((mypres.modelInterface.patient.admDate).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.PCP))).setText((mypres.modelInterface.patient.pcpName).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.Attending_Physician_Name))).setText((mypres.modelInterface.patient.attendingName).toString());
+
+        ((Spinner)(mypres.ac.findViewById(R.id.code_status_spinner))).setSelection(spinnerID);
+
+        ((EditText)(mypres.ac.findViewById(R.id.Chief_Complaint))).setText((mypres.modelInterface.patient.chiefComplaint).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.HPI))).setText((mypres.modelInterface.patient.hpi).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.Hospital_Course))).setText((mypres.modelInterface.patient.hospitalCourse).toString());
+
+        ((EditText)(mypres.ac.findViewById(R.id.Consultants))).setText(mypres.modelInterface.patient.getConsultantList());
+
+        ((EditText)(mypres.ac.findViewById(R.id.Primary))).setText((mypres.modelInterface.patient.patientDiagnosis).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.Secondary))).setText((mypres.modelInterface.patient.patientDiagnosis).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.Complications))).setText((mypres.modelInterface.patient.patientDiagnosis).toString());
+
+        ((EditText)(mypres.ac.findViewById(R.id.Past_Medical_History))).setText((mypres.modelInterface.patient.medHistory).toString());
+
+        ((EditText)(mypres.ac.findViewById(R.id.Home_Medications))).setText(mypres.modelInterface.patient.getAllergyList());
+
+
+         /*
+         Loading Physician data into Text boxes
+         */
+        ((EditText)(mypres.ac.findViewById(R.id.Attending_Physician_Name))).setText((mypres.modelInterface.physician.name).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.Home_Hospital))).setText((mypres.modelInterface.physician.hospital).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.NPI_Number))).setText((mypres.modelInterface.physician.npi).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.Email_Address))).setText((mypres.modelInterface.physician.contact).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.Phone_Number))).setText((mypres.modelInterface.physician.contact).toString());
+
+        mypres.modelInterface.physician.setContinuousDictation(dictationFlag);
+        ((MainActivity)(ac)).setAgreement(agreementFlag);
 
     }
 
