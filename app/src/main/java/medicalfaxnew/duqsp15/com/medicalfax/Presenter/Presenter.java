@@ -6,7 +6,14 @@ import android.net.Uri;
 import android.os.Environment;
 import android.widget.EditText;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.tool.xml.XMLWorkerHelper;
+
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -186,6 +193,19 @@ public class Presenter implements PresenterInterface
         return file;
     }
 
+   public File GeneratePDF() {
+       File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "htmlPdf.pdf");
+       Document doc = new Document();
+       try {
+           PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(file));
+           doc.open();
+           XMLWorkerHelper.getInstance().parseXHtml(writer, doc, new FileInputStream(GenerateHTML()));
+           doc.close();
+       } catch (IOException io) {
+       } catch (DocumentException de) {
+       }
+       return file;
+   }
     public void saveData() {
         SL.saveData();
     }
@@ -201,7 +221,7 @@ public class Presenter implements PresenterInterface
     public void sendEmail(){
         saveData();
         /* Recipient and CC's can be pre-filled by passing String[] containing them, otherwise pass null */
-        modelInterface.email.sendEmail(null,null ,"Patient Information is in the attached Document.", Uri.fromFile(GenerateHTML()));
+        modelInterface.email.sendEmail(null,null ,"Patient Information is in the attached Document.", Uri.fromFile(GeneratePDF()));
     }
 
 }
