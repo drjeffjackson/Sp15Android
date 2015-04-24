@@ -87,9 +87,6 @@ public class SaverLoader {
 
         dictationFlag = mypres.modelInterface.physician.getContinuousDictation();
         agreementFlag = ((MainActivity)(ac)).getAgreement();
-        mypres.modelInterface.patient.update();
-        mypres.modelInterface.physician.update();
-
     }
 
     public void loadData() {
@@ -113,7 +110,7 @@ public class SaverLoader {
         ((EditText)(mypres.ac.findViewById(R.id.MRN))).setText((mypres.modelInterface.patient.medRecNum.getMrn()));
         ((EditText)(mypres.ac.findViewById(R.id.Admission_Date))).setText((mypres.modelInterface.patient.admDate.getDate()));
         ((EditText)(mypres.ac.findViewById(R.id.PCP))).setText((mypres.modelInterface.patient.pcpName.getName()));
-        ((EditText)(mypres.ac.findViewById(R.id.Attending_Physician_Name))).setText((mypres.modelInterface.patient.attendingName.getName()));
+//        ((EditText)(mypres.ac.findViewById(R.id.Attending_Physician_Name))).setText((mypres.modelInterface.patient.attendingName.getName()));
 
         ((Spinner)(mypres.ac.findViewById(R.id.code_status_spinner))).setSelection(spinnerID);
 

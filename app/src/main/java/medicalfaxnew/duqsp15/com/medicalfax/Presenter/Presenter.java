@@ -120,19 +120,21 @@ public class Presenter implements PresenterInterface
         patientTable.get(1).add(modelInterface.patient.medRecNum.getMrn());
 
         patientTable.get(2).add ("DOB");
-        patientTable.get(2).add(modelInterface.patient.dateOfBirth.getDay()+"/"+modelInterface.patient.dateOfBirth.getMonth()+"/"+modelInterface.patient.dateOfBirth.getYear());
+        patientTable.get(2).add(modelInterface.patient.dateOfBirth.getDate());
+//        patientTable.get(2).add(modelInterface.patient.dateOfBirth.getDay()+"/"+modelInterface.patient.dateOfBirth.getMonth()+"/"+modelInterface.patient.dateOfBirth.getYear());
 
         patientTable.get(3).add ("Date of Admittance");
-        patientTable.get(3).add(modelInterface.patient.admDate.getDay()+"/"+modelInterface.patient.admDate.getMonth()+"/"+modelInterface.patient.admDate.getYear());
+        patientTable.get(3).add(modelInterface.patient.admDate.getDate());
+//        patientTable.get(3).add(modelInterface.patient.admDate.getDay()+"/"+modelInterface.patient.admDate.getMonth()+"/"+modelInterface.patient.admDate.getYear());
 
         patientTable.get(4).add ("Code Status");
         patientTable.get(4).add(modelInterface.patient.codeStatus.getCodeStatus());
 
-        patientTable.get(5).add ("Attending Name");
-        patientTable.get(5).add(modelInterface.patient.attendingName.getName());
+//        patientTable.get(5).add ("Attending Name");
+//        patientTable.get(5).add(modelInterface.patient.attendingName.getName());
 
-        patientTable.get(6).add ("PCP Name");
-        patientTable.get(6).add(modelInterface.patient.pcpName.getName());
+        patientTable.get(5).add ("PCP Name");
+        patientTable.get(5).add(modelInterface.patient.pcpName.getName());
 
 
         HTMLTable physicianTable = new HTMLTable();
@@ -143,8 +145,9 @@ public class Presenter implements PresenterInterface
         physicianTable.get(0).add("Name");
         physicianTable.get(0).add(modelInterface.physician.name.getName());
 
+        physicianTable.get(1).add("Hospital");
         physicianTable.get(1).add(modelInterface.physician.hospital.getHomeHospital());
-        physicianTable.get(1).add(modelInterface.physician.hospital.getDepartment()+"-"+modelInterface.physician.hospital.getTitle());
+//        physicianTable.get(1).add(modelInterface.physician.hospital.getDepartment()+"-"+modelInterface.physician.hospital.getTitle());
 
         physicianTable.get(2).add("NPI#");
         physicianTable.get(2).add(modelInterface.physician.npi.getNPI());
@@ -152,8 +155,7 @@ public class Presenter implements PresenterInterface
         physicianTable.get(3).add(modelInterface.physician.contact.getEmail());
         physicianTable.get(3).add(modelInterface.physician.contact.getPhone());
 
-        String str = null;
-        str+="<!DOCTYPE html>";
+        String str = "<!DOCTYPE html>";
         str+="<html>";
         str+=new HTMLHeader("Patient").toString();
         str+=patientTable.toString();
