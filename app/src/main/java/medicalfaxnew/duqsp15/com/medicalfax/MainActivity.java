@@ -54,15 +54,16 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
 
     private TabHost tabHost;
     private int currentTab = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         presenter = new Presenter(this.getApplicationContext(), this);
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        setListeners();
         createTabs();
         createPopUpPreview();
+        setListeners();
         presenter.loadData();
         MyTimerTask save = new MyTimerTask(presenter);
         Timer myTimer = new Timer();
@@ -160,7 +161,6 @@ public void createTabs()
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement\
         //converted to a switch statement by Coder Thanatos
         switch(id) {
@@ -467,7 +467,7 @@ public void createTabs()
         }
         super.onBackPressed();
     }
-public void setAgreement(boolean a)
+    public void setAgreement(boolean a)
 {
     agree = a;
 }

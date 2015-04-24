@@ -85,8 +85,8 @@ public class SaverLoader {
         mypres.modelInterface.physician.contact.setEmail(((EditText) (mypres.ac.findViewById(R.id.Email_Address))).getText().toString());
         mypres.modelInterface.physician.contact.setPhone(((EditText) (mypres.ac.findViewById(R.id.Phone_Number))).getText().toString());
 
-        dictationFlag = mypres.modelInterface.physician.getContinuousDictation();
-        agreementFlag = ((MainActivity)(ac)).getAgreement();
+        mypres.modelInterface.physician.setContinuousDictation(mypres.ac.getContinuousDictation());
+        //[A method of a model object to set agreement flag](mypres.ac.getAgreement());
     }
 
     public void loadData() {
@@ -138,8 +138,8 @@ public class SaverLoader {
         ((EditText)(mypres.ac.findViewById(R.id.Email_Address))).setText((mypres.modelInterface.physician.contact.getEmail()));
         ((EditText)(mypres.ac.findViewById(R.id.Phone_Number))).setText((mypres.modelInterface.physician.contact.getPhone()));
 
-        mypres.modelInterface.physician.setContinuousDictation(dictationFlag);
-        ((MainActivity)(ac)).setAgreement(agreementFlag);
+        mypres.ac.setContinuousDictation(mypres.modelInterface.physician.getContinuousDictation());
+        //mypres.ac.setAgreement(/*[A method to get the agreement flag from the database through some model object]*/);
 
     }
 
