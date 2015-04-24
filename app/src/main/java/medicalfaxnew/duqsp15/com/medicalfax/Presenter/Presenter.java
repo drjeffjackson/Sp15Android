@@ -195,17 +195,24 @@ public class Presenter implements PresenterInterface
 
    public File GeneratePDF() {
        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "htmlPdf.pdf");
-       Document doc = new Document();
+       Document document = new Document();
+
+       //passwords
+       String user = modelInterface.patient.medRecNum.getMrn();
+       String owner = user;
+
        try {
-           PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(file));
-           doc.open();
-           XMLWorkerHelper.getInstance().parseXHtml(writer, doc, new FileInputStream(GenerateHTML()));
-           doc.close();
+           PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(file));
+           writer.setEncryption(user.getBytes(),owner.getBytes(),PdfWriter.ALLOW_PRINTING,PdfWriter.STANDARD_ENCRYPTION_128);
+           document.open();
+           XMLWorkerHelper.getInstance().parseXHtml(writer, document, new FileInputStream(GenerateHTML()));
+           document.close();
        } catch (IOException io) {
        } catch (DocumentException de) {
        }
        return file;
    }
+
     public void saveData() {
         SL.saveData();
 
