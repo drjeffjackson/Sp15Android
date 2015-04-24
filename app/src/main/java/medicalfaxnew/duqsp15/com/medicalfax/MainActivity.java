@@ -43,7 +43,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private EditText selectedView;
     private InputMethodManager inputMethodManager; // to hide and show keyboard
     private int keyboardState = 0;
-    private boolean continuousDictation = true;
+    private boolean continuousDictation = false;
     private boolean agree = false; //may need to be saved to the database and moved to the model level
 
     private WebView htmlViewer; //View that displays the HTML code

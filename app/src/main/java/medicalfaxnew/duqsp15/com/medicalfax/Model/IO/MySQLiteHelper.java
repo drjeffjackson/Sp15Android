@@ -260,7 +260,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper
         cv.put(PHYSICIAN_COLUMN_TITLE, "");
         cv.put(PHYSICIAN_COLUMN_PHONE, "");
         cv.put(PHYSICIAN_COLUMN_EMAIL, "");
-        cv.put(PHYSICIAN_COLUMN_DICTATION, "1");
+        cv.put(PHYSICIAN_COLUMN_DICTATION, "0");
         database.insert(TABLE_PHYSICIAN, null, cv); //Insert statement
 
     }
