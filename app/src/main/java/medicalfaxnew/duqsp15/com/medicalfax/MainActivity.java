@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
     private long actionDownTime = -1, actionUpTime = -1;
 
     private TabHost tabHost;
-
+    private int currentTab = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,12 +63,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         setListeners();
         createTabs();
         createPopUpPreview();
-        //
-        //TODO add  presenter.saveData(); or LoadData ?? for restoring previous content?
-        //TODO Have the agreement flag and continuous dictation flag been included in the save and load data??
-        //TODO Does the continuous dictation flag match the one in the database ???
-        //TODO Has the the agreement flag included in the database and has its value in the database been set as false?
-        //
+        presenter.loadData();
         MyTimerTask save = new MyTimerTask(presenter);
         Timer myTimer = new Timer();
         myTimer.schedule(save, 60000, 60000);
@@ -121,11 +116,11 @@ public void createTabs()
         public void onTabChanged(String tabId) {
             switch(tabId)
             {
-                case "tab1": selectedView = (EditText) findViewById(R.id.Patient_Name); selectedView.requestFocus(); break;
-                case "tab2": selectedView = (EditText) findViewById(R.id.Attending_Physician_Name); selectedView.requestFocus(); break;
-                case "tab3": selectedView = (EditText) findViewById(R.id.Admission_Date); selectedView.requestFocus(); break;
-                case "tab4": selectedView = (EditText) findViewById(R.id.Primary); selectedView.requestFocus(); break;
-                case "tab5": selectedView = (EditText) findViewById(R.id.Finalized); selectedView.requestFocus(); break;
+                case "tab1": selectedView = (EditText) findViewById(R.id.Patient_Name); selectedView.requestFocus(); currentTab = 1; break;
+                case "tab2": selectedView = (EditText) findViewById(R.id.Attending_Physician_Name); selectedView.requestFocus(); currentTab = 2;break;
+                case "tab3": selectedView = (EditText) findViewById(R.id.Admission_Date); selectedView.requestFocus(); currentTab = 3;break;
+                case "tab4": selectedView = (EditText) findViewById(R.id.Primary); selectedView.requestFocus(); currentTab = 4;break;
+                case "tab5": selectedView = (EditText) findViewById(R.id.Finalized); selectedView.requestFocus(); currentTab = 5;break;
                 default: break;
             }
 
@@ -195,6 +190,9 @@ public void createTabs()
                 break;
             case R.id.action_dictation:
                 dictates(selectedView);
+                break;
+            case R.id.action_reset:
+                reset();
                 break;
         }
 
@@ -383,7 +381,32 @@ public void createTabs()
             nextView = (EditText) currentView.focusSearch(currentView.FOCUS_DOWN);
         }
     }
+    private void reset()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Fields Reset Alert");
+        builder.setMessage("Proceed to reset all the fields in the current category?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                presenter.reset(currentTab);
+                presenter.saveData();
+                dialog.dismiss();
+            }
+        });
 
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.setCancelable(false);
+        alert.show();
+
+    }
     /** This method changes focus based on the user's touch and hides the input keyboard
      * @param v the touched view
      * @param event MotionEvent's event
@@ -433,11 +456,7 @@ public void createTabs()
         if (presenter.modelInterface.IO.getHelper() != null) {
             presenter.modelInterface.IO.getHelper().close();
         }
-        //TODO may want to add saveData or UpdateDataBase here
-        //TODO reset the agreement flag as FALSE in the database ???
-
-        //TODO Conjecture(based on previous testing): when the app is closed not using the back button but using the close button on the android background app lists, the onDestroy is not called
-        //TODO which, in this case we may want to be able to RESET the whole database (need to find what method is called and reset the dataBase)
+        presenter.saveData();
     }
     public void onBackPressed()
     {
@@ -446,7 +465,7 @@ public void createTabs()
             popUpPreview.dismiss();
             return;
         }
-        super.onBackPressed(); //TODO onDestroy is also called (analyze how to deal with the current data)
+        super.onBackPressed();
     }
 public void setAgreement(boolean a)
 {
@@ -476,6 +495,6 @@ class MyTimerTask extends TimerTask {
         update = p;
     }
     public void run() {
-        update.updateDatabase();
+        update.saveData();
     }
 }

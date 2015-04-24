@@ -87,6 +87,8 @@ public class SaverLoader {
 
         dictationFlag = mypres.modelInterface.physician.getContinuousDictation();
         agreementFlag = ((MainActivity)(ac)).getAgreement();
+        mypres.modelInterface.patient.update();
+        mypres.modelInterface.physician.update();
 
     }
 
@@ -106,26 +108,26 @@ public class SaverLoader {
         else { spinnerID = 2; }
 
 
-        ((EditText)(mypres.ac.findViewById(R.id.Patient_Name))).setText((mypres.modelInterface.patient.patientName).toString());
-        ((EditText)(mypres.ac.findViewById(R.id.DOB))).setText((mypres.modelInterface.patient.dateOfBirth).toString());
-        ((EditText)(mypres.ac.findViewById(R.id.MRN))).setText((mypres.modelInterface.patient.medRecNum).toString());
-        ((EditText)(mypres.ac.findViewById(R.id.Admission_Date))).setText((mypres.modelInterface.patient.admDate).toString());
-        ((EditText)(mypres.ac.findViewById(R.id.PCP))).setText((mypres.modelInterface.patient.pcpName).toString());
-        ((EditText)(mypres.ac.findViewById(R.id.Attending_Physician_Name))).setText((mypres.modelInterface.patient.attendingName).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.Patient_Name))).setText((mypres.modelInterface.patient.patientName.getName()));
+        ((EditText)(mypres.ac.findViewById(R.id.DOB))).setText((mypres.modelInterface.patient.dateOfBirth.getDate()));
+        ((EditText)(mypres.ac.findViewById(R.id.MRN))).setText((mypres.modelInterface.patient.medRecNum.getMrn()));
+        ((EditText)(mypres.ac.findViewById(R.id.Admission_Date))).setText((mypres.modelInterface.patient.admDate.getDate()));
+        ((EditText)(mypres.ac.findViewById(R.id.PCP))).setText((mypres.modelInterface.patient.pcpName.getName()));
+        ((EditText)(mypres.ac.findViewById(R.id.Attending_Physician_Name))).setText((mypres.modelInterface.patient.attendingName.getName()));
 
         ((Spinner)(mypres.ac.findViewById(R.id.code_status_spinner))).setSelection(spinnerID);
 
-        ((EditText)(mypres.ac.findViewById(R.id.Chief_Complaint))).setText((mypres.modelInterface.patient.chiefComplaint).toString());
-        ((EditText)(mypres.ac.findViewById(R.id.HPI))).setText((mypres.modelInterface.patient.hpi).toString());
-        ((EditText)(mypres.ac.findViewById(R.id.Hospital_Course))).setText((mypres.modelInterface.patient.hospitalCourse).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.Chief_Complaint))).setText((mypres.modelInterface.patient.chiefComplaint.getChiefComplaint()));
+        ((EditText)(mypres.ac.findViewById(R.id.HPI))).setText((mypres.modelInterface.patient.hpi.getHPI()));
+        ((EditText)(mypres.ac.findViewById(R.id.Hospital_Course))).setText((mypres.modelInterface.patient.hospitalCourse.getHospitalCourse()));
 
         ((EditText)(mypres.ac.findViewById(R.id.Consultants))).setText(mypres.modelInterface.patient.getConsultantList());
 
-        ((EditText)(mypres.ac.findViewById(R.id.Primary))).setText((mypres.modelInterface.patient.patientDiagnosis).toString());
-        ((EditText)(mypres.ac.findViewById(R.id.Secondary))).setText((mypres.modelInterface.patient.patientDiagnosis).toString());
-        ((EditText)(mypres.ac.findViewById(R.id.Complications))).setText((mypres.modelInterface.patient.patientDiagnosis).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.Primary))).setText((mypres.modelInterface.patient.patientDiagnosis.getPrimaryDiagnosis()));
+        ((EditText)(mypres.ac.findViewById(R.id.Secondary))).setText((mypres.modelInterface.patient.patientDiagnosis.getSecondaryDiagnosis()));
+        ((EditText)(mypres.ac.findViewById(R.id.Complications))).setText((mypres.modelInterface.patient.patientDiagnosis.getComplications()));
 
-        ((EditText)(mypres.ac.findViewById(R.id.Past_Medical_History))).setText((mypres.modelInterface.patient.medHistory).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.Past_Medical_History))).setText((mypres.modelInterface.patient.medHistory.getMedicalHistory()));
 
         ((EditText)(mypres.ac.findViewById(R.id.Home_Medications))).setText(mypres.modelInterface.patient.getAllergyList());
 
@@ -133,18 +135,56 @@ public class SaverLoader {
          /*
          Loading Physician data into Text boxes
          */
-        ((EditText)(mypres.ac.findViewById(R.id.Attending_Physician_Name))).setText((mypres.modelInterface.physician.name).toString());
-        ((EditText)(mypres.ac.findViewById(R.id.Home_Hospital))).setText((mypres.modelInterface.physician.hospital).toString());
-        ((EditText)(mypres.ac.findViewById(R.id.NPI_Number))).setText((mypres.modelInterface.physician.npi).toString());
-        ((EditText)(mypres.ac.findViewById(R.id.Email_Address))).setText((mypres.modelInterface.physician.contact).toString());
-        ((EditText)(mypres.ac.findViewById(R.id.Phone_Number))).setText((mypres.modelInterface.physician.contact).toString());
+        ((EditText)(mypres.ac.findViewById(R.id.Attending_Physician_Name))).setText((mypres.modelInterface.physician.name.getName()));
+        ((EditText)(mypres.ac.findViewById(R.id.Home_Hospital))).setText((mypres.modelInterface.physician.hospital.getHomeHospital()));
+        ((EditText)(mypres.ac.findViewById(R.id.NPI_Number))).setText((mypres.modelInterface.physician.npi.getNPI()));
+        ((EditText)(mypres.ac.findViewById(R.id.Email_Address))).setText((mypres.modelInterface.physician.contact.getEmail()));
+        ((EditText)(mypres.ac.findViewById(R.id.Phone_Number))).setText((mypres.modelInterface.physician.contact.getPhone()));
 
         mypres.modelInterface.physician.setContinuousDictation(dictationFlag);
         ((MainActivity)(ac)).setAgreement(agreementFlag);
 
     }
 
-
+    public void reset(int currentTab)
+    {
+        switch(currentTab)
+        {
+            case 1:
+                ((EditText)(mypres.ac.findViewById(R.id.Patient_Name))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.DOB))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.MRN))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.PCP))).setText("");
+                ((Spinner)(mypres.ac.findViewById(R.id.code_status_spinner))).setSelection(0);
+                ((EditText)(mypres.ac.findViewById(R.id.Past_Medical_History))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.Home_Medications))).setText("");
+                break;
+            case 2:
+                ((EditText)(mypres.ac.findViewById(R.id.Attending_Physician_Name))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.Home_Hospital))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.Email_Address))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.Phone_Number))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.NPI_Number))).setText("");
+                break;
+            case 3:
+                ((EditText)(mypres.ac.findViewById(R.id.Admission_Date))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.Chief_Complaint))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.HPI))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.Hospital_Course))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.Consultants))).setText("");
+                break;
+            case 4:
+                ((EditText)(mypres.ac.findViewById(R.id.Primary))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.Secondary))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.Complications))).setText("");
+               break;
+            case 5:
+                ((EditText)(mypres.ac.findViewById(R.id.Finalized))).setText("");
+                ((EditText)(mypres.ac.findViewById(R.id.Pending))).setText("");
+                break;
+            default: break;
+        }
+    }
     public boolean testRequiredFields() {
 
         return check(R.id.Patient_Name) & check(R.id.DOB) & check(R.id.Admission_Date) &

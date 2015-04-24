@@ -11,6 +11,8 @@
         app:showAsAction="always|withText"/>
     <item android:id="@+id/action_tab_up"  android:title="Tab Up" android:icon="@drawable/tab_up_action"
         app:showAsAction="always|withText"/>
+    <item android:id="@+id/action_reset"  android:title="Reset" android:icon="@drawable/ic_action_reset"
+        app:showAsAction="always|withText"/>
 </menu>
 
     <!-- extra

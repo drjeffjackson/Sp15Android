@@ -228,7 +228,9 @@ public class Presenter implements PresenterInterface
         SL.loadData();
     }
 
-
+    public void reset(int currentTab){
+        SL.reset(currentTab);
+    }
     public boolean testRequiredFields(){return SL.testRequiredFields();}
 
     public void sendEmail(){
