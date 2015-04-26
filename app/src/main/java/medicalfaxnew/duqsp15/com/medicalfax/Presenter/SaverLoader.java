@@ -184,7 +184,7 @@ public class SaverLoader {
     }
     public boolean testRequiredFields() {
 
-        return check(R.id.Patient_Name) & check(R.id.DOB) & check(R.id.Admission_Date) &
+        return  check(R.id.Patient_Name) & check(R.id.DOB) & check(R.id.Admission_Date) &
                 check(R.id.Home_Hospital) & check(R.id.Home_Medications) & check(R.id.Primary) &
                 check(R.id.Complications) & check(R.id.Past_Medical_History) & check(R.id.MRN) &
                 check(R.id.Attending_Physician_Name) & check(R.id.PCP) & check(R.id.Finalized) &

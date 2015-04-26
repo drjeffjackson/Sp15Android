@@ -68,7 +68,7 @@ public class MainActivity extends ActionBarActivity implements ViewPresenterInte
         MyTimerTask save = new MyTimerTask(presenter);
         Timer myTimer = new Timer();
         myTimer.schedule(save, 60000, 60000);
-        if(!getAgreement()) { popUpHIPPA();}
+        if(!getAgreement()) {popUpHIPPA();}
         if(getAgreement()) {initialDictation();}
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -222,8 +222,6 @@ public void createTabs()
      */
     private void popUpPreview()
     {
-        presenter.saveData();
-
         htmlViewer = (WebView) popUpPreviewLayout.findViewById(R.id.HTMLView);
         htmlViewer.getSettings().setJavaScriptEnabled(true);
         htmlViewer.loadDataWithBaseURL(null, presenter.assembleHTML(), "text/html", "utf-8", null);
@@ -270,6 +268,7 @@ public void createTabs()
      */
     public void submits(View view)
     {
+        presenter.saveData();
         if(presenter.testRequiredFields())
             popUpPreview();
     }
